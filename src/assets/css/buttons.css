@@ -1,0 +1,27 @@
+.btn {
+    @apply text-white py-1 px-4 rounded transition;
+}
+
+.btn-danger {
+    @apply bg-red-500 hover:bg-red-700;
+}
+
+.btn-default {
+    @apply bg-gray-500 hover:bg-gray-700;
+}
+
+.btn-primary {
+    @apply bg-blue-500 hover:bg-blue-700;
+}
+
+.btn-success {
+    @apply bg-green-500 hover:bg-green-700;
+}
+
+.btn-xs {
+    @apply text-xs px-2;
+}
+
+.a-link {
+  @apply text-indigo-600 hover:text-indigo-800 underline;
+}
