@@ -8,6 +8,7 @@
         to="/login" 
         class="btn btn-primary"
         data-test="login"
+        data-testid="login-link"
       >
         Iniciar sesión
       </router-link>
@@ -18,11 +19,12 @@
       >
         Registrarse
       </router-link>
+      <div data-testid="location-display">{{ $route }}</div>
     </div>
   </div>  
 </template>
 
-<script>
+<script lang="ts">
 import IconApple from "./IconApple.vue"
 
 export default {
