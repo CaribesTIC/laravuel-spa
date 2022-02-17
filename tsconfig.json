@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "types": ["vite/client", "vitest/globals"],
     "target": "esnext",
     "useDefineForClassFields": true,
     "module": "esnext",
@@ -11,6 +12,7 @@
     "esModuleInterop": true,
     "lib": ["esnext", "dom"]
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "test/**/*.ts"],
+  "exclude": [ "node_modules" ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

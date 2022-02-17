@@ -6,8 +6,7 @@
     <div class="flex justify-center text-lg mt-10 space-x-5">      
       <router-link 
         to="/login" 
-        class="btn btn-primary"
-        data-test="login"
+        class="btn btn-primary"        
         data-testid="login-link"
       >
         Iniciar sesión
@@ -15,11 +14,10 @@
       <router-link
         to="/register"
         class="btn btn-default"
-        data-test="register"
+        data-testid="register-link"
       >
         Registrarse
-      </router-link>
-      <div data-testid="location-display">{{ $route }}</div>
+      </router-link>      
     </div>
   </div>  
 </template>

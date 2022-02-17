@@ -1,31 +1,36 @@
 //import { defineAsyncComponent } from "vue"
 import {createRouter, createWebHistory, RouteRecordRaw} from 'vue-router'
+import Home from "@/views/Home/Index.vue"
+import About from "@/components/About.vue"
+import Login from "@/views/Login/Index.vue"
+import Register from "@/views/Register/Index.vue"
+import NotFound from "@/components/NotFound.vue"
 
 const routes: Array<RouteRecordRaw> = [{
     path: '/',
     name: 'Home',
     meta: { layout: "empty" },       
-    component: () => import("@/views/Home/Index.vue").then(m => m.default)
+    component: Home
 }, {
     path: '/about',
     name: 'About',
     meta: { layout: "empty" },
-    component: () => import("@/components/About.vue").then(m => m.default)
+    component: About
 }, {
     path: "/login",
     name: "Login",
     meta: { layout: "empty" },
-    component: () => import("@/views/Login/Index.vue").then(m => m.default)
+    component: Login
 }, {
     path: "/register",
     name: "Register",
     meta: { layout: "empty" },
-    component: () => import("@/views/Register/Index.vue").then(m => m.default)
+    component: Register
 }, {
     path: "/:catchAll(.*)",
     name: "NotFound",
     meta: { layout: "empty" },
-    component: () => import("@/components/NotFound.vue").then(m => m.default),
+    component: NotFound
 }]
 
 const router = createRouter({
