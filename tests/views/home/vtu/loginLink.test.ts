@@ -3,6 +3,8 @@ import router from '../../router'
 import App from '@/App.vue'
 import Login from '@/views/Login/Index.vue'
 
+const FlashMessage = { }
+
 beforeEach(() => { window.scrollTo = vi.fn() })
 afterEach(() => { vi.clearAllMocks() })
 
@@ -10,7 +12,8 @@ test('this should go to the login page', async () => {
 
   const wrapper = mount(App, {
     global: {
-      plugins: [router]
+      plugins: [router],
+      stubs: {FlashMessage: true}
     }
   })
   

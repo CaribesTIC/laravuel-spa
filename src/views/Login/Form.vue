@@ -8,6 +8,7 @@
       autocomplete="email"
       placeholder="luke@jedi.com"
       class="mb-2"
+      data-testid="email-input"
     />
     <BaseInput
       type="password"
@@ -15,6 +16,7 @@
       name="password"
       v-model="password"
       class="mb-4"
+      data-testid="password-input"
     />
 
 <label class="flex items-center"><input type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50i mb-4" name="remember"><span class="ml-2 mb-3 text-sm text-gray-600">Recuérdame</span></label>
@@ -25,9 +27,14 @@
         type="submit"
         :text="sending ? 'Iniciando sesión...' : 'Iniciar sesión'"
         :isDisabled='sending'
+        data-testid="submit-btn"
       />
 
-      <router-link to="/forgot-password" class="underline text-sm text-gray-600 hover:text-gray-900">
+      <router-link
+        to="/forgot-password"
+        class="underline text-sm text-gray-600 hover:text-gray-900"
+        data-testid="forgot-password-link"
+      >
         ¿Olvidaste tu contraseña?
       </router-link>
 
@@ -41,7 +48,7 @@
 import { getError } from "@/utils/helpers.js";
 import BaseBtn from "@/components/BaseBtn.vue";
 import BaseInput from "@/components/BaseInput.vue";
-import AuthService from "@/services/AuthService.js";
+//import AuthService from "@/services/AuthService.js";
 import FlashMessage from "@/components/FlashMessage.vue";
 
 export default {
