@@ -1,40 +1,33 @@
 <template>
-  <div>
-    <label
-      :for="name"
-      class="text-sm text-gray-500"
+  <label
+    :for="name"
+  >
+    <span
+      class="text-sm text-gray-800"
       :class="{ 'sr-only': !showLabel }"
       v-if="label"
-    >
-      {{ label }}
-    </label>
-    <!--input
-      :id="name"
-      :type="type"
-      :value="value"
-      :required="required"
-      @input="updateValue"
-      :placeholder="placeholder"
-      :autocomplete="autocomplete"
-      class="block w-full px-3 py-2 placeholder-gray-400 border border-gray-300 rounded-md shadow-sm appearance-none focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-    /-->
+      >
+        {{ label }}
+      </span>
     <input
       :id="name"
-      :type="type"
+      name="name"
+      type="type"
       :required="required"
       :placeholder="placeholder"
       :autocomplete="autocomplete"
       :value="modelValue"
-      @input="$emit('update:modelValue', $event.target.value)" ref="input"
-      class="block w-full px-3 py-2 mb-3 placeholder-gray-400 border border-gray-300 rounded-md shadow-sm appearance-none focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+      @input="$emit('update:modelValue', $event.target.value)"      
+      ref="input"
     />
-  </div>
+  </label>
 </template>
 
 <script>
 export default {
-  name: "BaseInput",
-  inheritAttrs: false,
+  //https://vuejs.org/guide/components/attrs.html#disabling-attribute-inheritance
+  name: 'BaseInput',
+  inheritAttrs: true,
   emits: ['update:modelValue'],
   props: {
     name: {
@@ -67,12 +60,28 @@ export default {
     autocomplete: {
       type: String,
       default: null,
-    },
-  },
-  //methods: {
-  //  updateValue(event) {
-  //    return this.$emit("input", event.target.value);
-  //  },
-  //},
-};
+    }
+  }
+}
 </script>
+
+
+<style scoped>
+  input {
+    @apply
+      block
+      w-full
+      px-3
+      py-2
+      mb-3
+      placeholder-gray-400
+      border
+      border-gray-300
+      rounded-md
+      shadow-sm
+      appearance-none
+      focus:outline-none
+      focus:ring-blue-500
+      focus:border-blue-500;
+  }
+</style>

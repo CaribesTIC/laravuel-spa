@@ -6,9 +6,9 @@
       name="email"
       v-model="email"
       autocomplete="email"
-      placeholder="luke@jedi.com"
+      placeholder="luke@jedi.com"      
       class="mb-2"
-      data-testid="email-input"
+      data-testid="email-input"      
     />
     <BaseInput
       type="password"
@@ -18,8 +18,7 @@
       class="mb-4"
       data-testid="password-input"
     />
-
-<label class="flex items-center"><input type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50i mb-4" name="remember"><span class="ml-2 mb-3 text-sm text-gray-600">Recuérdame</span></label>
+    <label class="flex items-center"><input type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50i mb-4" name="remember"><span class="ml-2 mb-3 text-sm text-gray-600">Recuérdame</span></label>
 
     <div class="flex items-center justify-between mt-4">
 
@@ -44,31 +43,32 @@
   </form>
 </template>
 
-<script>
+<script lang="ts">
 import { getError } from "@/utils/helpers.js";
 import BaseBtn from "@/components/BaseBtn.vue";
-import BaseInput from "@/components/BaseInput.vue";
+import BaseInput from '@/components/BaseInput.vue'
 //import AuthService from "@/services/AuthService.js";
 import FlashMessage from "@/components/FlashMessage.vue";
 
 export default {
-  name: "LoginView",
+  name: "LoginForm",
   components: {
     BaseBtn,
     BaseInput,
     FlashMessage,
   },
   data() {
-    return {
+    return {     
       sending: false,
       email: null,
       password: null,
-      error: null,
-    };
+      error: null,      
+    }
   },
   methods: {
     async login() {
-      const payload = {
+      console.log("AAAAA")
+      /*const payload = {
         email: this.email,
         password: this.password,
       };
@@ -92,8 +92,8 @@ export default {
       } finally {
         this.sending = false;
       }
-      
+     */         
     },
-  },
-};
+  }  
+}
 </script>
