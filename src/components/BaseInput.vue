@@ -11,8 +11,8 @@
       </span>
     <input
       :id="name"
-      name="name"
-      type="type"
+      :name="name"
+      :type="type"
       :required="required"
       :placeholder="placeholder"
       :autocomplete="autocomplete"
