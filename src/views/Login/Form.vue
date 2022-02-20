@@ -44,11 +44,12 @@
 </template>
 
 <script lang="ts">
-import { getError } from "@/utils/helpers.js";
+//import { getError } from "@/utils/helpers.js";
 import BaseBtn from "@/components/BaseBtn.vue";
 import BaseInput from '@/components/BaseInput.vue'
-//import AuthService from "@/services/AuthService.js";
+import AuthService from "@/services/AuthService.js";
 import FlashMessage from "@/components/FlashMessage.vue";
+import { useAuthStore } from '@/stores/Auth'
 
 export default {
   name: "LoginForm",
@@ -65,20 +66,24 @@ export default {
       error: null,      
     }
   },
+  computed: {
+    auth: ()=> useAuthStore()    
+  },
   methods: {
     async login() {
-      console.log("AAAAA")
-      /*const payload = {
+      const payload = {
         email: this.email,
         password: this.password,
       };
       this.error = null;
       try {
         this.sending = true;
-        await AuthService.login(payload);
-        const authUser = await this.$store.dispatch("auth/getAuthUser");
+        await AuthService.login(payload);         
+        const authUser = await this.auth.getAuthUser();        
+        //const authUser = await this.$store.dispatch("auth/getAuthUser");
         if (authUser) {
-          this.$store.dispatch("auth/setGuest", { value: "isNotGuest" });
+          this.auth.setGuest({ value: "isNotGuest" });
+          //this.$store.dispatch("auth/setGuest", { value: "isNotGuest" });
           this.$router.push("/dashboard");
         } else {
           const error = Error(
@@ -86,13 +91,12 @@ export default {
           );
           error.name = "Fetch User";
           throw error;
-        }
+        }        
       } catch (error) {
-        this.error = getError(error);
+        this.error = error//getError(error);
       } finally {
         this.sending = false;
-      }
-     */         
+      }       
     },
   }  
 }

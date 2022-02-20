@@ -12,6 +12,11 @@ const routes: Array<RouteRecordRaw> = [{
     meta: { layout: "empty" },
     component: () => import("@/components/About.vue").then(m => m.default)
 }, {
+    path: "/dashboard",
+    name: "dashboard",
+    meta: { layout: "default" },
+    component: () => import("@/views/Dashboard/Index.vue").then(m => m.default),
+}, {
     path: "/login",
     name: "Login",
     meta: { layout: "empty" },
