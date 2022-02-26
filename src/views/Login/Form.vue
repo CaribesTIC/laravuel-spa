@@ -44,12 +44,12 @@
 </template>
 
 <script lang="ts">
-//import { getError } from "@/utils/helpers.js";
+//import { getError } from "@/utils/helpers.ts";
 import BaseBtn from "@/components/BaseBtn.vue";
 import BaseInput from '@/components/BaseInput.vue'
-import AuthService from "@/services/AuthService.js";
+import AuthService from "@/services/AuthService.ts";
 import FlashMessage from "@/components/FlashMessage.vue";
-import { useAuthStore } from '@/stores/Auth'
+import { useAuthStore } from '@/stores/Auth.ts'
 
 export default {
   name: "LoginForm",
