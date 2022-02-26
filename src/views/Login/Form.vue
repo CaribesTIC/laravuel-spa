@@ -47,9 +47,9 @@
 //import { getError } from "@/utils/helpers.ts";
 import BaseBtn from "@/components/BaseBtn.vue";
 import BaseInput from '@/components/BaseInput.vue'
-import AuthService from "@/services/AuthService.ts";
+import AuthService from "@/services/AuthService";
 import FlashMessage from "@/components/FlashMessage.vue";
-import { useAuthStore } from '@/stores/Auth.ts'
+import { useAuthStore } from '@/stores/Auth'
 
 export default {
   name: "LoginForm",

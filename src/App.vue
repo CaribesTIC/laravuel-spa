@@ -23,7 +23,7 @@ export default defineComponent({
   <component :is="layout">
     <router-view v-slot="{Component}">
       <transition name="fade" mode="out-in">
-        <component :is="Component" :key="$route.paht"></component>
+        <component :is="Component" :key="$route.path"></component>
       </transition>
     </router-view>
   </component>

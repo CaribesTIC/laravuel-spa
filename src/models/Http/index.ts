@@ -1,6 +1,8 @@
 import axios, { AxiosInstance, AxiosResponse, AxiosError } from "axios";
 import init from "./init";
 import { InitInterface } from "./init.interface" 
+import { Paiload } from "./Paiload.Interface";
+
 
 class Http {
   private service:AxiosInstance;
@@ -37,7 +39,7 @@ class Http {
     });
   }
 
-  patch(path: string, payload: any) {
+  patch(path: string, payload: Paiload) {
     return this.service.request({
       method: "PATCH",
       url: path,
