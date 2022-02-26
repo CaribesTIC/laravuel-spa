@@ -1,7 +1,9 @@
-export default {  
+import { InitInterface } from "./init.interface" 
+
+export default<InitInterface> {  
   baseURL: process.env.VUE_APP_API_URL,  
   withCredentials: true, 
-  handleError(error) {
+  handleError(error: any) {
     //if (
     //  error.response &&
     //  [401, 419].includes(error.response.status) &&

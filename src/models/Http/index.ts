@@ -37,7 +37,7 @@ class Http {
     });
   }
 
-  patch(path: string, payload) {
+  patch(path: string, payload: any) {
     return this.service.request({
       method: "PATCH",
       url: path,
