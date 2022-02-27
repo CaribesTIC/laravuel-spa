@@ -256,7 +256,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent, ref } from "vue";
 import { useSidebar } from "@/hooks/useSidebar";
 

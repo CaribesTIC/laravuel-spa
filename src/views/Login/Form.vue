@@ -1,3 +1,17 @@
+<script setup lang="ts">
+  import { ref } from "vue"
+  import { useRouter } from 'vue-router';
+  import { useLogin } from './useLogin'
+  import BaseBtn from "@/components/BaseBtn.vue";
+  import BaseInput from '@/components/BaseInput.vue'
+  import FlashMessage from "@/components/FlashMessage.vue";
+
+  const router = useRouter();
+  const { login, error, sending } = useLogin()
+  const email = ref(null)
+  const password = ref(null)
+</script>
+
 <template>
   <form @submit.prevent="login">
     <BaseInput
@@ -18,7 +32,15 @@
       class="mb-4"
       data-testid="password-input"
     />
-    <label class="flex items-center"><input type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50i mb-4" name="remember"><span class="ml-2 mb-3 text-sm text-gray-600">Recuérdame</span></label>
+    <label class="flex items-center">
+      <input
+        type="checkbox"
+        class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50i mb-4"
+        name="remember">
+          <span class="ml-2 mb-3 text-sm text-gray-600">
+            Recuérdame
+          </span>
+    </label>
 
     <div class="flex items-center justify-between mt-4">
 
@@ -42,62 +64,3 @@
     <FlashMessage :error="error" />
   </form>
 </template>
-
-<script lang="ts">
-//import { getError } from "@/utils/helpers.ts";
-import BaseBtn from "@/components/BaseBtn.vue";
-import BaseInput from '@/components/BaseInput.vue'
-import AuthService from "@/services/AuthService";
-import FlashMessage from "@/components/FlashMessage.vue";
-import { useAuthStore } from '@/stores/Auth'
-
-export default {
-  name: "LoginForm",
-  components: {
-    BaseBtn,
-    BaseInput,
-    FlashMessage,
-  },
-  data() {
-    return {     
-      sending: false,
-      email: null,
-      password: null,
-      error: null,      
-    }
-  },
-  computed: {
-    auth: ()=> useAuthStore()    
-  },
-  methods: {
-    async login() {
-      const payload = {
-        email: this.email,
-        password: this.password,
-      };
-      this.error = null;
-      try {
-        this.sending = true;
-        await AuthService.login(payload);         
-        const authUser = await this.auth.getAuthUser();        
-        //const authUser = await this.$store.dispatch("auth/getAuthUser");
-        if (authUser) {
-          this.auth.setGuest({ value: "isNotGuest" });
-          //this.$store.dispatch("auth/setGuest", { value: "isNotGuest" });
-          this.$router.push("/dashboard");
-        } else {
-          const error = Error(
-            "Unable to fetch user after login, check your API settings."
-          );
-          error.name = "Fetch User";
-          throw error;
-        }        
-      } catch (error) {
-        this.error = error//getError(error);
-      } finally {
-        this.sending = false;
-      }       
-    },
-  }  
-}
-</script>

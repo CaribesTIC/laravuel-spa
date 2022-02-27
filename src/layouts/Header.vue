@@ -112,10 +112,10 @@
   </header> 
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent, ref, computed, onMounted } from "vue";
 //import { useStore } from "vuex";
-import { useSidebar } from "../hooks/useSidebar.js";
+import { useSidebar } from "../hooks/useSidebar";
 import LoginIcon from "@/components/icons/LoginIcon.vue";
 import HomeIcon from "@/components/icons/HomeIcon.vue";
 import Logout from "@/components/Logout.vue";

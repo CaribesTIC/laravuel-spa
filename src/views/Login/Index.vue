@@ -1,3 +1,7 @@
+<script setup lang="ts">
+  import Form from "./Form.vue";
+</script>
+
 <template>
   <div class="p-5 m-auto w-full sm:w-4/12">
     <h2 class="mb-4 text-xl text-center">Inicio de Sesión</h2>
@@ -7,17 +11,9 @@
         to="/register"
         class="text-gray-500 transition hover:text-gray-600"
         data-testid="register-link"
-        >Regístrese para obtener una cuenta</router-link
       >
+        Regístrese para obtener una cuenta
+      </router-link>
     </p>
   </div>
 </template>
-
-<script lang="ts">
-import Form from "./Form.vue";
-
-export default {
-  name: "Login",
-  components: { Form }
-};
-</script>
