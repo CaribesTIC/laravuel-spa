@@ -1,3 +1,35 @@
+<script lang="ts">
+import { defineComponent, ref, computed, onMounted } from "vue";
+//import { useStore } from "vuex";
+import { useSidebar } from "../hooks/useSidebar";
+import LoginIcon from "@/components/icons/LoginIcon.vue";
+import HomeIcon from "@/components/icons/HomeIcon.vue";
+import Logout from "@/components/Logout.vue";
+
+export default defineComponent({
+  name: "Header",
+  components: {
+    Logout,
+    HomeIcon,
+    LoginIcon,
+  },
+  setup(_, { emit }) {  
+    const { isOpen } = useSidebar();
+    const dropdownOpen = ref(false);    
+    //const store = useStore();    
+    //const authUser = computed(() => store.getters['auth/authUser']);
+    //const isAdmin = computed(() => store.getters['auth/isAdmin']);    
+    return {
+      isOpen,
+      dropdownOpen,
+      //authUser,
+      //isAdmin
+    };    
+  }
+});
+</script>
+
+
 <template>
   <header class="flex justify-between items-center p-5 bg-gray-400 border-b-2 border-gray-600">
     <div class="flex items-center">
@@ -111,34 +143,3 @@
     </div>
   </header> 
 </template>
-
-<script lang="ts">
-import { defineComponent, ref, computed, onMounted } from "vue";
-//import { useStore } from "vuex";
-import { useSidebar } from "../hooks/useSidebar";
-import LoginIcon from "@/components/icons/LoginIcon.vue";
-import HomeIcon from "@/components/icons/HomeIcon.vue";
-import Logout from "@/components/Logout.vue";
-
-export default defineComponent({
-  name: "Header",
-  components: {
-    Logout,
-    HomeIcon,
-    LoginIcon,
-  },
-  setup(_, { emit }) {  
-    const { isOpen } = useSidebar();
-    const dropdownOpen = ref(false);    
-    //const store = useStore();    
-    //const authUser = computed(() => store.getters['auth/authUser']);
-    //const isAdmin = computed(() => store.getters['auth/isAdmin']);    
-    return {
-      isOpen,
-      dropdownOpen,
-      //authUser,
-      //isAdmin
-    };    
-  }
-});
-</script>

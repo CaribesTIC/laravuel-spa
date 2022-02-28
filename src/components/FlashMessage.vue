@@ -17,7 +17,7 @@
         key="error-list"
       >
         <li v-for="key in errorKeys" :key="key">
-          <b class="font-bold capitalize">{{ key | titleCase }}</b>
+          <b class="font-bold capitalize">{{ filterTitleCase(key) }}</b>
           <ul class="ml-2">
             <li v-for="(item, index) in getErrors(key)" :key="`${index}-error`">
               {{ item }}
@@ -29,7 +29,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 export default {
   name: "FlashMessage",
   props: {
@@ -57,11 +57,9 @@ export default {
     getType(obj) {
       return Object.prototype.toString.call(obj).slice(8, -1).toLowerCase();
     },
-  },
-  filters: {
-    titleCase(value) {
+    filterTitleCase(value) {
       return value.replace("_", " ");
     },
-  },
+  }
 };
 </script>

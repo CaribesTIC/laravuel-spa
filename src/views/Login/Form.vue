@@ -7,7 +7,7 @@
   import FlashMessage from "@/components/FlashMessage.vue";
 
   const router = useRouter();
-  const { login, error, sending } = useLogin()
+  const { error, login, sending } = useLogin()
   const email = ref(null)
   const password = ref(null)
 </script>
@@ -61,6 +61,6 @@
 
     </div>
 
-    <FlashMessage :error="error" />
+    <FlashMessage :error='error' />
   </form>
 </template>

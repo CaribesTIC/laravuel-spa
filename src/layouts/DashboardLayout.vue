@@ -1,3 +1,9 @@
+<script setup lang="ts">
+import Header from "./Header.vue"
+import Sidebar from "./Sidebar.vue"
+import PageFoot from "./PageFoot.vue"
+</script>
+
 <template>
   <Header />
   <div class="section">
@@ -12,19 +18,3 @@
     </div>
   </div>
 </template>
-
-<script>
-import { defineComponent, ref } from "vue";
-
-import Sidebar from "./Sidebar.vue";
-import Header from "./Header.vue";
-import PageFoot from "./PageFoot.vue";
-
-export default defineComponent({
-  components: {
-    Header,
-    Sidebar,
-    PageFoot
-  },
-});
-</script>
