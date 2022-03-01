@@ -1,34 +1,17 @@
-<script lang="ts">
-import { defineComponent, ref, computed, onMounted } from "vue";
-//import { useStore } from "vuex";
-import { useSidebar } from "../hooks/useSidebar";
-import LoginIcon from "@/components/icons/LoginIcon.vue";
-import HomeIcon from "@/components/icons/HomeIcon.vue";
-import Logout from "@/components/Logout.vue";
+<script setup lang="ts">
+  import { ref, computed } from "vue";
+  import { useAuthStore } from '@/stores/Auth'
+  import { useSidebar } from "../hooks/useSidebar";
+  import LoginIcon from "@/components/icons/LoginIcon.vue";
+  import HomeIcon from "@/components/icons/HomeIcon.vue";
+  import Logout from "@/components/Logout.vue";
 
-export default defineComponent({
-  name: "Header",
-  components: {
-    Logout,
-    HomeIcon,
-    LoginIcon,
-  },
-  setup(_, { emit }) {  
-    const { isOpen } = useSidebar();
-    const dropdownOpen = ref(false);    
-    //const store = useStore();    
-    //const authUser = computed(() => store.getters['auth/authUser']);
-    //const isAdmin = computed(() => store.getters['auth/isAdmin']);    
-    return {
-      isOpen,
-      dropdownOpen,
-      //authUser,
-      //isAdmin
-    };    
-  }
-});
+  const { isOpen } = useSidebar()
+  const dropdownOpen = ref(false)
+  const authStore = computed(() => useAuthStore())  
+  const authUser = authStore.authUser
+  const isAdmin = authStore.isAdmin
 </script>
-
 
 <template>
   <header class="flex justify-between items-center p-5 bg-gray-400 border-b-2 border-gray-600">
@@ -117,8 +100,6 @@ export default defineComponent({
             </path>
           </svg>
         </button>
-
-        <!--div v-show="dropdownOpen" class="fixed inset-0 h-full w-full z-10"></div-->
 
         <div
           v-show="dropdownOpen"

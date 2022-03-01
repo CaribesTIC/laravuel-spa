@@ -20,10 +20,8 @@ export function useLogin() {
             sending.value = true;
             await AuthService.login(payload);
             const authUser = await auth.value.getAuthUser();
-            //const authUser = await this.$store.dispatch("auth/getAuthUser");
             if (authUser) {
                 auth.value.setGuest({ value: "isNotGuest" });
-                //this.$store.dispatch("auth/setGuest", { value: "isNotGuest" });
                 router.push("/dashboard");
             } else {
                 const err = Error(

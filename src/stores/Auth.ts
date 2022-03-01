@@ -27,7 +27,27 @@ export const useAuthStore = defineStore('auth', {
       window.localStorage.setItem("guest", value);
     },   
   },
-  //getters: {
-  //  double: (state) => state.count * 2,
-  //},
+  getters: {
+    authUser: (state) => {
+      return state.user;
+    },
+    isAdmin: (state) => {
+      return state.user ? state.user.isAdmin : false;
+    },
+    /*error: (state) => {
+      return state.error;
+    },
+    loading: (state) => {
+      return state.loading;
+    },
+    loggedIn: (state) => {
+      return !!state.user;
+    },
+    guest: () => {
+      const storageItem = window.localStorage.getItem("guest");
+      if (!storageItem) return false;
+      if (storageItem === "isGuest") return true;
+      if (storageItem === "isNotGuest") return false;
+    }*/    
+  }
 })
