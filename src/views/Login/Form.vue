@@ -1,19 +1,27 @@
 <script setup lang="ts">
-  import { ref } from "vue"
-  import { useRouter } from 'vue-router';
+  import { ref } from "vue"  
   import { useLogin } from './useLogin'
   import BaseBtn from "@/components/BaseBtn.vue";
   import BaseInput from '@/components/BaseInput.vue'
   import FlashMessage from "@/components/FlashMessage.vue";
-
-  const router = useRouter();
-  const { error, login, sending } = useLogin()
-  const email = ref(null)
-  const password = ref(null)
+  
+  const props = defineProps({
+    error: Object,
+    sending: Boolean
+  })  
+  const emit = defineEmits(['submit'])  
+  const email = ref(null)  
+  const password = ref(null)  
+  const submit = async () => {
+    emit('submit', {
+      email,
+      password
+    })
+  }
 </script>
 
 <template>
-  <form @submit.prevent="login">
+  <form @submit.prevent="submit">
     <BaseInput
       type="email"
       label="Correo Electrónico"
@@ -31,36 +39,25 @@
       v-model="password"
       class="mb-4"
       data-testid="password-input"
-    />
-    <label class="flex items-center">
-      <input
-        type="checkbox"
-        class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50i mb-4"
-        name="remember">
+    />    
+
+    <div class="flex items-center justify-between mt-4">
+      <label class="flex items-center">
+        <input
+          type="checkbox"
+          class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50i mb-4"
+          name="remember">
           <span class="ml-2 mb-3 text-sm text-gray-600">
             Recuérdame
           </span>
-    </label>
-
-    <div class="flex items-center justify-between mt-4">
-
+      </label>
       <BaseBtn
         type="submit"
         :text="sending ? 'Iniciando sesión...' : 'Iniciar sesión'"
         :isDisabled='sending'
         data-testid="submit-btn"
       />
-
-      <router-link
-        to="/forgot-password"
-        class="underline text-sm text-gray-600 hover:text-gray-900"
-        data-testid="forgot-password-link"
-      >
-        ¿Olvidaste tu contraseña?
-      </router-link>
-
     </div>
-
     <FlashMessage :error='error' />
   </form>
 </template>
