@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { getError } from "@/utils/helpers";
-//import router from "@/router";
+import router from "@/router";
 import AuthService from "@/services/AuthService";
 
 export const useAuthStore = defineStore('auth', {
@@ -9,8 +9,20 @@ export const useAuthStore = defineStore('auth', {
     loading: false,
     error: null,
   }),
-  actions: {  
-    async getAuthUser() {         
+  actions: {
+    logout() {
+      return AuthService.logout()
+        .then(() => {
+          this.user = null;
+          this.setGuest({ value: "isGuest" });                    
+          if (router.currentRoute.name !== "login")
+            router.push({ path: "/login" });
+        })
+        .catch((error) => {                  
+          this.error = getError(error);
+        });
+    },
+    async getAuthUser() {
       this.loading = true;
       try {
         const response = await AuthService.getAuthUser();        
@@ -20,24 +32,24 @@ export const useAuthStore = defineStore('auth', {
       } catch (error) {
         this.loading = false;        
         this.user = null;        
-        this.error = getError(error);
+        this.error = getError(error);        
       }
     },
-    setGuest({ value }) {
+    setGuest({ value }) {    
       window.localStorage.setItem("guest", value);
     },   
   },
   getters: {
-    authUser: (state) => {
+    authUser: (state) => {      
       return state.user;
     },
     isAdmin: (state) => {
       return state.user ? state.user.isAdmin : false;
     },
-    /*error: (state) => {
+    isError: (state) => {
       return state.error;
     },
-    loading: (state) => {
+    isLoading: (state) => {
       return state.loading;
     },
     loggedIn: (state) => {
@@ -48,6 +60,6 @@ export const useAuthStore = defineStore('auth', {
       if (!storageItem) return false;
       if (storageItem === "isGuest") return true;
       if (storageItem === "isNotGuest") return false;
-    }*/    
+    }
   }
 })

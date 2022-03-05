@@ -6,7 +6,7 @@
   import FlashMessage from "@/components/FlashMessage.vue";
   
   const props = defineProps({
-    error: Object,
+    error: Object | String,
     sending: Boolean
   })  
   const emit = defineEmits(['submit'])  

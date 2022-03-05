@@ -14,7 +14,7 @@
 </script>
 
 <template>
-  <header class="flex justify-between items-center p-5 bg-gray-400 border-b-2 border-gray-600">
+  <header class="flex justify-between items-center p-5 bg-gray-700 border-b-2 border-red-700">
     <div class="flex items-center">
       <button
         @click="isOpen = true"

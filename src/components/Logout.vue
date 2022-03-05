@@ -1,3 +1,12 @@
+<script setup lang="ts">
+import { computed } from "vue"
+import { useAuthStore } from '@/stores/Auth'
+import LogoutIcon from "@/components/icons/LogoutIcon.vue";
+
+const authStore = computed(() => useAuthStore())
+const logout = () => authStore.value.logout()
+</script>
+
 <template>
   <button
     type="button"
@@ -9,15 +18,3 @@
   </button>
 </template>
 
-<script>
-import LogoutIcon from "@/components/icons/LogoutIcon.vue";
-export default {
-  components: { LogoutIcon },
-  name: "Logout",
-  methods: {
-    logout() {
-      this.$store.dispatch("auth/logout");
-    },
-  },
-};
-</script>
