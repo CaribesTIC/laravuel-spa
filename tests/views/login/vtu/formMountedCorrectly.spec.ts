@@ -1,11 +1,11 @@
-import { shallowMount, flushPromises } from '@vue/test-utils'
-import Form from '@/views/Login/Form.vue'
+import { shallowMount } from '@vue/test-utils'
+import LoginForm from '@/views/Login/Form.vue'
 
 const FlashMessage = {}
 
 test('component must be mounted correctly', async () => {
 
-  const wrapper = shallowMount(Form, {
+  const wrapper = shallowMount(LoginForm, {
     global: {
       stubs: { FlashMessage: true }
     }    

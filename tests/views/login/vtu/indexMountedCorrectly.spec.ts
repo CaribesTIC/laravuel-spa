@@ -1,13 +1,13 @@
-import { shallowMount, flushPromises } from '@vue/test-utils'
+import { shallowMount } from '@vue/test-utils'
 import router from '@/router/index'
-import Index from '@/views/Login/Index.vue'
+import LoginIndex from '@/views/Login/Index.vue'
 
 beforeEach(() => { window.scrollTo = vi.fn() })
 afterEach(() => { vi.clearAllMocks() })
 
 test('component must be mounted correctly', async () => {
 
-  const wrapper = shallowMount(Index, {
+  const wrapper = shallowMount(LoginIndex, {
     global: {
       plugins: [router]
     }
