@@ -1,5 +1,5 @@
 import { mount, flushPromises } from '@vue/test-utils'
-import router from '../../router'
+import router from '../router'
 import App from '@/App.vue'
 import Register from '@/views/Register/Index.vue'
 

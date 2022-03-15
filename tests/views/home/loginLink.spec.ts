@@ -1,7 +1,5 @@
-import '@testing-library/jest-dom'
-import {render, fireEvent} from '@testing-library/vue'
-import { flushPromises } from '@vue/test-utils'
-import router from '../../router'
+import { mount, flushPromises } from '@vue/test-utils'
+import router from '../router'
 import App from '@/App.vue'
 import Login from '@/views/Login/Index.vue'
 
@@ -12,7 +10,7 @@ afterEach(() => { vi.clearAllMocks() })
 
 test('this should go to the login page', async () => {
 
-  const { getByTestId, getByText } = render(App, {
+  const wrapper = mount(App, {
     global: {
       plugins: [router],
       stubs: {FlashMessage: true}
@@ -20,13 +18,13 @@ test('this should go to the login page', async () => {
   })
   
   router.push('/')
-  await router.isReady()  
+  await router.isReady()
   
-  await fireEvent.click(getByTestId('login-link')) 
-  
+  await wrapper.get('[data-testid="login-link"]').trigger('click')
+
   await flushPromises()  
 
   expect(global.location.pathname).toBe('/login')
-  //getByText('Inicio de Sesión')
+  //expect(wrapper.html()).toContain('Inicio de Sesión')
 
 })

@@ -1,5 +1,5 @@
 import { shallowMount, flushPromises } from '@vue/test-utils'
-import router from '../../router'
+import router from '../router'
 import Home from '@/views/Home/Index.vue'
 
 beforeEach(() => { window.scrollTo = vi.fn() })
