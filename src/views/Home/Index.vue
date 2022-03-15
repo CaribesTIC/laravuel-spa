@@ -1,3 +1,7 @@
+<script setup>
+  import IconApple from "./IconApple.vue"
+</script>
+
 <template>  
   <div class="relative mt-20 lg:px-4 max-w-md mx-auto sm:px-3">
     <div class="flex justify-center pt-4 sm:justify-start sm:pt-0 w-1/2 y-1/2 h-auto m-auto">       
@@ -21,15 +25,3 @@
     </div>
   </div>  
 </template>
-
-<script lang="ts">
-import IconApple from "./IconApple.vue"
-
-export default {
-  name: "Home",
-  components : {
-    IconApple
-  }
-};
-
-</script>
