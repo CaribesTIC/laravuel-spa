@@ -3,26 +3,28 @@ import { useRouter } from 'vue-router';
 import { useAuthStore } from '@/stores/Auth'
 import AuthService from "@/services/AuthService";
 import { getError } from "@/utils/helpers";
+import { IFormLogin, IStandaloneLogin } from '@/Interfaces/IAuth'
 
-export function useLogin() {
+export const useLogin = (): IStandaloneLogin => {
     const router = useRouter();
     const auth = computed(() => useAuthStore())
+    const authService = new AuthService()
     const error = ref(null)
     const sending = ref(false)
 
-    const login = async () => {
+    const login = async (form: IFormLogin) => {
         const payload = {
-            email: email.value,
-            password: password.value,
+            email: form.email,
+            password: form.password,
         }
         error.value = null;
         try {
             sending.value = true;
-            await AuthService.login(payload);
+            await authService.login(payload);
             const authUser = await auth.value.getAuthUser();
             if (authUser) {
                 auth.value.setGuest({ value: "isNotGuest" });
-                router.push("/dashboard");
+                await router.push("/dashboard");
             } else {
                 const err = Error(
                     "Unable to fetch user after login, check your API settings."

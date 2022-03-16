@@ -4,7 +4,7 @@ import { InitInterface } from "./init.interface"
 import { Paiload } from "./Paiload.Interface";
 
 
-class Http {
+class Http<T> {
   private service:AxiosInstance;
   constructor( init: InitInterface ) {    
     this.defaultInit()    
@@ -48,7 +48,7 @@ class Http {
     });
   }
 
-  post(path: string, bodyPayload = false) {
+  post(path: string, bodyPayload?: T) {
     return this.service.request({
       method: "POST",
       url: path,
@@ -57,7 +57,16 @@ class Http {
     });
   }
 
-  delete(path: string, bodyPayload = false) {
+  put(path: string, bodyPayload : T) {
+    return this.service.request({
+      method: "PUT",
+      url: path,
+      responseType: "json",
+      data: bodyPayload
+    });
+  }
+
+  delete(path: string, bodyPayload: T) {
     return this.service.request({
       method: "DELETE",
       url: path,

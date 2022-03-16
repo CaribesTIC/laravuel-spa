@@ -1,14 +1,5 @@
-import { createApp } from 'vue'
-import { createPinia } from 'pinia'
-import router from './router/index'
-import EmptyLayout from './layouts/EmptyLayout.vue'
-import DashboardLayout from './layouts/DashboardLayout.vue'
-import App from './App.vue'
+import app from '@/plugins/app'
 import "./assets/css/app.css"
+import './plugins'
 
-createApp(App)
-  .use(createPinia())
-  .use(router)
-  .component('empty-layout', EmptyLayout)
-  .component('default-layout', DashboardLayout)
-  .mount('#app')
+app.mount('#app')

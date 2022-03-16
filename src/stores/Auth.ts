@@ -2,40 +2,43 @@ import { defineStore } from 'pinia'
 import { getError } from "@/utils/helpers";
 import router from "@/router";
 import AuthService from "@/services/AuthService";
+import { IAuthStore } from '@/Interfaces/Store/IAuthStore'
 
 export const useAuthStore = defineStore('auth', {
-  state: () => ({
-    user: null,
+  state: (): IAuthStore => ({
+    user: {},
     loading: false,
-    error: null,
+    error: '',
   }),
   actions: {
     logout() {
-      return AuthService.logout()
-        .then(() => {
-          this.user = null;
+      const authService = new AuthService()
+      return authService.logout()
+        .then(async () => {
+          this.user = {};
           this.setGuest({ value: "isGuest" });                    
-          if (router.currentRoute.name !== "login")
-            router.push({ path: "/login" });
+          if (router.currentRoute.value.name !== "login")
+            await router.push({ path: "/login" });
         })
         .catch((error) => {                  
           this.error = getError(error);
         });
     },
     async getAuthUser() {
+      const authService = new AuthService()
       this.loading = true;
       try {
-        const response = await AuthService.getAuthUser();        
+        const response = await authService.getAuthUser();
         this.user = response.data.data;        
         this.loading = false;
         return response.data.data;
       } catch (error) {
         this.loading = false;        
-        this.user = null;        
+        this.user = {};
         this.error = getError(error);        
       }
     },
-    setGuest({ value }) {    
+    setGuest({ value }: { value: string}) {
       window.localStorage.setItem("guest", value);
     },   
   },

@@ -10,7 +10,7 @@
     <h2 class="mb-4 text-xl text-center">Inicio de Sesión</h2>
     <Form
       class="p-5 bg-white border rounded shadow"
-      @submit='login'
+      @submit='login($event)'
       :error='error'
       :sending='sending'
     />
