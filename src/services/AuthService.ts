@@ -1,9 +1,9 @@
 import Http from "@/models/Http";
 
-export default class AuthService<T>{
+class AuthService<T>{
     async login(payload: T) {
     console.log("-------------------");
-    // console.log(process.env.VUE_APP_API_URL);
+    console.log(process.env.VUE_APP_API_URL);
     console.log("-------------------");
     await Http.get("/sanctum/csrf-cookie");
     return Http.post("/login", payload);
@@ -36,3 +36,5 @@ export default class AuthService<T>{
     return Http.put("/user/profile-information", payload);
   }
 };
+
+export default new AuthService();

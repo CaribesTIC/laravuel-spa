@@ -12,8 +12,7 @@ export const useAuthStore = defineStore('auth', {
   }),
   actions: {
     logout() {
-      const authService = new AuthService()
-      return authService.logout()
+      return AuthService.logout()
         .then(async () => {
           this.user = {};
           this.setGuest({ value: "isGuest" });                    
@@ -25,10 +24,9 @@ export const useAuthStore = defineStore('auth', {
         });
     },
     async getAuthUser() {
-      const authService = new AuthService()
       this.loading = true;
       try {
-        const response = await authService.getAuthUser();
+        const response = await AuthService.getAuthUser();
         this.user = response.data.data;        
         this.loading = false;
         return response.data.data;

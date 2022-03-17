@@ -1,5 +1,5 @@
 import app from '@/plugins/app'
-import "./assets/css/app.css"
-import './plugins'
+import '@/plugins'
+import '@/assets/css/app.css'
 
 app.mount('#app')

@@ -8,7 +8,6 @@ import { IFormLogin, IStandaloneLogin } from '@/Interfaces/IAuth'
 export const useLogin = (): IStandaloneLogin => {
     const router = useRouter();
     const auth = computed(() => useAuthStore())
-    const authService = new AuthService()
     const error = ref(null)
     const sending = ref(false)
 
@@ -20,7 +19,7 @@ export const useLogin = (): IStandaloneLogin => {
         error.value = null;
         try {
             sending.value = true;
-            await authService.login(payload);
+            await AuthService.login(payload);
             const authUser = await auth.value.getAuthUser();
             if (authUser) {
                 auth.value.setGuest({ value: "isNotGuest" });
