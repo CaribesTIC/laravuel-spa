@@ -1,38 +1,40 @@
 import Http from "@/models/Http";
 
-export default {
-    async login(payload) {
+class AuthService<T>{
+    async login(payload: T) {
     console.log("-------------------");
     console.log(process.env.VUE_APP_API_URL);
     console.log("-------------------");
     await Http.get("/sanctum/csrf-cookie");
     return Http.post("/login", payload);
-  },
+  }
   logout() {
     return Http.post("/logout");
-  },
-  async forgotPassword(payload) {
+  }
+  async forgotPassword(payload: T) {
     await Http.get("/sanctum/csrf-cookie");
     return Http.post("/forgot-password", payload);
-  },
+  }
   getAuthUser() {
     return Http.get("/api/users/auth");
-  },
-  async resetPassword(payload) {
+  }
+  async resetPassword(payload: T) {
     await Http.get("/sanctum/csrf-cookie");
     return Http.post("/reset-password", payload);
-  },
-  updatePassword(payload) {
+  }
+  updatePassword(payload: T) {
     return Http.put("/user/password", payload);
-  },
-  async registerUser(payload) {
+  }
+  async registerUser(payload: T) {
     await Http.get("/sanctum/csrf-cookie");
     return Http.post("/register", payload);
-  },
-  sendVerification(payload) {
+  }
+  sendVerification(payload: T) {
     return Http.post("/email/verification-notification", payload);
-  },
-  updateUser(payload) {
+  }
+  updateUser(payload: T) {
     return Http.put("/user/profile-information", payload);
-  },
+  }
 };
+
+export default new AuthService();

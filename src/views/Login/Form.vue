@@ -1,12 +1,11 @@
 <script setup lang="ts">
   import { ref } from "vue"  
-  import { useLogin } from './useLogin'
   import BaseBtn from "@/components/BaseBtn.vue";
   import BaseInput from '@/components/BaseInput.vue'
   import FlashMessage from "@/components/FlashMessage.vue";
   
   const props = defineProps({
-    error: Object | String,
+    error: [Object, String],
     sending: Boolean
   })  
   const emit = defineEmits(['submit'])  
@@ -14,8 +13,8 @@
   const password = ref(null)  
   const submit = async () => {
     emit('submit', {
-      email,
-      password
+      email: email.value,
+      password: password.value
     })
   }
 </script>
