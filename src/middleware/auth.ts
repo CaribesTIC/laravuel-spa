@@ -1,12 +1,16 @@
-export default function auth({ to, next, store }) {
+export default function auth({ to, next, storeAuth }) {
   const loginQuery = { path: "/login", query: { redirect: to.fullPath } };
 
-  if (!store.getters["auth/authUser"]) {
-    store.dispatch("auth/getAuthUser").then(() => {
-      if (!store.getters["auth/authUser"]) next(loginQuery);
+  if (!storeAuth.value.authUser) {
+    storeAuth.value.getAuthUser().then(() => {
+      if (!storeAuth.value.authUser) next(loginQuery);
       else next();
     });
   } else {
     next();
   }
 }
+
+
+
+

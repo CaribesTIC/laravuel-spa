@@ -1,10 +1,17 @@
-//import { defineAsyncComponent } from "vue"
 import {createRouter, createWebHistory, RouteRecordRaw} from 'vue-router'
+import { computed } from "vue"
+import { useAuthStore } from '@/stores/Auth'
+import auth from "@/middleware/auth"
+import admin from "@/middleware/admin"
+import guest from "@/middleware/guest"
+import middlewarePipeline from "@/router/middlewarePipeline"
+
+const storeAuth = computed(() => useAuthStore())
 
 const routes: Array<RouteRecordRaw> = [{
     path: '/',
-    name: 'Home',
-    meta: { layout: "empty" },       
+    name: 'Home',     
+    meta: { middleware: [guest], layout: "empty" },      
     component: () => import("@/views/Home/Index.vue").then(m => m.default)
 }, {
     path: '/about',
@@ -14,17 +21,17 @@ const routes: Array<RouteRecordRaw> = [{
 }, {
     path: "/dashboard",
     name: "dashboard",
-    meta: { layout: "default" },
+    meta: { middleware: [auth], layout: "default" },
     component: () => import("@/views/Dashboard/Index.vue").then(m => m.default),
 }, {
     path: "/login",
     name: "Login",
-    meta: { layout: "empty" },
+    meta: { middleware: [guest], layout: "empty" },
     component: () => import("@/views/Login/Index.vue").then(m => m.default)
 }, {
     path: "/register",
-    name: "Register",
-    meta: { layout: "empty" },
+    name: "Register",    
+    meta: { middleware: [guest], layout: "empty" },
     component: () => import("@/views/Register/Index.vue").then(m => m.default)
 }, {
     path: "/:catchAll(.*)",
@@ -43,6 +50,20 @@ const router = createRouter({
       return { x: 0, y: 0 };
     }
   },
+});
+
+router.beforeEach((to, from, next) => {
+  const middleware = to.meta.middleware;
+  const context = { to, from, next, storeAuth };
+
+  if (!middleware) {
+    return next();
+  }
+
+  middleware[0]({
+    ...context,
+    next: middlewarePipeline(context, middleware, 1),
+  });
 });
 
 export default router

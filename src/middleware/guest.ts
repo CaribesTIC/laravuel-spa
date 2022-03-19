@@ -1,11 +1,11 @@
-export default function guest({ next, store }) {
+export default function guest({ next, storeAuth }) {
   const storageItem = window.localStorage.getItem("guest");
-  if (storageItem === "isNotGuest" && !store.getters["auth/authUser"]) {
-    store.dispatch("auth/getAuthUser").then(() => {
-      if (store.getters["auth/authUser"]) {
+  if (storageItem === "isNotGuest" && !storeAuth.value.authUser) {
+    storeAuth.value.getAuthUser().then(() => {
+      if (storeAuth.value.authUser) {
         next({ name: "dashboard" });
       } else {
-        store.dispatch("auth/setGuest", { value: "isGuest" });
+        storeAuth.value.setGuest({ value: "isGuest" });
         next();
       }
     });

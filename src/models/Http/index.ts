@@ -3,7 +3,6 @@ import init from "./init";
 import { InitInterface } from "./init.interface" 
 import { Paiload } from "./Paiload.Interface";
 
-
 export class Http {
   private service:AxiosInstance;
   constructor( init: InitInterface ) {    

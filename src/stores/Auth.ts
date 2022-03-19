@@ -6,18 +6,18 @@ import { IAuthStore } from '@/Interfaces/Store/IAuthStore'
 
 export const useAuthStore = defineStore('auth', {
   state: (): IAuthStore => ({
-    user: {},
+    user: null,
     loading: false,
     error: '',
   }),
   actions: {
     logout() {
       return AuthService.logout()
-        .then(async () => {
-          this.user = {};
+        .then(() => {
+          this.user = null;
           this.setGuest({ value: "isGuest" });                    
           if (router.currentRoute.value.name !== "login")
-            await router.push({ path: "/login" });
+            router.push({ path: "/login" });
         })
         .catch((error) => {                  
           this.error = getError(error);
@@ -32,7 +32,7 @@ export const useAuthStore = defineStore('auth', {
         return response.data.data;
       } catch (error) {
         this.loading = false;        
-        this.user = {};
+        this.user = null;
         this.error = getError(error);        
       }
     },
@@ -41,7 +41,7 @@ export const useAuthStore = defineStore('auth', {
     },   
   },
   getters: {
-    authUser: (state) => {      
+    authUser: (state) => {
       return state.user;
     },
     isAdmin: (state) => {
