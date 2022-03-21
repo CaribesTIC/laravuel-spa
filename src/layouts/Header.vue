@@ -8,9 +8,7 @@
 
   const { isOpen } = useSidebar()
   const dropdownOpen = ref(false)
-  const authStore = computed(() => useAuthStore())  
-  const authUser = authStore.authUser
-  const isAdmin = authStore.isAdmin
+  const store = computed(() => useAuthStore())
 </script>
 
 <template>
@@ -36,7 +34,7 @@
         </svg>
       </button>
 
-      <div v-if="authUser" class="flex items-center space-x-5 ml-3">
+      <div v-if="store.authUser" class="flex items-center space-x-5 ml-3">
         <router-link to="/dashboard">
           <HomeIcon class="w-6 h-6 text-white" />
           <span class="sr-only">Dashboard</span>
@@ -110,7 +108,7 @@
             to="/profile"
             class="block px-4 py-2 text-sm text-white hover:bg-gray-400"
           >
-            {{ authUser ? authUser.name : 'Profile'}}
+            {{ store.authUser ? store.authUser.name : 'Profile' }}
           </router-link>
 
           <router-link

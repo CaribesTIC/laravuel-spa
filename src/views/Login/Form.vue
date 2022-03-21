@@ -1,8 +1,8 @@
 <script setup lang="ts">
   import { ref } from "vue"  
-  import BaseBtn from "@/components/BaseBtn.vue";
+  import BaseBtn from "@/components/BaseBtn.vue"
   import BaseInput from '@/components/BaseInput.vue'
-  import FlashMessage from "@/components/FlashMessage.vue";
+  import FlashMessage from "@/components/FlashMessage.vue"
   
   const props = defineProps({
     error: [Object, String],
@@ -27,7 +27,7 @@
       name="email"
       v-model="email"
       autocomplete="email"
-      placeholder="luke@jedi.com"      
+      placeholder="email@domain.ext"      
       class="mb-2"
       data-testid="email-input"      
     />
@@ -35,6 +35,7 @@
       type="password"
       label="Contraseña"
       name="password"
+      placeholder="password"
       v-model="password"
       class="mb-4"
       data-testid="password-input"

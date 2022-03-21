@@ -1,75 +1,75 @@
+<script setup lang="ts">
+  import { ref } from "vue"  
+  import BaseBtn from "@/components/BaseBtn.vue"
+  import BaseInput from "@/components/BaseInput.vue"  
+  import FlashMessage from "@/components/FlashMessage.vue"  
+
+  const props = defineProps({
+    error: [Object, String],
+    sending: Boolean
+  })  
+  const emit = defineEmits(['submit'])   
+  const name = ref(null)
+  const email = ref(null)
+  const password = ref(null)
+  const passwordConfirm = ref(null)
+  const submit = async () => {
+    emit('submit', {
+      name: name.value,
+      email: email.value,
+      password: password.value,
+      passwordConfirm: passwordConfirm.value
+    })
+  }
+</script>
+
 <template>
-  <form @submit.prevent="registerUser">
+  <form @submit.prevent="submit">  
     <BaseInput
       type="text"
-      label="Name"
+      label="Nombre completo"
       name="name"
       v-model="name"
-      placeholder="Luke Skywalker"
+      placeholder="Full name"
       class="mb-2"
+      data-testid="name-input"
     />
     <BaseInput
       type="email"
-      label="Email"
+      label="Correo"
       name="email"
       v-model="email"
-      placeholder="luke@jedi.com"
+      placeholder="email@domain.ext"
       class="mb-2"
+      data-testid="email-input"
     />
     <BaseInput
       type="password"
-      label="Password"
+      label="Clave"
       name="password"
       v-model="password"
+      placeholder="Password"
       class="mb-2"
+      data-testid="password-input"
     />
     <BaseInput
       type="password"
-      label="Confirm Password"
+      label="Confirmar clave"
       name="password-confirm"
       v-model="passwordConfirm"
+      placeholder="Confirm password"
       class="mb-4"
-    />
-    <BaseBtn type="submit" text="Registrarse" />
+      data-testid="confirm-password-input"
+    />    
+    
+    <BaseBtn
+        type="submit"
+        :text="sending ? 'Registrándose...' : 'Registrarse'"
+        :isDisabled='sending'
+        data-testid="submit-btn"
+      />
+    
     <FlashMessage :error="error" />
   </form>
 </template>
 
-<script>
-import { getError } from "@/utils/helpers";
-import BaseBtn from "@/components/BaseBtn.vue";
-import BaseInput from "@/components/BaseInput.vue";
-import AuthService from "@/services/AuthService";
-import FlashMessage from "@/components/FlashMessage.vue";
-export default {
-  name: "RegisterForm",
-  components: {
-    BaseBtn,
-    BaseInput,
-    FlashMessage,
-  },
-  data() {
-    return {
-      name: null,
-      email: null,
-      password: null,
-      passwordConfirm: null,
-      error: null,
-    };
-  },
-  methods: {
-    registerUser() {
-      this.error = null;
-      const payload = {
-        name: this.name,
-        email: this.email,
-        password: this.password,
-        password_confirmation: this.passwordConfirm,
-      };
-      AuthService.registerUser(payload)
-        .then(() => this.$router.push("/dashboard"))
-        .catch((error) => (this.error = getError(error)));
-    },
-  },
-};
-</script>

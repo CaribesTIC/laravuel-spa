@@ -2,7 +2,7 @@
   import Form from "./Form.vue";
   import { useLogin } from './useLogin'
 
-  const { error, login, sending } = useLogin()
+  const { login, sending, error } = useLogin()
 </script>
 
 <template>
@@ -10,9 +10,9 @@
     <h2 class="mb-4 text-xl text-center">Inicio de Sesión</h2>
     <Form
       class="p-5 bg-white border rounded shadow"
-      @submit='login($event)'
-      :error='error'
+      @submit='login($event)'      
       :sending='sending'
+      :error='error'
     />
     <p class="mt-2 text-center text-gray-500">
       <router-link
