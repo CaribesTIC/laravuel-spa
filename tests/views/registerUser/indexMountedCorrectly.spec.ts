@@ -1,4 +1,5 @@
 import { shallowMount } from '@vue/test-utils'
+import { createPinia } from 'pinia'
 import router from '@/router/index'
 import RegisterIndex from '@/views/Register/Index.vue'
 
@@ -9,7 +10,7 @@ test('component must be mounted correctly', () => {
 
   const wrapper = shallowMount(RegisterIndex, {
     global: {
-      plugins: [router]
+      plugins: [createPinia(), router]
     }
   })
   

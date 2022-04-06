@@ -18,10 +18,9 @@ describe('Login Form Component', () => {
     expect(wrapper.vm.email).toBe('user@email.ext')
   
     await wrapper.trigger('submit.prevent')
+
     expect(wrapper.emitted('submit')[0][0].email).toBe('user@email.ext')  
     expect(wrapper.emitted('submit')).toBeTruthy()
     expect(wrapper.emitted()).toHaveProperty('submit')
   })
 })
-
-

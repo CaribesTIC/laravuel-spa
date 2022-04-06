@@ -17,13 +17,13 @@ export class Http {
     this.service = service;    
   }
   
-  defaultInit () {
-    init.customHeaders !== undefined ? init.customHeaders : {}
-    init.customParams !== undefined ? init.customParams : {}
-    init.baseURL !== undefined ? init.baseURL : "http://localhost"
-    init.withCredentials !== undefined ? init.withCredentials : false
-    init.handleSuccess !== undefined ? init.handleSuccess : this.defaultHandleSuccess
-    init.handleError !== undefined ? init.handleError : this.defaultHandleError  
+  defaultInit () {    
+    init.customHeaders = init.customHeaders !== undefined ? init.customHeaders : {}
+    init.customParams = init.customParams !== undefined ? init.customParams : {}
+    init.baseURL = init.baseURL !== undefined ? init.baseURL : "http://localhost"
+    init.withCredentials = init.withCredentials !== undefined ? init.withCredentials : false
+    init.handleSuccess = init.handleSuccess !== undefined ? init.handleSuccess : this.defaultHandleSuccess
+    init.handleError = init.handleError !== undefined ? init.handleError : this.defaultHandleError
   }
   
   defaultHandleSuccess(response: AxiosResponse ) { return response; }

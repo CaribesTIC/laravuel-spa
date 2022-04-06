@@ -31,5 +31,3 @@ describe('Register Form Component', () => {
     expect(wrapper.emitted()).toHaveProperty('submit')
   })
 })
-
-

@@ -1,4 +1,5 @@
 import { mount, flushPromises } from '@vue/test-utils'
+import { createPinia } from 'pinia'
 import router from '../router'
 import App from '@/App.vue'
 import Login from '@/views/Login/Index.vue'
@@ -12,7 +13,7 @@ test('this should go to the login page', async () => {
 
   const wrapper = mount(App, {
     global: {
-      plugins: [router],
+      plugins: [createPinia(), router],
       stubs: {FlashMessage: true}
     }
   })

@@ -1,4 +1,3 @@
-import { computed } from "vue"
 import { useAuthStore } from '@/stores/Auth'
 import { InitInterface } from "./init.interface"
 
@@ -6,14 +5,14 @@ export default<InitInterface> {
   baseURL: process.env.VUE_APP_API_URL,  
   withCredentials: true, 
   handleError(error: any) {
-    const storeAuth = computed(() => useAuthStore())
+    const storeAuth = useAuthStore()
     
     if (error.response
       && [401, 419].includes(error.response.status)    
-      && storeAuth.value.authUser 
-      && !storeAuth.value.guest
+      && storeAuth.authUser 
+      && !storeAuth.guest
     ) {
-      storeAuth.value.logout();
+      storeAuth.logout();
     }
     
     return Promise.reject(error);

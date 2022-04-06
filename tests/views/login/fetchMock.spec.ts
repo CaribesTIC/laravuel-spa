@@ -1,5 +1,5 @@
 import Http from '@/models/Http/';
-import AuthService from '@/services/AuthService';
+import {getAuthUser, login} from '@/services/AuthService';
 
 test('should fetch login-auth-user via http-auth-service', () => {
     const payload = [{
@@ -18,12 +18,12 @@ test('should fetch login-auth-user via http-auth-service', () => {
   
     Http.get = vi.fn().mockResolvedValue();
     Http.post = vi.fn().mockResolvedValue(respLogin);  
-    AuthService.login(payload).then(
+    login(payload).then(
       (data) => expect(data).toEqual(respLogin)
     );
 
     Http.get = vi.fn().mockResolvedValue(respAuth);
-    AuthService.getAuthUser().then(
+    getAuthUser().then(
       (data) => expect(data).toEqual(respAuth)
     );
 });

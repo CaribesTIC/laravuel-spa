@@ -1,13 +1,13 @@
-import { ref, computed } from "vue"
+import { ref } from "vue"
 import { useRouter } from 'vue-router';
 import { useAuthStore } from '@/stores/Auth'
-import AuthService from "@/services/AuthService";
 import { getError } from "@/utils/helpers";
+import * as AuthService from "@/services/AuthService";
 import { IFormLogin, IStandaloneLogin } from '@/Interfaces/IAuth'
 
-export const useLogin = (): IStandaloneLogin => {
+export function useLogin(): IStandaloneLogin {
   const router = useRouter();
-  const auth = computed(() => useAuthStore())
+  const auth = useAuthStore()
   const error = ref(null)
   const sending = ref(false)
 
@@ -20,9 +20,9 @@ export const useLogin = (): IStandaloneLogin => {
     try {
       sending.value = true;
       await AuthService.login(payload);
-      const authUser = await auth.value.getAuthUser();
+      const authUser = await auth.getAuthUser();
       if (authUser) {
-        auth.value.setGuest({ value: "isNotGuest" });
+        auth.setGuest({ value: "isNotGuest" });
         await router.push("/dashboard");
       } else {
         const err = Error(
@@ -43,5 +43,4 @@ export const useLogin = (): IStandaloneLogin => {
     sending,
     error
   }
-
 }

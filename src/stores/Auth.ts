@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { getError } from "@/utils/helpers";
 import router from "@/router";
-import AuthService from "@/services/AuthService";
+import * as AuthService from "@/services/AuthService";
 import { IAuthStore } from '@/Interfaces/Store/IAuthStore'
 
 export const useAuthStore = defineStore('auth', {
