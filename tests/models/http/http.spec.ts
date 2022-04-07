@@ -1,4 +1,4 @@
-import Http from '@/models/Http/';
+import Http from '@/models/Http';
 
 test('should fetch users', () => {
   const users = [{name: 'Bob'}];

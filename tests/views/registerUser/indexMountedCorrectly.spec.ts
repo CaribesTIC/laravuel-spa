@@ -1,6 +1,6 @@
 import { shallowMount } from '@vue/test-utils'
 import { createPinia } from 'pinia'
-import router from '@/router/index'
+import router from '@/router'
 import RegisterIndex from '@/views/Register/Index.vue'
 
 beforeEach(() => { window.scrollTo = vi.fn() })

@@ -1,4 +1,4 @@
-import Http from '@/models/Http/';
+import Http from '@/models/Http';
 import {getAuthUser, login} from '@/services/AuthService';
 
 test('should fetch login-auth-user via http-auth-service', () => {
