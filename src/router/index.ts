@@ -34,6 +34,11 @@ const routes: Array<RouteRecordRaw> = [{
     meta: { middleware: [guest], layout: "empty" },
     component: () => import("@/views/Register/Index.vue").then(m => m.default)
 }, {
+    path: "/profile",
+    name: "profile",
+    meta: { middleware: [auth] },
+    component: () => import("@/views/Profile/Index.vue").then(m => m.default),
+}, {
     path: "/:catchAll(.*)",
     name: "NotFound",
     meta: { layout: "empty" },
