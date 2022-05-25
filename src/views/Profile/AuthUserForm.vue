@@ -7,10 +7,10 @@ import BaseBtn from "@/components/BaseBtn.vue"
 import BaseInput from "@/components/BaseInput.vue"
 import FlashMessage from "@/components/FlashMessage.vue"
 
-const name = ref(null)
-const email = ref(null)
-const error = ref(null)
-const message = ref(null)
+const name = ref<string | null>(null)
+const email = ref<string | null>(null)
+const error = ref<string | null>(null)
+const message = ref<string | null>(null)
 const store = useAuthStore()
 
 const updateUser = () => {
@@ -42,6 +42,7 @@ onMounted(() => {
       name="name"
       v-model="name"
       class="mb-2"
+      data-testid="name"
     />
     <BaseInput
       type="email"
@@ -51,6 +52,7 @@ onMounted(() => {
       autocomplete="email"
       placeholder="luke@jedi.com"
       class="mb-4"
+      data-testid="email"
     />
     <BaseBtn type="submit" text="Update" />
     <FlashMessage :message="message" :error="error" />

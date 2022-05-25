@@ -16,6 +16,8 @@
     "vue-router": "^4.0.12"
   },
   "devDependencies": {
+    "@pinia/testing": "^0.0.12",
+    "@testing-library/vue": "^6.4.2",
     "@vitejs/plugin-vue": "^2.2.0",
     "@vue/test-utils": "^2.0.0-rc.18",
     "autoprefixer": "^10.4.2",
