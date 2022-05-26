@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useAuthStore } from '@/stores/Auth'
 import AuthUser from "./AuthUser.vue"
-import AuthUserForm from "./AuthUserForm.vue"
+import AuthUserForm from "./AuthUserForm/Index.vue"
 import UpdatePassword from "./UpdatePassword.vue"
 import FileUpload from "./FileUpload.vue"
 import SectionBorder from "@/components/SectionBorder.vue"

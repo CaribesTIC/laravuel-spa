@@ -41,7 +41,7 @@ export default {
       type: [Object, String],
       default: null,
     },
-  },
+  },  
   computed: {
     errorKeys() {
       if (!this.error || this.getType(this.error) === "string") {

@@ -1,0 +1,57 @@
+<script setup lang="ts">
+  import { ref, onMounted } from "vue"
+  import { useAuthStore } from "@/stores/Auth"
+  import BaseBtn from "@/components/BaseBtn.vue"
+  import BaseInput from '@/components/BaseInput.vue'
+  import FlashMessage from "@/components/FlashMessage.vue"
+  
+  defineProps({
+    message: [Object, String],
+    error: [Object, String],
+    sending: Boolean
+  })
+   
+  const emit = defineEmits(['submit'])
+  
+  const store = useAuthStore()
+  
+  const name = ref<string>()
+  const email = ref<string>()
+  
+  const submit = async () => {
+    emit('submit', {
+      name: name.value,
+      email: email.value
+    })
+  }
+  
+  onMounted(() => {
+    name.value = store.authUser.name
+    email.value = store.authUser.email
+  })
+</script>
+
+<template>
+  <form @submit.prevent="submit">
+    <BaseInput
+      type="text"
+      label="Name"
+      name="name"
+      v-model="name"
+      class="mb-2"
+      data-testid="name-input"
+    />
+    <BaseInput
+      type="email"
+      label="Email"
+      name="email"
+      v-model="email"
+      autocomplete="email"
+      placeholder="luke@jedi.com"
+      class="mb-4"
+      data-testid="email-input"
+    />
+    <BaseBtn type="submit" text="Update" data-testid="submit-button"/>
+    <FlashMessage :message="message" :error="error" />
+  </form>
+</template>

@@ -3,12 +3,19 @@ import { useRouter } from 'vue-router';
 import * as AuthService from "@/services/AuthService.js";
 import { getError } from "@/utils/helpers.js";
 
+interface UserAuthRegister{
+  name: string;
+  email: string;
+  password: string;
+  passwordConfirm: string;
+}
+
 export function useRegister() {
   const router = useRouter();
   const error = ref(null)
   const sending = ref(false)
   
-  const register = async (form) => {
+  const register = async (form: UserAuthRegister) => {
     const payload = {
       name: form.name,
       email: form.email,
