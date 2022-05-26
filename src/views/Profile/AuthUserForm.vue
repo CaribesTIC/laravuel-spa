@@ -54,7 +54,7 @@ onMounted(() => {
       class="mb-4"
       data-testid="email"
     />
-    <BaseBtn type="submit" text="Update" />
+    <BaseBtn type="submit" text="Update" data-testid="submit-button"/>
     <FlashMessage :message="message" :error="error" />
   </form>
 </template>
