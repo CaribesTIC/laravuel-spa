@@ -15,5 +15,4 @@ test('should fetch login-auth-user via http-auth-service', () => {
       (data) => expect(data).toEqual(resp)
     );
 
-
 });

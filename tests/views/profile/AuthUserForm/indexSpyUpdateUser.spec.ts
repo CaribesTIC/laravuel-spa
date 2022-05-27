@@ -1,3 +1,4 @@
+import { describe, it, vi, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
 import { createTestingPinia } from '@pinia/testing'
 import ProfileIndex from '@/views/Profile/AuthUserForm/Index.vue'
