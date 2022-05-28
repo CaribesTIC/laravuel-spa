@@ -1,12 +1,10 @@
 <script setup lang="ts">
-import { computed } from "vue";
-import { useMessageStore } from '../stores/Message'
+import { useMessageStore } from '@/stores/Message'
 import FlashMessage from "@/components/FlashMessage.vue";
 import AvatarIcon from "@/components/icons/AvatarIcon.vue";
 import BasePagination from "@/components/BasePagination.vue";
 
 const store = useMessageStore()
-
 //["loading", "error", "messages", "meta", "links"]
 const currentPage = 1;
 store.getMessages(currentPage);

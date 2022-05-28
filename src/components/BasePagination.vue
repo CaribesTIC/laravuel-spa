@@ -1,54 +1,44 @@
-<script lang="ts">
-export default {
-  props: {
-    store: {
-      type: Object,
-      required: true,
-    },
-    action: {
-      type: String,
-      required: true,
-    },
-    path: {
-      type: String,
-      default: null,
-    },
-    meta: {
-      type: Object,
-      required: true,
-    },
-    links: {
-      type: Object,
-      required: true,
-    },
-  },
-  methods: {
-    isPropsPath(page) {
-      if (this.$props.path) {
-        this.$router.push({
-          path: this.$props.path,
-          query: { page },
-        });
-      }
-    },
-    firstPage() {
-      this.$props.store.paginateMessages( this.$props.links.first )
-      this.isPropsPath( 1 )
-    },
-    prevPage() {
-      this.$props.store.paginateMessages( this.$props.links.prev )
-      this.isPropsPath( this.$props.meta.current_page - 1 )
-    },
-    nextPage() {
-      this.$props.store.paginateMessages( this.$props.links.next )
-      this.isPropsPath( this.$props.meta.current_page + 1 )
-    },
-    lastPage() {
-      this.$props.store.paginateMessages( this.$props.links.last )
-      this.isPropsPath( this.$props.meta.last_page )
-    }
+<script setup lang="ts">
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+
+const props = defineProps<{
+  store: Object
+  action: String
+  path: string
+  meta: Object
+  links: Object
+}>()
+
+const isPropsPath = (page: number) => {
+  if (props.path) {
+    router.push({
+      path: props.path,
+      query: { page },
+    });
   }
 }
+
+const firstPage = () => {
+  props.store.paginateMessages( props.links.first )
+  isPropsPath( 1 )
+}
+
+const prevPage = () => {
+  props.store.paginateMessages( props.links.prev )
+  isPropsPath( props.meta.current_page - 1 )
+}
+
+const nextPage = () => {
+  props.store.paginateMessages( props.links.next )
+  isPropsPath( props.meta.current_page + 1 )
+}
+
+const lastPage = () => {
+  props.store.paginateMessages( props.links.last )
+  isPropsPath( props.meta.last_page )
+} 
 </script>
 
 <template>

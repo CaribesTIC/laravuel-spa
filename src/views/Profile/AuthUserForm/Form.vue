@@ -1,34 +1,34 @@
 <script setup lang="ts">
-  import { ref, onMounted } from "vue"
-  import { useAuthStore } from "@/stores/Auth"
-  import BaseBtn from "@/components/BaseBtn.vue"
-  import BaseInput from '@/components/BaseInput.vue'
-  import FlashMessage from "@/components/FlashMessage.vue"
-  
-  defineProps({
-    message: [Object, String],
-    error: [Object, String],
-    sending: Boolean
-  })
+import { ref, onMounted } from "vue"
+import { useAuthStore } from "@/stores/Auth"
+import BaseBtn from "@/components/BaseBtn.vue"
+import BaseInput from '@/components/BaseInput.vue'
+import FlashMessage from "@/components/FlashMessage.vue"
+ 
+defineProps<{
+  message: [Object, String]
+  error: [Object, String]
+  sending: Boolean
+}>()
    
-  const emit = defineEmits(['submit'])
+const emit = defineEmits(['submit'])
   
-  const store = useAuthStore()
+const store = useAuthStore()
   
-  const name = ref<string>()
-  const email = ref<string>()
+const name = ref<string>()
+const email = ref<string>()
   
-  const submit = async () => {
-    emit('submit', {
-      name: name.value,
-      email: email.value
-    })
-  }
-  
-  onMounted(() => {
-    name.value = store.authUser.name
-    email.value = store.authUser.email
+const submit = async () => {
+  emit('submit', {
+    name: name.value,
+    email: email.value
   })
+}
+  
+onMounted(() => {
+  name.value = store.authUser.name
+  email.value = store.authUser.email
+})
 </script>
 
 <template>
