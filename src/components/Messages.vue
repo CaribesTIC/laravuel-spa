@@ -8,11 +8,8 @@ import BasePagination from "@/components/BasePagination.vue";
 const store = useMessageStore()
 
 //["loading", "error", "messages", "meta", "links"]
-
- 
-  
-    const currentPage = 1;
-    store.getMessages(currentPage);
+const currentPage = 1;
+store.getMessages(currentPage);
 </script>
 
 <template>
@@ -51,14 +48,16 @@ const store = useMessageStore()
     <transition name="fade">
       <FlashMessage :error="error" v-if="store.error" key="error" />
     </transition>
-    <transition name="fade">
+    <transition name="fade">    
       <BasePagination
+        :store="store"
         :meta="store.meta"
         :links="store.links"
         action="store.paginateMessages"
+        :path="$route.path"
         v-if="store.meta && store.meta.last_page > 1"
       />
-    </transition>
+    </transition>    
   </div>
 </template>
 
