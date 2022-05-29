@@ -5,9 +5,9 @@ import BaseBtn from "@/components/BaseBtn.vue"
 import BaseInput from '@/components/BaseInput.vue'
 import FlashMessage from "@/components/FlashMessage.vue"
  
-defineProps<{
-  message: [Object, String]
-  error: [Object, String]
+const props = defineProps<{
+  message: String | undefined
+  error: String | undefined
   sending: Boolean
 }>()
    
@@ -24,7 +24,7 @@ const submit = async () => {
     email: email.value
   })
 }
-  
+
 onMounted(() => {
   name.value = store.authUser.name
   email.value = store.authUser.email

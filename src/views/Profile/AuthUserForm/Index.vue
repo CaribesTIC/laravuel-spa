@@ -5,8 +5,8 @@ import * as AuthService from "@/services/AuthService"
 import { useAuthStore } from "@/stores/Auth"
 import Form from "./Form.vue"
 
-const error = ref<object | string>()
-const message = ref<object | string>()
+const error = ref<String>()
+const message = ref<String>()
 
 const updateUser = (payload: { name: string, email: string }) => {
   error.value = ''

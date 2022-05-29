@@ -1,21 +1,9 @@
-import { test, vi, expect } from 'vitest'
-/* import axios from 'axios'
- * import { Http } from '@/models/Http';
- *
- * const MyHttp = new Http({
- *   baseURL: "http://localhost:3000/"
- * })
- */
+import { test, vi, expect } from "vitest"
+import * as AuthService from "../apiMock/AuthService"
 
 test('should fetch login-auth-user via http-auth-service', async () => {
-
-  // await MyHttp.get("tests/API/data/data.json").then(r=>console.log(r))
-
-  const fill = async () => {
-      return (await import("../../tests/data/data.json")).default;
-  }
   
-  const arr = await fill()
+  const arr = await AuthService.example()
   
   expect(arr).toEqual([
     { name: "Plain Ol' Pineapple", image: 'pineapple-original.jpg', price: 4 },

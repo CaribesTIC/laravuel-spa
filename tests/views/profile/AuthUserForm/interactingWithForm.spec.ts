@@ -6,6 +6,11 @@ import ProfileForm from '@/views/Profile/AuthUserForm/Form.vue'
 
 const factory = () => {
   return mount(ProfileForm, {
+    props: {
+      message: "",
+      error: "",
+      sending: true
+    },
     global: {
       plugins: [createTestingPinia({
         initialState: {
@@ -31,16 +36,15 @@ describe('Profile Form Component',  () => {
     const inputName = wrapper.get('[data-testid="name-input"] input')
     const inputEmail = wrapper.get('[data-testid="email-input"] input')
 
-
     await nextTick()
 
-    expect(inputName.element.value).toBe('John Doe')
-    expect(inputEmail.element.value).toBe('user@email.ext')
+    expect((inputName.element as HTMLInputElement).value).toBe('John Doe')
+    expect((inputEmail.element as HTMLInputElement).value).toBe('user@email.ext')
 
   })
 
   it('emits the input to its parent', async () => {
-    const wrapper =  factory()
+    const wrapper = factory()
   
     await wrapper.trigger('submit.prevent')
 
