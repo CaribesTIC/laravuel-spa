@@ -1,88 +1,79 @@
-<script lang="ts">
-import { onMounted//, ref
-  , reactive } from "vue";
+<script setup lang="ts">
+import { onMounted, reactive } from "vue";
 import { onBeforeRouteUpdate, useRouter, useRoute } from 'vue-router' 
 import Pagination from "@/components/Pagination.vue";
+import PageHeader from "@/components/PageHeader.vue"
 import UserService from "@/services/UserService";
-import { useSearch } from "@/hooks/useTableGrid";
+import { useSearch } from "@/composables/useTableGrid";
 
-export default {
-  name: "UsersIndex",
-  components: {
-    Pagination,
-  },
-  //  props: ["errors"],  
-  props: [],  
-  setup(props) {
-    const router = useRouter();
-    const route = useRoute();
-    const data = reactive({
-      rows: [],
-      links: [],
-      search: "",
-      sort: "",
-      direction: ""
+const router = useRouter();
+const route = useRoute();
+
+const data = reactive({
+  rows: [],
+  links: [],
+  search: "",
+  sort: "",
+  direction: ""
+});
+
+const load = (newParams) => {
+  const params = {
+    search: data.search || "",
+    sort: data.sort || "",
+    direction: data.direction || "",
+    ...newParams,
+  };
+
+  router.push({
+    path:'/users',
+    query: {
+      ...route.query,
+      ...params
+    }
+  });
+};
+
+const { 
+  setSearch,
+  setSort,
+  setFilter
+} = useSearch(data, load)
+
+const getUsers = (routeQuery: string) => {
+  return UserService.getUsers(routeQuery)
+    .then((response) => {
+      data.rows = response.data.rows.data;
+      data.links = response.data.rows.links;
+      data.search = response.data.search;
+      data.sort = response.data.sort;
+      data.direction = response.data.direction;
+    })
+    .catch((error) => {
+      console.log(error);
     });
-
-    const getUsers = (routeQuery) => {
-      return UserService.getUsers(routeQuery)
-        .then((response) => {
-          data.rows = response.data.rows.data;
-          data.links = response.data.rows.links;
-          data.search = response.data.search;
-          data.sort = response.data.sort;
-          data.direction = response.data.direction;
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    };
+};
     
-    onBeforeRouteUpdate(async (to, from) => {      
-      if (to.query !== from.query) {        
-        await getUsers(new URLSearchParams(to.query).toString());        
-      }
-    });
+onBeforeRouteUpdate(async (to, from) => {      
+  if (to.query !== from.query) {        
+    await getUsers(new URLSearchParams(to.query).toString());        
+  }
+});
 
-    onMounted(() => {
-      getUsers(new URLSearchParams(route.query).toString());    
-    });
+onMounted(() => {
+  getUsers(new URLSearchParams(route.query).toString());    
+});
 
-    const load = (newParams) => {
-      const params = {
-        search: data.search || "",
-        sort: data.sort || "",
-        direction: data.direction || "",
-        ...newParams,
-      };
-
-      router.push({
-        path:'/users',
-        query: {
-          ...route.query,
-          ...params
-        }
-      });
-    };
-
-    const deleteRow = (rowId) => {
-      if (confirm("¿Estás seguro de que quieres eliminar?")) {
-        // Inertia.delete(route("users.destroy", rowId));
-      }
-    };
-
-    return {
-      data,
-      deleteRow,
-      ...useSearch(data, load),
-    };
+const deleteRow = (rowId: number) => {
+  if (confirm(`¿Estás seguro de que quieres eliminar el registro ${rowId}?`)) {
+    // Inertia.delete(route("users.destroy", rowId));
   }
 };
 </script>
 
 <template>
   <div>
-    <!--page-header> Usuarios </page-header-->
+    <PageHeader> Usuarios </PageHeader>
 
     <div class="flex space-x-2">
       <RouterLink class="btn btn-primary" to="/users">

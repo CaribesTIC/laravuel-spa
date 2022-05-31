@@ -1,7 +1,20 @@
-export function useSearch(props, load) {
+interface Data {
+  rows: string[];
+  links: string[];
+  search: string;
+  sort: string;
+  direction: string;
+}
+
+interface Load {
+  (newParams: string): void;
+}
+
+export function useSearch(data: Data, load: Load) {
 
   // search
-  let searchDebounceTimer;
+  let searchDebounceTimer: NodeJS.Timeout;
+
   const setSearch = (e) => {
     // clear previous timer and set new
     clearTimeout(searchDebounceTimer);
@@ -14,8 +27,8 @@ export function useSearch(props, load) {
   const setSort = (s) => { // "s" is abbreviation of "sort"
     // reverse direction if clicked twice on column
     let d = "asc";         // "d" is abbreviation of "direction"
-    if (props.sort == s) {
-      d = props.direction == "asc" ? "desc" : "asc";
+    if (data.sort == s) {
+      d = data.direction == "asc" ? "desc" : "asc";
     }
     load({direction: d, sort: s});
   };
