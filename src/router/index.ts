@@ -39,6 +39,29 @@ const routes: Array<RouteRecordRaw> = [{
     meta: { middleware: [auth] },
     component: () => import("@/views/Profile/Index.vue").then(m => m.default),
 }, {
+    path: "/users",
+    name: "users",
+    meta: { middleware: [auth] },
+    component: () => import("@/views/Users/Index.vue").then(m => m.default),
+}, {
+    path: "/users/create",
+    name: "userCreate",
+    meta: { middleware: [auth] },
+    component: () => import("@/views/Users/Create.vue").then(m => m.default),
+    props: true
+}, {
+    path: "/users/show/:id",
+    name: "userShow",
+    meta: { middleware: [auth] },
+    component: () => import("@/views/Users/Show.vue").then(m => m.default),
+    props: true
+}, {
+    path: "/users/edit/:id",
+    name: "userEdit",
+    meta: { middleware: [auth] },
+    component: () => import("@/views/Users/Edit.vue").then(m => m.default),
+    props: true    
+}, {
     path: "/:catchAll(.*)",
     name: "NotFound",
     meta: { layout: "empty" },
