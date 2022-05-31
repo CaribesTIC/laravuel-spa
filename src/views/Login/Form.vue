@@ -4,7 +4,7 @@
   import BaseInput from '@/components/BaseInput.vue'
   import FlashMessage from "@/components/FlashMessage.vue"
   
-  const props = defineProps({
+  defineProps({
     error: [Object, String],
     sending: Boolean
   })  

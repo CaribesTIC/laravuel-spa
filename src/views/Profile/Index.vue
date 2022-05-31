@@ -2,7 +2,7 @@
 import { useAuthStore } from '@/stores/Auth'
 import AuthUser from "./AuthUser.vue"
 import AuthUserForm from "./AuthUserForm/Index.vue"
-import UpdatePassword from "./UpdatePassword.vue"
+import UpdatePassword from "./UpdatePassword/Index.vue"
 import FileUpload from "./FileUpload.vue"
 import SectionBorder from "@/components/SectionBorder.vue"
 import SectionInfo from "@/components/SectionInfo.vue"

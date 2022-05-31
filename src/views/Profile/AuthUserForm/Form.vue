@@ -5,16 +5,15 @@ import BaseBtn from "@/components/BaseBtn.vue"
 import BaseInput from '@/components/BaseInput.vue'
 import FlashMessage from "@/components/FlashMessage.vue"
  
-const props = defineProps<{
+defineProps<{
   message: String | undefined
   error: String | undefined
   sending: Boolean
 }>()
    
 const emit = defineEmits(['submit'])
-  
-const store = useAuthStore()
-  
+
+const store = useAuthStore()  
 const name = ref<string>()
 const email = ref<string>()
   

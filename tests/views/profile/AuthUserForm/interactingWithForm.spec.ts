@@ -26,7 +26,7 @@ const factory = () => {
   })
 }
 
-describe('Profile Form Component',  () => {
+describe('Profile AuthUserForm/Form Component',  () => {
   it('sets the value from state', async () => {
     const wrapper = factory()
   

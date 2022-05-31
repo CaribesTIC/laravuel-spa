@@ -8,7 +8,7 @@ const payload = {
   email: "user@email.ext"
 }
 
-describe('Profile Index Component',  () => {
+describe('Profile AuthUserForm/Index Component',  () => {
   it('should be called updateUser with payload', async () => {
     const wrapper = mount(ProfileIndex, {
       global: {
@@ -23,6 +23,8 @@ describe('Profile Index Component',  () => {
 
     wrapper.vm.updateUser(payload)
 
+    expect(updateUserSpy).toHaveBeenCalled()
+    expect(updateUserSpy).toHaveBeenCalledTimes(1)
     expect(updateUserSpy).toHaveBeenCalledWith(payload)
   })  
 })
