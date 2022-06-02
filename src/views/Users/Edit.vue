@@ -1,0 +1,155 @@
+<script setup>
+  import { onMounted, computed, reactive, ref } from 'vue'
+  import { useRouter } from 'vue-router'
+  import BaseBtn from "@/components/BaseBtn.vue";
+  import FlashMessage from "@/components/FlashMessage.vue";
+  //import FlashMessages from "@/components/FlashMessages.vue";
+  import PageHeader from "@/components/PageHeader.vue";
+  //import useUser from "./useUser.js";
+  import UserService from "@/services/UserService";
+
+  const router = useRouter();
+  
+  const props = defineProps({ id: String })
+
+  const form = reactive ({    
+    name: null,
+    email: null,
+    password: null,
+    role_id: null
+  })
+  
+  const errors = ref({
+    name: [], email: [], password: [], role_id: []
+  })
+  
+  const roles = ref([])
+  const sending = ref(false);
+  const loading = ref(false);  
+
+  onMounted(async () => {
+
+    
+   console.log(props)
+          
+    sending.value= true
+    UserService.getUser(props.id)
+      .then((response) => {
+        console.log(response.data.data);        
+        form.name = response.data.data.name
+        form.email = response.data.data.email
+        form.password = ""
+        form.role_id = response.data.data.role_id
+        sending.value= false
+      })
+      .catch((error) => {
+        sending.value = false;
+        errors.value = getError(error)
+      });
+  
+    
+    
+    
+    
+    UserService.helperTablesGet()
+    .then((response) => {
+      roles.value = response.data.roles;
+      console.log(roles.value)
+      //state.helperTables = false;
+    })
+    .catch((error) => {
+      errors.value = getError(error)
+    });
+  });
+
+  const userUpdate = async (userId, form) => {
+    //await store.dispatch("user/updateUser", { userId, form });
+    //router.push({ path: '/users' });
+    sending.value= true
+    return UserService.updateUser(userId, form)
+      .then((response) => {
+        console.log(response)
+        sending.value = false 
+        console.log( { msg: response.data.message } );
+        router.push( { path: '/users' } );
+      })
+      .catch((error) => {
+        sending.value = false        
+        console.log( { msg: error.response.data } );
+        errors.value = getError(error)
+      });
+  };
+
+</script>
+
+<template>
+  <div>
+    <!--FlashMessages /--> 
+    <page-header>Usuarios / Editar</page-header>
+    <transition name="fade" mode="out-in">
+      <!--FlashMessage
+        message="loading..."
+        v-if="loading && !form.length"
+        key="loading"
+      />
+      <div v-else class="panel mt-6 p-4"--> 
+      <div class="panel mt-6 p-4">     
+        <div  class="flex space-x-2">
+          <button class="btn btn-primary mb-4" @click="router.push({ path: '/users' })">Ver todos</button>
+        </div>
+        <div class="panel mt-6">
+          <form @submit.prevent="userUpdate(props.id, form)" class="p-4">
+            <div class="grid lg:grid-cols-2 gap-4">
+              <!-- name -->
+              <label class="block">
+                <span class="text-gray-700">Nombre</span>
+                <input v-model="form.name" type="text" class="" />
+                <div v-if="errors.name" class="form-error">
+                  {{ errors.name[0] }}
+                </div>
+              </label>
+              <!-- email -->
+              <label class="block">
+                <span class="text-gray-700">Correo</span>
+                <input v-model="form.email" type="email" class="" />
+                <div v-if="errors.email" class="form-error">
+                  {{ errors.email[0] }}
+                </div>
+              </label>
+              <!-- password -->
+              <label class="block">
+                <span class="text-gray-700">Password</span>
+                <input v-model="form.password" type="password" class="" />
+                <div v-if="errors.password" class="form-error">
+                  {{ errors.password[0] }}
+                </div>
+              </label>
+              <!-- role -->
+              <label class="block">
+                <span class="text-gray-700">Rol</span>
+                <select v-model="form.role_id" class="p-2">
+                  <option v-for="role in roles" :value="role.id" :key="role">
+                    {{ role.name }}
+                  </option>
+                </select>
+                <div v-if="errors.role_id" class="form-error">
+                  {{ errors.role_id[0] }}
+                </div>
+              </label>
+            </div>
+
+            <div class="mt-4 px-2 border-gray-100 flex justify-end space-x-2">
+              <BaseBtn
+                type="submit"
+                :text="sending ? 'Guardando...' : 'Guardar'"
+                :isDisabled='sending'
+              />
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </transition>
+  </div>
+</template>
+

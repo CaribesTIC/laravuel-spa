@@ -17,7 +17,7 @@ const data = reactive({
   direction: ""
 });
 
-const load = (newParams) => {
+const load = (newParams: object) => {
   const params = {
     search: data.search || "",
     sort: data.sort || "",
@@ -76,7 +76,7 @@ const deleteRow = (rowId: number) => {
     <PageHeader> Usuarios </PageHeader>
 
     <div class="flex space-x-2">
-      <RouterLink class="btn btn-primary" to="/users">
+      <RouterLink class="btn btn-primary" to="/users/create">
         <span>Crear</span>
       </RouterLink>
     </div>
@@ -116,7 +116,7 @@ const deleteRow = (rowId: number) => {
               <td class="">
                 <RouterLink
                   class="text-indigo-600 hover:text-indigo-800 underline"
-                  to="/users"                  
+                  :to="{ name: 'userEdit', params: { id: user.id }}"                  
                 >
                   {{ user.name }}
                 </RouterLink>
@@ -134,15 +134,12 @@ const deleteRow = (rowId: number) => {
                     tabindex="-1"
                   >
                     <button class="btn btn-success btn-xs">Mostrar</button>
-                  </RouterLink>
-
-                  <RouterLink
-                    to="/users"
-                    tabindex="-1"
-                  >
-                    <button class="btn btn-primary btn-xs">Editar</button>
-                  </RouterLink>
-
+                  </RouterLink>                  
+                  <button
+                    class="btn btn-primary btn-xs"
+                    @click="router.push({ path: '/users/edit/'+user.id })">
+                      Editar
+                  </button>
                   <button
                     @click="deleteRow(user.id)"
                     class="btn btn-danger btn-xs"

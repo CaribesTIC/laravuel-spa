@@ -7,7 +7,7 @@ interface Data {
 }
 
 interface Load {
-  (newParams: string): void;
+  (newParams: object): void;
 }
 
 export function useSearch(data: Data, load: Load) {
@@ -15,11 +15,11 @@ export function useSearch(data: Data, load: Load) {
   // search
   let searchDebounceTimer: NodeJS.Timeout;
 
-  const setSearch = (e) => {
+  const setSearch = (e: Event) => {
     // clear previous timer and set new
     clearTimeout(searchDebounceTimer);
     searchDebounceTimer = setTimeout(() => {
-      load({search: e.target.value});
+      load( { search: e.target.value} );
     }, 300);
   };
 
@@ -34,7 +34,7 @@ export function useSearch(data: Data, load: Load) {
   };
 
   // filter
-  const setFilter = (filter) => {
+  const setFilter = (filter: object) => {
     load(filter);
   };
 

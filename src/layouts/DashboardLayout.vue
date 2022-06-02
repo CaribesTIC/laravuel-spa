@@ -10,7 +10,7 @@ import PageFoot from "./PageFoot.vue"
     <Sidebar />
     <div class="flex-1 flex flex-col overflow-hidden">
       <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200">
-        <div class="container mx-auto px-6 py-8">
+        <div class="container mx-auto p-6">
           <slot />
         </div>
       </main>
