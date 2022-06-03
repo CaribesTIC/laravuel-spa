@@ -1,56 +1,36 @@
-<script setup lang="ts">
-  import { onMounted, computed, reactive, ref } from 'vue'  
+<script setup lang="ts">  
   import { useRouter } from 'vue-router'
   import BaseBtn from "@/components/BaseBtn.vue";
   //import FlashMessages from "@/components/FlashMessages.vue";
   import FlashMessage from "@/components/FlashMessage.vue";
   import PageHeader from "@/components/PageHeader.vue";
-  //import useUser from "./useUser.js";
+  import useUser from "./useUser";
   import UserService from "@/services/UserService";
+  import { getError } from "@/utils/helpers";
+  import type User from "./User"
   
   const router = useRouter()
-  
-  const form = reactive ({
-    name: "",
-    email: "",
-    password: "",
-    role_id: ""
-  })
+  const {
+    form,
+    errors,
+    roles,
+    sending,
+    loading
+  } = useUser() 
 
-  const errors = ref({
-    name: [], email: [], password: [], role_id: []
-  })
-
-  const roles = ref([])
-  const sending = ref(false);
-  
-  onMounted(async () => {
-    
-    UserService.helperTablesGet()
-    .then((response) => {
-      roles.value = response.data.roles;
-      console.log(roles.value)
-      //state.helperTables = false;
-    })
-    .catch((error) => {
-      errors.value = getError(error)
-    });
-
-  });
-
-  const insertUser = async (form) => {  
-    sending.value= true
+  const insertUser = async (form: User) => {  
+    sending.value = true
     return UserService.insertUser(form)
-      .then((response) => {
-        console.log(response)
-        sending.value = false 
-        console.log( { msg: response.data.message } );
+      .then((response) => {         
+        alert( response.data.message );
         router.push( { path: '/users' } );
       })
-      .catch((error) => {
-        sending.value = false        
-        console.log( { msg: error.response.data } );
+      .catch((error) => {                
+        console.log( error.response.data );
         errors.value = getError(error)
+      })
+      .finally(() => {
+        sending.value = false
       });
   };
 </script>
@@ -60,13 +40,12 @@
     <!--FlashMessages /--> 
     <page-header>Usuarios / Crear</page-header>
     <transition name="fade" mode="out-in">
-      <!--<FlashMessage
+      <FlashMessage
         message="loading..."
         v-if="loading"
         key="loading"
       />
-      <div v-else class="panel mt-6 p-4"> -->
-      <div class="panel mt-0 p-4"> 
+      <div v-else class="panel mt-0 p-4">       
         <div  class="flex space-x-2">
           <button class="btn btn-primary mb-4" @click="router.push({ path: '/users' })">Ver todos</button>
         </div>

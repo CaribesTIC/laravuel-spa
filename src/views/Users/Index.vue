@@ -125,7 +125,7 @@ const deleteRow = (rowId: number) => {
                 {{ user.email }}
               </td>
               <td class="">
-                { user.role.name }
+                {{ user.role_id }}
               </td>
               <td class="">
                 <div class="flex items-center space-x-1">
