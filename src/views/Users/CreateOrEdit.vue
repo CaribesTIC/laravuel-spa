@@ -1,56 +1,38 @@
-<script setup lang="ts">  
-  import { useRouter } from 'vue-router'
+<script setup lang="ts">
   import BaseBtn from "@/components/BaseBtn.vue";
-  //import FlashMessages from "@/components/FlashMessages.vue";
   import FlashMessage from "@/components/FlashMessage.vue";
   import PageHeader from "@/components/PageHeader.vue";
   import useUser from "./useUser";
-  import UserService from "@/services/UserService";
-  import { getError } from "@/utils/helpers";
-  import type User from "./User"
-  
-  const router = useRouter()
+
+  const props = defineProps<{ id?: string }>()
+   
   const {
     form,
     errors,
     roles,
     sending,
-    loading
-  } = useUser() 
-
-  const insertUser = async (form: User) => {  
-    sending.value = true
-    return UserService.insertUser(form)
-      .then((response) => {         
-        alert( response.data.message );
-        router.push( { path: '/users' } );
-      })
-      .catch((error) => {                
-        console.log( error.response.data );
-        errors.value = getError(error)
-      })
-      .finally(() => {
-        sending.value = false
-      });
-  };
+    loading,
+    router,
+    submit    
+  } = useUser(props.id)
 </script>
 
 <template>
   <div>
     <!--FlashMessages /--> 
-    <page-header>Usuarios / Crear</page-header>
+    <page-header>Usuarios / {{ !props.id ? "Crear" : "Editar" }}</page-header>
     <transition name="fade" mode="out-in">
       <FlashMessage
         message="loading..."
-        v-if="loading"
+        v-if="loading && !form"
         key="loading"
       />
-      <div v-else class="panel mt-0 p-4">       
+      <div v-else class="panel mt-6 p-4">           
         <div  class="flex space-x-2">
           <button class="btn btn-primary mb-4" @click="router.push({ path: '/users' })">Ver todos</button>
         </div>
-        <div class="panel mt-0">
-          <form @submit.prevent="insertUser(form)" class="p-4">
+        <div class="panel mt-6">
+          <form @submit.prevent="submit(form, props.id)" class="p-4">
             <div class="grid lg:grid-cols-2 gap-4">
               <!-- name -->
               <label class="block">
@@ -63,7 +45,7 @@
               <!-- email -->
               <label class="block">
                 <span class="text-gray-700">Correo</span>
-                <input v-model="form.email" type="email" class=""/>
+                <input v-model="form.email" type="email" class="" />
                 <div v-if="errors.email" class="form-error">
                   {{ errors.email[0] }}
                 </div>
@@ -71,7 +53,7 @@
               <!-- password -->
               <label class="block">
                 <span class="text-gray-700">Password</span>
-                <input v-model="form.password" type="password" class="" autocomplete="off"/>
+                <input v-model="form.password" type="password" class="" />
                 <div v-if="errors.password" class="form-error">
                   {{ errors.password[0] }}
                 </div>
@@ -79,7 +61,7 @@
               <!-- role -->
               <label class="block">
                 <span class="text-gray-700">Rol</span>
-                <select v-model="form.role_id" class="p-2">                
+                <select v-model="form.role_id" class="p-2">
                   <option v-for="role in roles" :value="role.id" :key="role">
                     {{ role.name }}
                   </option>
@@ -104,4 +86,3 @@
     </transition>
   </div>
 </template>
-

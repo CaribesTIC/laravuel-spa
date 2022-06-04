@@ -128,13 +128,7 @@ const deleteRow = (rowId: number) => {
                 {{ user.role_id }}
               </td>
               <td class="">
-                <div class="flex items-center space-x-1">
-                  <RouterLink
-                    to="/users"
-                    tabindex="-1"
-                  >
-                    <button class="btn btn-success btn-xs">Mostrar</button>
-                  </RouterLink>                  
+                <div class="flex items-center space-x-1">                
                   <button
                     class="btn btn-primary btn-xs"
                     @click="router.push({ path: '/users/edit/'+user.id })">
@@ -159,4 +153,3 @@ const deleteRow = (rowId: number) => {
     </div>
   </div>
 </template>
-
