@@ -1,16 +1,7 @@
 import * as API from "@/services/API";
 
-
-
-
 export default {
-  //cleanUser(form) {
-  //  return new Promise(resolve => {
-  //    setTimeout(function() {      
-  //      resolve(form); 
-  //    }, 100);
-  //  });
-  //},
+
   getUser(userId) {
     return API.apiClient.get(`/users/${userId}`);
   },      
