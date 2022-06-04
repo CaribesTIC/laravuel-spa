@@ -4,15 +4,16 @@ import { getError } from "@/utils/helpers";
 import UserService from "@/services/UserService";
 import type Role from "./Role"
 import type User from "./User"
+import type Errors from "./Errors"
 
 export default (userId?: string) => {
   const router = useRouter();
   
-  const form = reactive ({    
+  const user: User = reactive({    
     name: null, email: null, password: null, role_id: null
   })
 
-  const errors = ref({
+  const errors = ref<Errors>({
     name: [], email: [], password: [], role_id: []
   })
   
@@ -25,10 +26,10 @@ export default (userId?: string) => {
       loading.value = true
       UserService.getUser(userId)
         .then((response) => {                
-          form.name = response.data.data.name
-          form.email = response.data.data.email
-          form.password = null
-          form.role_id = response.data.data.role_id        
+          user.name = response.data.data.name
+          user.email = response.data.data.email
+          user.password = null
+          user.role_id = response.data.data.role_id        
         })
         .catch((err) => {        
           errors.value = getError(err)
@@ -50,9 +51,9 @@ export default (userId?: string) => {
     });    
   });
 
-  const insertUser = async (form: User) => {  
+  const insertUser = async (user: User) => {  
     sending.value = true
-    return UserService.insertUser(form)
+    return UserService.insertUser(user)
       .then((response) => {         
         alert( response.data.message );
         router.push( { path: '/users' } );
@@ -66,9 +67,9 @@ export default (userId?: string) => {
       });
   };
 
-  const updateUser = async (form: User, userId: string) => {
+  const updateUser = async (user: User, userId: string) => {
     sending.value= true
-    return UserService.updateUser(userId, form)
+    return UserService.updateUser(userId, user)
       .then((response) => {
         alert( response.data.message );
         router.push( { path: '/users' } );
@@ -82,12 +83,12 @@ export default (userId?: string) => {
       });
   };
   
-  const submit = (form: User, userId?: string) => {
-    !userId ? insertUser (form)  : updateUser(form, userId)
+  const submit = (user: User, userId?: string) => {  
+    !userId ? insertUser (user)  : updateUser(user, userId)
   } 
 
   return {
-    form,
+    user,
     errors,
     roles,
     sending,
