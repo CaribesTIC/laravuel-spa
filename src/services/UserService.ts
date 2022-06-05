@@ -1,23 +1,22 @@
-import * as API from "@/services/API";
+import Http from "@/models/Http";
 
 export default {
-
   getUser(userId) {
-    return API.apiClient.get(`/users/${userId}`);
+    return Http.get(`/api/users/${userId}`);
   },      
   getUsers(query) {  
-    return API.apiClient.get(`/users/?${query}`);
+    return Http.get(`/api/users/?${query}`);
   },  
   //paginateUsers(link) {
-  //  return API.apiClient.get(link);
+  //  return Http.get(link);
   //},
   helperTablesGet() {
-     return API.apiClient.get(`/user/helperTables`);
+     return Http.get(`/api/user/helperTables`);
   },
   insertUser(form) {
-    return API.apiClient.post(`/users`, form);
+    return Http.post(`/api/users`, form);
   },
   updateUser(userId, form) {
-    return API.apiClient.post(`/users/${userId}`, form);
+    return Http.post(`/api/users/${userId}`, form);
   }
 };

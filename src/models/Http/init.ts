@@ -1,7 +1,7 @@
 import { useAuthStore } from '@/stores/Auth'
 import { InitInterface } from "./init.interface"
 
-export default<InitInterface> {  
+export default<InitInterface> {
   baseURL: process.env.VUE_APP_API_URL,  
   withCredentials: true, 
   handleError(error: any) {

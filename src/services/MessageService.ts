@@ -1,13 +1,13 @@
-import * as API from "@/services/API";
+import Http from "@/models/Http";
 
 export default {
   getMessages(page) {  
-    return API.apiClient.get(`/messages/?page=${page}`);
+    return Http.get(`/api/messages/?page=${page}`);
   },
   postMessage(payload) {
-    return API.apiClient.post("/messages", payload);
+    return Http.post(`/api/messages`, payload);
   },
   paginateMessages(link) {
-    return API.apiClient.get(link);
+    return Http.get(link);
   },
 };
