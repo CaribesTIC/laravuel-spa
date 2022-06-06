@@ -5,12 +5,21 @@ import Pagination from "@/components/Pagination.vue";
 import PageHeader from "@/components/PageHeader.vue"
 import UserService from "@/services/UserService";
 import { useSearch } from "@/composables/useTableGrid";
+import useUser from "./useUser";
+import type User from "./User"
+
 
 const router = useRouter();
 const route = useRoute();
 
+const {
+  deleteUser,
+  errors,
+  sending,     
+} = useUser()
+
 const data = reactive({
-  rows: [],
+  rows: [] as User[],
   links: [],
   search: "",
   sort: "",
@@ -36,8 +45,7 @@ const load = (newParams: object) => {
 
 const { 
   setSearch,
-  setSort,
-  setFilter
+  setSort, //setFilter
 } = useSearch(data, load)
 
 const getUsers = (routeQuery: string) => {
@@ -64,9 +72,10 @@ onMounted(() => {
   getUsers(new URLSearchParams(route.query).toString());    
 });
 
-const deleteRow = (rowId: number) => {
+const deleteRow = (rowId?: string) => {
+  if (rowId === undefined) return;
   if (confirm(`¿Estás seguro de que quieres eliminar el registro ${rowId}?`)) {
-    // Inertia.delete(route("users.destroy", rowId));
+    deleteUser(rowId)
   }
 };
 </script>

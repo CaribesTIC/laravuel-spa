@@ -1,6 +1,5 @@
 import { describe, it, vi, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
-import { nextTick } from 'vue'
 import UsersForm from '@/views/Users/Form.vue'
 
 describe('UsersForm Component',  () => {

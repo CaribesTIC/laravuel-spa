@@ -65,12 +65,11 @@ export class Http {
     });
   }
 
-  delete(path: string, payload: Paiload) {
+  delete(path: string) {
     return this.service.request({
       method: "DELETE",
       url: path,
       responseType: "json",
-      data: payload
     });
   }
 }

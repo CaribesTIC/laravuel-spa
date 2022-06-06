@@ -18,5 +18,8 @@ export default {
   },
   updateUser(userId, form) {
     return Http.post(`/api/users/${userId}`, form);
+  },
+  deleteUser(userId) {
+    return Http.delete(`/api/users/${userId}`);
   }
 };
