@@ -1,10 +1,11 @@
 import {createRouter, createWebHistory, RouteRecordRaw} from 'vue-router'
 import { computed } from "vue"
 import { useAuthStore } from '@/stores/Auth'
-import auth from "@/middleware/auth"
-import admin from "@/middleware/admin"
 import guest from "@/middleware/guest"
 import middlewarePipeline from "@/router/middlewarePipeline"
+import AuthRoutes from "@/modules/Auth/routes"
+import MessageRoutes from "@/modules/Message/routes"
+import UserRoutes from "@/modules/User/routes"
 
 const storeAuth = computed(() => useAuthStore())
 
@@ -16,51 +17,18 @@ const routes: Array<RouteRecordRaw> = [{
 }, {
     path: '/about',
     name: 'About',
-    meta: { layout: "empty" },
+    meta: { middleware: [guest], layout: "empty" },
     component: () => import("@/components/About.vue").then(m => m.default)
-}, {
-    path: "/dashboard",
-    name: "dashboard",
-    meta: { middleware: [auth], layout: "default" },
-    component: () => import("@/views/Dashboard/Index.vue").then(m => m.default),
-}, {
-    path: "/login",
-    name: "Login",
-    meta: { middleware: [guest], layout: "empty" },
-    component: () => import("@/views/Login/Index.vue").then(m => m.default)
-}, {
-    path: "/register",
-    name: "Register",    
-    meta: { middleware: [guest], layout: "empty" },
-    component: () => import("@/views/Register/Index.vue").then(m => m.default)
-}, {
-    path: "/profile",
-    name: "profile",
-    meta: { middleware: [auth] },
-    component: () => import("@/views/Profile/Index.vue").then(m => m.default),
-}, {
-    path: "/users",
-    name: "users",
-    meta: { middleware: [auth] },
-    component: () => import("@/views/Users/Index.vue").then(m => m.default),
-}, {
-    path: "/users/create",
-    name: "userCreate",
-    meta: { middleware: [auth] },
-    component: () => import("@/views/Users/CreateOrEdit.vue").then(m => m.default),
-    props: true
-}, {
-    path: "/users/edit/:id",
-    name: "userEdit",
-    meta: { middleware: [auth] },
-    component: () => import("@/views/Users/CreateOrEdit.vue").then(m => m.default),
-    props: true    
 }, {
     path: "/:catchAll(.*)",
     name: "NotFound",
-    meta: { layout: "empty" },
-    component: () => import("@/components/NotFound.vue").then(m => m.default),
-}]
+    meta: { middleware: [guest], layout: "empty" },
+    component: () => import("@/components/NotFound.vue").then(m => m.default),    
+},
+...AuthRoutes.map(route => route),
+...MessageRoutes.map(route => route),
+...UserRoutes.map(route => route)
+]
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),  
