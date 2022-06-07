@@ -1,39 +1,17 @@
 import {createRouter, createWebHistory, RouteRecordRaw} from 'vue-router'
 import { computed } from "vue"
-import { useAuthStore } from '@/stores/Auth'
-import guest from "@/middleware/guest"
-import auth from "@/middleware/auth"
+import { useAuthStore } from '@/modules/Auth/stores'
 import middlewarePipeline from "@/router/middlewarePipeline"
 import AuthRoutes from "@/modules/Auth/routes"
-import ChatRoutes from "@/modules/Chat/routes"
+import MessageRoutes from "@/modules/Message/routes"
 import UserRoutes from "@/modules/User/routes"
 
 const storeAuth = computed(() => useAuthStore())
 
-const routes: Array<RouteRecordRaw> = [{
-    path: '/',
-    name: 'Home',     
-    meta: { middleware: [guest], layout: "empty" },      
-    component: () => import("@/views/Home/Index.vue").then(m => m.default)
-}, {
-    path: '/about',
-    name: 'About',
-    meta: { middleware: [guest], layout: "empty" },
-    component: () => import("@/components/About.vue").then(m => m.default)
-}, {
-    path: "/dashboard",
-    name: "dashboard",
-    meta: { middleware: [auth], layout: "default" },
-    component: () => import("@/views/Dashboard/HelloWorld.vue").then(m => m.default)
-}, {
-    path: "/:catchAll(.*)",
-    name: "NotFound",
-    meta: { middleware: [guest], layout: "empty" },
-    component: () => import("@/components/NotFound.vue").then(m => m.default),    
-},
-...AuthRoutes.map(route => route),
-...ChatRoutes.map(route => route),
-...UserRoutes.map(route => route)
+const routes: Array<RouteRecordRaw> = [
+  ...AuthRoutes.map(route => route),
+  ...MessageRoutes.map(route => route),
+  ...UserRoutes.map(route => route)
 ]
 
 const router = createRouter({

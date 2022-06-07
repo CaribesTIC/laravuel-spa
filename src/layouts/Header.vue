@@ -1,7 +1,7 @@
 <script setup lang="ts">
   import { ref, computed } from "vue";
-  import { useAuthStore } from '@/stores/Auth'
-  import { useSidebar } from "../hooks/useSidebar";
+  import { useAuthStore } from '@/modules/Auth/stores'
+  import { useSidebar } from "@/composables/useSidebar";
   import LoginIcon from "@/components/icons/LoginIcon.vue";
   import HomeIcon from "@/components/icons/HomeIcon.vue";
   import Logout from "@/components/Logout.vue";
