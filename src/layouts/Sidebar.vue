@@ -59,8 +59,8 @@
         
         <router-link
           class="flex items-center duration-200 mt-4 py-2 px-6 border-l-4"
-          :class="[$route.name === 'products' ? activeClass : inactiveClass]"
-          to="/products"
+          :class="[$route.name === 'shopcart' ? activeClass : inactiveClass]"
+          to="/shopcart"
         >
           <svg
             class="h-5 w-5"
@@ -78,7 +78,7 @@
             />
           </svg>
 
-          <span class="mx-4">Products</span>
+          <span class="mx-4">ShopCart</span>
         </router-link>
 
         <router-link
