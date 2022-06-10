@@ -10,9 +10,6 @@ export default {
   //paginateUsers(link) {
   //  return Http.get(link);
   //},
-  helperTablesGet() {
-     return Http.get(`/api/user/helperTables`);
-  },
   insertUser(form) {
     return Http.post(`/api/users`, form);
   },
@@ -21,5 +18,8 @@ export default {
   },
   deleteUser(userId) {
     return Http.delete(`/api/users/${userId}`);
-  }
+  },
+  helperTablesGet() {
+     return Http.get(`/api/roles/helperTables`);
+  },
 };
