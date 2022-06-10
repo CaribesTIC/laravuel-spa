@@ -13,7 +13,7 @@ cartStore.$onAction(({ name, store, args, after, onError }) => {
       console.log("onAction-addItems", args[0]);
     });
     onError((error) => {
-      console.log("Hello error: ", error.message);
+      console.log("onAction-addItems-error: ", error.message);
     });
   }
 });
