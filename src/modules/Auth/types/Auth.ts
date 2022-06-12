@@ -1,12 +1,12 @@
 import { Ref, UnwrapRef } from 'vue'
 
-export interface IFormLogin {
+export interface FormLogin {
     email: string
     password: string
 }
 
-export interface IStandaloneLogin {
+export interface StandaloneLogin {
     sending: Ref<UnwrapRef<boolean>>
-    login: (form: IFormLogin) => Promise<void>
+    login: (form: FormLogin) => Promise<void>
     error: Ref<UnwrapRef<null>>
 }

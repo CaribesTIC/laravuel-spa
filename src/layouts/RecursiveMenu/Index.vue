@@ -1,13 +1,21 @@
 <script setup lang="ts">
-import TreeMenu from './TreeMenu.vue'
-import data from './data'
+//import { useAuthStore } from "@/modules/Auth/stores/index"
+import { getAuthMenu } from "@/modules/Auth/services"
+import { ref, onMounted } from "vue"
+import TreeMenu from "./TreeMenu.vue"
 
-const menus = data
+const menus = ref([])
+
+onMounted(async () => {
+  const response = await getAuthMenu()
+  menus.value = response.data
+})
+
 </script>
 
 <template>
   <nav class="py-6 px-6">
-    <ul v-if="menus.length>0">
+    <ul v-if="menus && menus.length>0">
       <TreeMenu
         v-for="(menu, index) in menus"
         :key="index"

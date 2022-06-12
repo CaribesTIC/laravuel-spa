@@ -1,6 +1,6 @@
-import { IAuthStore } from '@/Interfaces/Store/IAuthStore'
+import type { AuthStore } from '@/modules/Auth/types/Store/AuthStore'
 
-export default (): IAuthStore => ({
+export default (): AuthStore => ({
   user: null,
   loading: false,
   error: '',

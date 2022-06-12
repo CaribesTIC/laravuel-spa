@@ -1,4 +1,4 @@
-export interface IAuthStore {
+export interface AuthStore {
     user: {
         isAdmin?: boolean
     }

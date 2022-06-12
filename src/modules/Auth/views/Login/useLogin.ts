@@ -3,15 +3,15 @@ import { useRouter } from 'vue-router';
 import { useAuthStore } from '@/modules/Auth/stores'
 import { getError } from "@/utils/helpers";
 import * as AuthService from "@/modules/Auth/services";
-import { IFormLogin, IStandaloneLogin } from '@/Interfaces/IAuth'
+import type { FormLogin, StandaloneLogin } from '@/modules/Auth/types/Auth'
 
-export function useLogin(): IStandaloneLogin {
+export function useLogin(): StandaloneLogin {
   const router = useRouter();
   const auth = useAuthStore()
   const error = ref(null)
   const sending = ref(false)
 
-  const login = async (form: IFormLogin) => {
+  const login = async (form: FormLogin) => {
     const payload = {
       email: form.email,
       password: form.password,

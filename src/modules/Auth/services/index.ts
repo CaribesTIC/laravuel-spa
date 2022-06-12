@@ -39,3 +39,7 @@ export const sendVerification = <T>(payload: T) => {
 export const updateUser = <T>(payload: T) => {
   return Http.put("/user/profile-information", payload);
 }
+
+export const getAuthMenu = () => {
+  return Http.get("/api/users/auth-menu");
+}
