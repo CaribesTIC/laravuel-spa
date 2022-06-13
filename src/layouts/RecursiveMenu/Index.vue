@@ -4,7 +4,17 @@ import { getAuthMenu } from "@/modules/Auth/services"
 import { ref, onMounted } from "vue"
 import TreeMenu from "./TreeMenu.vue"
 
-const menus = ref([])
+interface Menu {
+  id: number;
+  title: string;
+  menu_id: number;
+  path: string;
+  sort: number;
+  icon: string;
+  children_menus?: Menu[];
+}
+
+const menus = ref<Menu[]>([])
 
 onMounted(async () => {
   const response = await getAuthMenu()

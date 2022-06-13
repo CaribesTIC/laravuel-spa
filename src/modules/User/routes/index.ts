@@ -13,7 +13,7 @@ export default [{
     component: () => import("@/modules/User/views/CreateOrEdit.vue").then(m => m.default),
     props: true
 }, {
-    path: "/users/edit/:id",
+    path: "/users/edit/:id(\\d+)",
     name: "userEdit",
     meta: { middleware: [auth, admin] },
     component: () => import("@/modules/User/views/CreateOrEdit.vue").then(m => m.default),
