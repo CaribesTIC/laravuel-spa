@@ -1,5 +1,5 @@
 <script setup lang="ts">
-//import { useAuthStore } from "@/modules/Auth/stores/index"
+import { useAuthStore } from "@/modules/Auth/stores/index"
 import { getAuthMenu } from "@/modules/Auth/services"
 import { ref, onMounted } from "vue"
 import TreeMenu from "./TreeMenu.vue"
@@ -16,9 +16,13 @@ interface Menu {
 
 const menus = ref<Menu[]>([])
 
+const store = useAuthStore()
+
 onMounted(async () => {
-  const response = await getAuthMenu()
-  menus.value = response.data
+  if (store.authUser) {
+    const response = await getAuthMenu()
+    menus.value = response.data
+  }
 })
 
 </script>
