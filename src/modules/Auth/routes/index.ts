@@ -1,5 +1,6 @@
 import auth from "@/middleware/auth"
 import guest from "@/middleware/guest"
+import admin from "@/middleware/admin"
 
 export default [{
     path: "/",
@@ -21,6 +22,11 @@ export default [{
     name: "profile",
     meta: { middleware: [auth] },
     component: () => import("@/modules/Auth/views/Profile/Index.vue").then(m => m.default),
+}, {
+    path: "/menus",
+    name: "menus",
+    meta: { middleware: [auth, admin] },
+    component: () => import("@/modules/Auth/views/Menus/Index.vue").then(m => m.default),
 }, {
     path: "/dashboard",
     name: "dashboard",
