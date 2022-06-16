@@ -1,90 +1,44 @@
-import { mount } from '@vue/test-utils'
+import { describe, it, vi, expect } from 'vitest'
+import { mount, flushPromises } from '@vue/test-utils'
+import { createTestingPinia } from '@pinia/testing'
+import router from '@/router'
 import Menu from '@/layouts/RecursiveMenu/Index.vue'
-import { nextTick } from 'vue'
-import { useRoute } from 'vue-router' 
-import router from '@/router' 
-import { getAuthMenu } from "@/modules/Auth/services"
+import data from "./data"
+import nav from "./nav"
 
-const a =`<nav class="py-6 px-6">
-  <ul>
-    <li data-v-27c4ac4c="">
-      <div class="mb-2 py-1 px-2 inactiveClass" data-v-27c4ac4c=""><a href="/dashboard" class="" data-v-27c4ac4c=""><span class="flex items-center group py-0" data-v-27c4ac4c=""><img src="http://localhost:8000/menu/dashboard.svg" class="w-5 h-5 mr-2" data-v-27c4ac4c=""> Dashboard</span></a></div>
-      <ul class="pl-5" data-v-27c4ac4c=""></ul>
-    </li>
-    <li data-v-27c4ac4c="">
-      <div class="mb-2 py-1 px-2" data-v-27c4ac4c=""><a href="#" style="color: gray;" class="flex items-center group py-0" data-v-27c4ac4c="">Registrar</a></div>
-      <ul class="pl-5" data-v-27c4ac4c="">
-        <li data-v-27c4ac4c="">
-          <div class="mb-2 py-1 px-2 inactiveClass" data-v-27c4ac4c=""><a href="/users" class="" data-v-27c4ac4c=""><span class="flex items-center group py-0" data-v-27c4ac4c=""><img src="http://localhost:8000/menu/users.svg" class="w-5 h-5 mr-2" data-v-27c4ac4c=""> Users</span></a></div>
-          <ul class="pl-5" data-v-27c4ac4c=""></ul>
-        </li>
-      </ul>
-    </li>
-    <li data-v-27c4ac4c="">
-      <div class="mb-2 py-1 px-2 inactiveClass" data-v-27c4ac4c=""><a href="/ui-elements" class="" data-v-27c4ac4c=""><span class="flex items-center group py-0" data-v-27c4ac4c=""><img src="http://localhost:8000/menu/categories.svg" class="w-5 h-5 mr-2" data-v-27c4ac4c=""> UI Elements</span></a></div>
-      <ul class="pl-5" data-v-27c4ac4c=""></ul>
-    </li>
-  </ul>
-</nav>`
+vi.mock("@/modules/Auth/services", () => ({
+  getAuthMenu: vi.fn(() => ({ data }))
+}))
 
-const menujson = [{
-  "id":1,
-  "title":"Dashboard",
-  "menu_id":0,
-  "path":"dashboard",
-  "sort":1,
-  "icon": "dashboard.svg",
-  "children_menus":[]
-  }, {
-    "id":4,
-    "title":"Registrar",
-    "menu_id":0,
-    "path":"#",
-    "icon":"printer",
-    "sort":1,
-    "icon": "",
-    "children_menus": [
-       {
-          "id":5,
-          "title":"Users",
-          "menu_id":4,
-          "path":"users",
-          "sort":1,
-          "icon": "users.svg",
-          "children_menus":[]
-        }
-      ]
-   },{
-          "id":8,
-          "title":"UI Elements",
-          "menu_id":7,
-          "path":"ui-elements",
-          "sort":1,
-          "icon": "categories.svg",
-          "children_menus":[]
-        }
-  ];
+window.scrollTo = vi.fn()
+afterEach(() => { vi.resetAllMocks() })
+afterAll(() => { vi.clearAllMocks() })
 
+describe('RecursiveMenu', ()=> {
 
-test.skip('component must be mounted correctly', async () => {
-const route = useRoute();
-  const wrapper = mount(Menu, {
-  global: {
-        plugins: [router]
-      },
-  data() {
-      return {
-        menus: []
+  it ('should render recursive menu', async () => {
+
+    const wrapper = mount(Menu, {
+      global: {
+        plugins: [
+          router,
+          createTestingPinia({
+            initialState: {
+              auth: {
+                user: {
+                  name: "John Doe",
+                  email: "user@email.ext"
+                }
+              } 
+            }
+          })
+        ]
       }
-    },
-    mounted: vi.fn()
+    })
+
+    await flushPromises()
+ 
+    expect(wrapper.html()).toEqual(nav)
   })
 
-  wrapper.vm.menus = menujson
-
-  await nextTick()
- 
-  expect(wrapper.html()).toEqual(a)
 })
-
-
