@@ -29,7 +29,7 @@ export default {
     //this.links.search = response.data.search;
     //this.links.sort = response.data.sort;
     //this.links.direction = response.data.direction;
-    console.log(this.menus)
+    //console.log(this.menus)
   },
   
   methods: {

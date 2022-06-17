@@ -10,7 +10,7 @@
       role="dialog"
       aria-modal="true"
       aria-labelledby="modal-headline">
-      <form v-on:submit.prevent="submit">
+      <form @submit.prevent="submit">
         <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
           <table style="width: 100%" id="main" border="1">                
             <tr class="bg-gray-200 text-left font-bold">
@@ -90,7 +90,7 @@
           <!--loading-button :loading="sending" class="btn-indigo ml-auto" type="submit">Update Organization</loading-button-->
           <span class="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">
             <button
-              @click="submit"
+              type="submit"
               class="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-green-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-green-500 focus:outline-none focus:border-green-700 focus:shadow-outline-green transition ease-in-out duration-150 sm:text-sm sm:leading-5">
               Update
             </button>
@@ -139,7 +139,8 @@ export default {
         return element === null ? true : false;
       },      
       submit() {
-        this.form._method = 'PUT';           
+        console.log(this.form);
+        /*this.form._method = 'PUT';           
         this.$inertia.post(this.route('menus.update', this.menu.id), this.form, {         
           onStart: () => this.sending = true,
           onFinish: () => this.sending = false,
@@ -150,7 +151,7 @@ export default {
               this.$emit('closeModal1');
             }
           },
-        })
+        })*/
       }, 
       /*update() {
         if (this.validateForm() === true) {
