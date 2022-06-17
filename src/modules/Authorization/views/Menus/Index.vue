@@ -1,5 +1,5 @@
 <script lang="ts">
-import * as MenuService from "@/modules/Auth/services/MenuService"
+import * as MenuService from "@/modules/Authorization/services/MenuService"
 import Pagination from "@/components/Pagination.vue";
 import PageHeader from "@/components/PageHeader.vue"
 import Create from './Create.vue'
@@ -55,10 +55,12 @@ export default {
       this.menu=data;
       this.openModal();
     },
-    remove(id) {
-      Notification.confirm(() => {       
-        this.$inertia.delete(this.route('menus.destroy', id));
-      });
+    async remove(id) {
+      if (id === undefined) return;
+      if (confirm(`¿Estás seguro de que quieres eliminar el registro ${id}?`)) {
+        await MenuService.deleteMenu(id)
+        window.location.reload()
+      }
     }
   }
 }

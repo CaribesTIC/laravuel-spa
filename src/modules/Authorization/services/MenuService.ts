@@ -13,3 +13,15 @@ export const getMenus = () => {
 export const getMenusChildren = (menuId) => {
   return Http.get(`${path}/children/${menuId}`);
 }
+
+export const insertMenu = (form) => {
+  return Http.post(path, form);
+}
+
+export const updateMenu = (menuId, form) => {
+  return Http.put(`${path}/${menuId}`, form);
+}
+
+export const deleteMenu = (menuId) => {
+  return Http.delete(`${path}/${menuId}`);
+}

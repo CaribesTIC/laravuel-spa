@@ -1,3 +1,129 @@
+<script lang="ts">
+import * as MenuService from "@/modules/Authorization/services/MenuService"
+import LoadingButton from '@/components/LoadingButton.vue'
+export default {
+  components: {    
+    LoadingButton,
+  }, 
+  data() {
+    return {
+      menus: [],
+      selVal : 0,
+      selTexs : [],
+      nivel: 0,
+      isDisabled: false,
+      form: {
+        title: '',
+        menu_id: 0,
+        path: '#',
+        icon: 'icon',
+        sort: 0
+      }   
+    }
+  },
+  created: function() {
+    this.stepFrontward(0);
+  },    
+  methods: {
+    validateForm() {
+      let element = document.querySelector("input:invalid");
+      return element === null ? true : false;
+    },         
+    closeModal111: function () {
+      this.$emit('closeModal0');        
+    },
+    showSelected: function () {
+      let menu = (this.menus.find(element => element.id === this.selVal));
+      this.selTexs.push({ 
+        nivel: this.nivel,
+        title: menu.title,
+        id   : menu.menu_id 
+      });
+    },   
+    stepFrontward: function (menuId = 0, step = true ) {
+      menuId= !menuId ? 0 : menuId;      
+      MenuService.getMenusChildren(menuId).then((res) => {
+        if (step) {
+            if (this.selVal) {                    
+              this.showSelected();
+              this.nivel++;
+              this.form.menu_id = this.selVal;
+            }
+          } else {
+            this.nivel--;
+            this.form.menu_id = res.data[0].menu_id;
+          }
+          this.menus = [ {id:0 , title:'Seleccione...'} ].concat(res.data);
+          this.selVal = 0;          
+      })
+    },
+    stepBackward: function (id) {
+      this.selTexs.pop();
+      this.stepFrontward(id, false);
+    },
+    fastBackward: function (id) {
+      this.nivel = 0;
+      this.selTexs = [];
+      this.stepFrontward(0);
+    },
+    submit() {
+      //console.log(this.form)
+      //sending.value= true        
+      return MenuService.insertMenu(this.form)
+        .then((response) => {
+          alert( response.data.message );
+          //this.$router.push( { path: '/menus' } );
+          window.location.reload()
+        })
+        .catch((err) => {                
+          console.log( err.response.data );
+          errors.value = getError(err)
+        })
+        .finally(() => {
+          //sending.value = false
+        });
+    },
+    /*submit() {
+      if (this.isDisabled === false) {
+        this.isDisabled = true;
+        this.form._method = 'POST';           
+        this.$inertia.post(this.route('menus.store'), this.form, {         
+          onStart: () => this.sending = true,
+          onFinish: () => {
+            //this.sending = false;
+            //this.isDisabled = false;
+          },
+          onSuccess: () => {
+            if (Object.keys(this.$page.props.errors).length === 0) {
+              //this.isDisabled = false;
+              this.$emit('closeModal0');
+            }
+          },
+        })
+      }
+    }, 
+    createMenu: function () {
+      let url = `${process.env.MIX_APP_URL}menu/store`;
+      axios.post(url, {
+        menu_id: this.form.menu_id,
+        title  : this.form.title,
+        path: this.form.path,
+        icon: this.form.icon,
+        sort: this.form.sort
+      }).then(response => {
+        gridViewModel.getMenus();
+        this.form.title = '';
+        this.errors = [];
+        $('#create').modal('hide');
+        Notification.success('Nueva tarea creada con éxito');
+      }).catch(error => {
+        this.errors = error.response.data;
+      });
+    }*/
+  }
+}
+</script>
+
 <template>
   <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
     <div class="fixed inset-0 transition-opacity">
@@ -9,8 +135,8 @@
       class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
       role="dialog"
       aria-modal="true"
-      aria-labelledby="modal-headline">
-      <form v-on:submit.prevent="submit">
+      aria-labelledby="modal-headline">      
+      <form @submit.prevent="submit">
         <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
 
           <table style="width: 100%" id="main">                
@@ -137,7 +263,7 @@
 	  </loading-button-->
           <span class="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">
             <button
-              v-on:click.once="submit"              
+              type="submit"              
               class="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-green-600 text-base leading-6 font-medium text-white shadow-sm hover:bg-green-500 focus:outline-none focus:border-green-700 focus:shadow-outline-green transition ease-in-out duration-150 sm:text-sm sm:leading-5">
               Create
             </button>
@@ -153,112 +279,3 @@
     </div>
   </div>
 </template>
-
-<script>
-import * as MenuService from "@/modules/Auth/services/MenuService"
-import LoadingButton from '@/components/LoadingButton.vue'
-export default {
-  components: {    
-    LoadingButton,
-  }, 
-  data() {
-    return {
-      menus: [],
-      selVal : 0,
-      selTexs : [],
-      nivel: 0,
-      isDisabled: false,
-      form: {
-        title: '',
-        menu_id: 0,
-        path: '#',
-        icon: 'icon',
-        sort: 0
-      }   
-    }
-  },
-  created: function() {
-    this.stepFrontward(0);
-  },    
-  methods: {
-    validateForm() {
-      let element = document.querySelector("input:invalid");
-      return element === null ? true : false;
-    },         
-    closeModal111: function () {
-      this.$emit('closeModal0');        
-    },
-    showSelected: function () {
-      let menu = (this.menus.find(element => element.id === this.selVal));
-      this.selTexs.push({ 
-        nivel: this.nivel,
-        title: menu.title,
-        id   : menu.menu_id 
-      });
-    },   
-    stepFrontward: function (menuId = 0, step = true ) {
-      menuId= !menuId ? 0 : menuId;      
-      MenuService.getMenusChildren(menuId).then((res) => {
-        if (step) {
-            if (this.selVal) {                    
-              this.showSelected();
-              this.nivel++;
-              this.form.menu_id = this.selVal;
-            }
-          } else {
-            this.nivel--;
-            this.form.menu_id = res.data[0].menu_id;
-          }
-          this.menus = [ {id:0 , title:'Seleccione...'} ].concat(res.data);
-          this.selVal = 0;          
-      })
-    },
-    stepBackward: function (id) {
-      this.selTexs.pop();
-      this.stepFrontward(id, false);
-    },
-    fastBackward: function (id) {
-      this.nivel = 0;
-      this.selTexs = [];
-      this.stepFrontward(0);
-    },
-    submit() {
-      if (this.isDisabled === false) {
-        this.isDisabled = true;
-        this.form._method = 'POST';           
-        this.$inertia.post(this.route('menus.store'), this.form, {         
-          onStart: () => this.sending = true,
-          onFinish: () => {
-            //this.sending = false;
-            //this.isDisabled = false;
-          },
-          onSuccess: () => {
-            if (Object.keys(this.$page.props.errors).length === 0) {
-              //this.isDisabled = false;
-              this.$emit('closeModal0');
-            }
-          },
-        })
-      }
-    }, 
-    createMenu: function () {
-      /*let url = `${process.env.MIX_APP_URL}menu/store`;
-      axios.post(url, {
-        menu_id: this.form.menu_id,
-        title  : this.form.title,
-        path: this.form.path,
-        icon: this.form.icon,
-        sort: this.form.sort
-      }).then(response => {
-        gridViewModel.getMenus();
-        this.form.title = '';
-        this.errors = [];
-        $('#create').modal('hide');
-        Notification.success('Nueva tarea creada con éxito');
-      }).catch(error => {
-        this.errors = error.response.data;
-      });*/
-    }    
-  }
-}
-</script>

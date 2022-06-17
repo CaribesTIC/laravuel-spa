@@ -3,6 +3,7 @@ import { computed } from "vue"
 import { useAuthStore } from '@/modules/Auth/stores'
 import middlewarePipeline from "@/router/middlewarePipeline"
 import AuthRoutes from "@/modules/Auth/routes"
+import AuthorizationRoutes from "@/modules/Authorization/routes"
 import MessageRoutes from "@/modules/Message/routes"
 import ShopCart from "@/modules/ShopCart/routes"
 import ThemesRoutes from "@/modules/Themes/routes"
@@ -12,6 +13,7 @@ const storeAuth = computed(() => useAuthStore())
 
 const routes: Array<RouteRecordRaw> = [
   ...AuthRoutes.map(route => route),
+  ...AuthorizationRoutes.map(route => route),
   ...MessageRoutes.map(route => route),
   ...ShopCart.map(route => route),
   ...ThemesRoutes.map(route => route),

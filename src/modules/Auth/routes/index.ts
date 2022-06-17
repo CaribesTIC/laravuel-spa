@@ -23,11 +23,6 @@ export default [{
     meta: { middleware: [auth] },
     component: () => import("@/modules/Auth/views/Profile/Index.vue").then(m => m.default),
 }, {
-    path: "/menus",
-    name: "menus",
-    meta: { middleware: [auth, admin] },
-    component: () => import("@/modules/Auth/views/Menus/Index.vue").then(m => m.default),
-}, {
     path: "/dashboard",
     name: "dashboard",
     meta: { middleware: [auth], layout: "default" },

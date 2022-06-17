@@ -1,3 +1,60 @@
+<script>
+import * as MenuService from "@/modules/Authorization/services/MenuService"
+import LoadingButton from '@/components/LoadingButton.vue'
+export default {
+  components: {    
+    LoadingButton,
+  },
+  props: ['menu'],
+  data() {
+    return {      
+      nivel: 0,
+      form: {
+        title: this.menu.title,
+        path: this.menu.path,
+        icon: this.menu.icon,
+        sort: this.menu.sort
+      }
+    }
+  },
+  computed: {
+    parents() {
+        let arr = this.menu.alias.split(' / ');
+        this.nivel = arr.length -1;        
+        this.form.title = arr.pop();
+        return arr;
+      }
+    },    
+    methods: {
+      validateForm() {
+        let element = document.querySelector("input:invalid");
+        return element === null ? true : false;
+      },
+      submit() {
+        //console.log(this.form, this.menu.id)
+        //sending.value= true
+        this.form._method = 'PUT';
+        return MenuService.updateMenu(this.menu.id, this.form)
+          .then((response) => {
+            alert( response.data.message );
+            //this.$router.push( { path: '/menus' } );
+            window.location.reload()
+          })
+          .catch((err) => {                
+            console.log( err.response.data );
+            errors.value = getError(err)
+          })
+          .finally(() => {
+            //sending.value = false
+          });
+      },     
+      closeModal111: function () {
+        this.$emit('closeModal1');        
+      }
+  }
+}
+</script>
+
 <template>
   <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
     <div class="fixed inset-0 transition-opacity">
@@ -106,83 +163,3 @@
     </div>
   </div>
 </template>
-
-<script>
-import LoadingButton from '@/components/LoadingButton.vue'
-export default {
-  components: {    
-    LoadingButton,
-  },
-  props: ['menu'],
-  data() {
-    return {      
-      nivel: 0,
-      form: {
-        title: this.menu.title,
-        path: this.menu.path,
-        icon: this.menu.icon,
-        sort: this.menu.sort
-      }
-    }
-  },
-  computed: {
-    parents() {
-        let arr = this.menu.alias.split(' / ');
-        this.nivel = arr.length -1;        
-        this.form.title = arr.pop();
-        return arr;
-      }
-    },    
-    methods: {
-      validateForm() {
-        let element = document.querySelector("input:invalid");
-        return element === null ? true : false;
-      },      
-      submit() {
-        console.log(this.form);
-        /*this.form._method = 'PUT';           
-        this.$inertia.post(this.route('menus.update', this.menu.id), this.form, {         
-          onStart: () => this.sending = true,
-          onFinish: () => this.sending = false,
-          onSuccess: () => {
-            if (Object.keys(this.$page.props.errors).length === 0) {
-              //this.form.photo = null
-              //this.form.password = null
-              this.$emit('closeModal1');
-            }
-          },
-        })*/
-      }, 
-      /*update() {
-        if (this.validateForm() === true) {
-          const data = new FormData();
-          data.append('_method', 'PUT');                    
-          data.append('title', this.form.title);
-          data.append('path', this.form.path);
-          data.append('path', this.form.icon);
-          data.append('sort', this.form.sort);             
-          Service.Menu.update(data, this.menu.id).then(response => {
-            this.toProcessResponse(response);          
-          }).catch(error => {        
-            Notification.error(error);
-          });
-        } 
-      },*/      
-      toProcessResponse(response) {
-        if (response.status == 200 || response.status == 201) 
-          this.successfulRequest(response);
-        else if (response.status == 202)
-          Notification.error(response.data["msg"]);
-        else
-          Notification.error(`Error# ${response.status}; Desc: ${response.statusText}`);         
-      },
-      successfulRequest (response) {
-        Notification.success(response.data["msg"]);
-        this.$emit('closeModal1');      
-      },      
-      closeModal111: function () {
-        this.$emit('closeModal1');        
-      }
-  }
-}
-</script>
