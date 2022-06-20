@@ -10,5 +10,5 @@ export default [{
     path: "/roles",
     name: "roles",
     meta: { middleware: [auth, admin] },
-    component: () => import("@/modules/Authorization/views/Menus/Index.vue").then(m => m.default),
+    component: () => import("@/modules/Authorization/views/Roles/Index.vue").then(m => m.default),
 }]
