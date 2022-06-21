@@ -134,7 +134,7 @@ const deleteRow = (rowId?: string) => {
                 <div class="flex items-center space-x-1">                
                   <button
                     class="btn btn-primary btn-xs"
-                    @click="router.push({ path: '/users/edit/'+user.id })">
+                    @click="router.push({ path: '/roles/edit/'+user.id })">
                       Editar
                   </button>
                   <button

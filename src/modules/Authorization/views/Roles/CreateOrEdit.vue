@@ -4,26 +4,37 @@ import FlashMessage from "@/components/FlashMessage.vue";
 import PageHeader from "@/components/PageHeader.vue";
 import Form from "./Form.vue";
 //import useRole from "./useRole";
+import * as MenuService from "@/modules/Authorization/services/MenuService";
 import * as RoleService from "@/modules/Authorization/services/RoleService";
+
 
 const props = defineProps<{ id?: string }>()
 
 const form = reactive({
     name:'',
-    description: ''
+    description: '',
+    menu_ids: []
 })
-const menus = ref([])
 
-onMounted(() => {
-  RoleService.getRole(1).then(
-    (response)=> {
-        menus.value=response.data.menus
+const menus = ref([])
+const sending = ref(false)
+const errors = ref({})
+
+onMounted(() => {  
+  MenuService.getMenus()
+    .then(response => {
+    menus.value = response.data.data
+    console.log(menus.value)
+    })
+  if (props.id){
+    RoleService.getRole(props.id)
+    .then(response => {        
         form.name = response.data.role.name
         form.description = response.data.role.description
-        console.log(response.data)
+        form.menu_ids = response.data.role.menu_ids        
       }
     )
-    
+  }    
 });
 
 /*const {
@@ -35,6 +46,8 @@ onMounted(() => {
   router,
   submit    
 } = useRole(props.id)*/
+
+
 </script>
 
 <template>
@@ -59,8 +72,7 @@ onMounted(() => {
           <Form
             class="p-5 bg-white border rounded shadow"
             @submit='submit'
-            :id="props.id"
-            :user='{}'
+            :id="props.id"            
             :sending='sending'
             :loading='false'
             :errors='{}'

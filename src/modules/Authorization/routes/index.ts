@@ -17,4 +17,10 @@ export default [{
     meta: { middleware: [auth, admin] },
     component: () => import("@/modules/Authorization/views/Roles/CreateOrEdit.vue").then(m => m.default),
     props: true
+}, {
+    path: "/roles/edit/:id(\\d+)",
+    name: "roleEdit",
+    meta: { middleware: [auth, admin] },
+    component: () => import("@/modules/Authorization/views/Roles/CreateOrEdit.vue").then(m => m.default),
+    props: true
 }]

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { reactive } from "vue"
+import { ref, reactive , onMounted} from "vue"
 import BaseBtn from "@/components/BaseBtn.vue";
 import type User from "./User"
 import type Role from "./Role"
@@ -7,11 +7,11 @@ import type Errors from "./Errors"
 
 const props = defineProps<{
   id?: string
-  form: {}  
-  sending: Boolean
-  loading: Boolean
+  form: object  
+  sending: boolean
+  loading: boolean
   errors: Errors
-  menus: []
+  menus: array
 }>()
 
 const emit = defineEmits<{
@@ -28,6 +28,24 @@ const form: User = reactive(props.form)
     role_id: form.role_id
   }, props.id)
 }*/
+const allSelected = ref(false)
+const selected = ref([])
+
+const selectAll = () => {
+  if (!allSelected.value) {        
+    let temp = [];
+    props.menus.forEach(menu => {
+      if (menu.path !== '#')
+        temp.push(menu.id);
+    });
+    form.menu_ids=[];
+    form.menu_ids=temp;
+    allSelected.value=true;                     
+  } else {
+    form.menu_ids=[];        
+    allSelected.value=false;
+  }      
+}
 </script>
 
 <template>
