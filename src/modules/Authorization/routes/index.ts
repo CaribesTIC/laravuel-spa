@@ -6,9 +6,15 @@ export default [{
     name: "menus",
     meta: { middleware: [auth, admin] },
     component: () => import("@/modules/Authorization/views/Menus/Index.vue").then(m => m.default),
-},{
+}, {
     path: "/roles",
     name: "roles",
     meta: { middleware: [auth, admin] },
     component: () => import("@/modules/Authorization/views/Roles/Index.vue").then(m => m.default),
+}, {
+    path: "/roles/create",
+    name: "roleCreate",
+    meta: { middleware: [auth, admin] },
+    component: () => import("@/modules/Authorization/views/Roles/CreateOrEdit.vue").then(m => m.default),
+    props: true
 }]

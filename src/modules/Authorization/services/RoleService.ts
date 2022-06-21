@@ -6,22 +6,6 @@ export const getRoles = (query) => {
   return Http.get(`${path}/?${query}`);
 }
 
-/*export const getMenus = () => {  
-  return Http.get(`${path}?page=1`);
-}*/
-
-/*export const getMenusChildren = (menuId) => {
-  return Http.get(`${path}/children/${menuId}`);
+export const getRole = (roleId) => {
+  return Http.get(`${path}/${roleId}`);
 }
-
-export const insertMenu = (form) => {
-  return Http.post(path, form);
-}
-
-export const updateMenu = (menuId, form) => {
-  return Http.put(`${path}/${menuId}`, form);
-}
-
-export const deleteMenu = (menuId) => {
-  return Http.delete(`${path}/${menuId}`);
-}*/

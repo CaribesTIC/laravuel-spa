@@ -15,7 +15,7 @@ interface Menu {
 }
 
 const menus = ref<Menu[]>([])
-
+const depth = ref(-1)
 const store = useAuthStore()
 
 onMounted(async () => {
@@ -24,7 +24,6 @@ onMounted(async () => {
     menus.value = response.data
   }
 })
-
 </script>
 
 <template>
@@ -33,7 +32,8 @@ onMounted(async () => {
       <TreeMenu
         v-for="(menu, index) in menus"
         :key="index"
-        :menu="menu"/>
+        :menu="menu"
+        :depth="depth + 1"/>
       </ul>
     </nav>
 </template>

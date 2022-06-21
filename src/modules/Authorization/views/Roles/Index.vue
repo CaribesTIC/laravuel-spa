@@ -85,7 +85,7 @@ const deleteRow = (rowId?: string) => {
     <PageHeader> Roles </PageHeader>
 
     <div class="flex space-x-2">
-      <RouterLink class="btn btn-primary" to="/users/create">
+      <RouterLink class="btn btn-primary" to="/roles/create">
         <span>Crear</span>
       </RouterLink>
     </div>

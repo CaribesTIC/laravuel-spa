@@ -12,7 +12,10 @@ interface Menu {
   children_menus?: Menu[];
 }
 
-const props = defineProps<{ menu: Menu }>()
+const props = defineProps<{
+  menu: Menu
+  depth: numeric
+}>()
 
 const route = useRoute();
 
@@ -31,12 +34,12 @@ const urlImg = `${process.env.VUE_APP_API_URL}/menu/`
       v-if="menu.path === '#'"
       class="mb-2 py-1 px-2"
     >
-      <a href="#"
+      <button href="#"
         @click="toggleChildren"
         style="color:gray"
         class="flex items-center group py-0">
         {{ menu.title }}
-      </a>
+      </button>
     </div>
     <div v-else
       class="mb-2 py-1 px-2"
@@ -60,7 +63,8 @@ const urlImg = `${process.env.VUE_APP_API_URL}/menu/`
         v-if="showChildren"
         v-for="(m, index) in menu.children_menus"
         :key="index"
-        :menu="m"/>
+        :menu="m"
+        :depth="depth + 1"/>
     </ul>
   </li>
 </template>
