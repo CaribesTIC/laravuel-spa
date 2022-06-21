@@ -5,17 +5,17 @@ import Pagination from "@/components/Pagination.vue";
 import PageHeader from "@/components/PageHeader.vue"
 import * as RoleService from "@/modules/Authorization/services/RoleService";
 import { useSearch } from "@/composables/useTableGrid";
-//import useUser from "./useUser";
+import useRole from "./useRole";
 //import type User from "./User"
 
 const router = useRouter();
 const route = useRoute();
 
-/*const {
-  deleteUser,
+const {
+  deleteRole,
   errors,
   sending,     
-} = useUser()*/
+} = useRole()
 
 const data = reactive({
   rows: [],// as User[],
@@ -25,7 +25,7 @@ const data = reactive({
   direction: ""
 });
 
-/*const load = (newParams: object) => {
+const load = (newParams: object) => {
   const params = {
     search: data.search || "",
     sort: data.sort || "",
@@ -34,18 +34,18 @@ const data = reactive({
   };
 
   router.push({
-    path:'/users',
+    path:'/roles',
     query: {
       ...route.query,
       ...params
     }
   });
-};*/
+};
 
-/*const { 
+const { 
   setSearch,
   setSort, //setFilter
-} = useSearch(data, load)*/
+} = useSearch(data, load)
 
 const getRoles = (routeQuery: string) => {
   return RoleService.getRoles(routeQuery)
@@ -63,7 +63,7 @@ const getRoles = (routeQuery: string) => {
     
 onBeforeRouteUpdate(async (to, from) => {      
   if (to.query !== from.query) {        
-    await getUsers(new URLSearchParams(to.query).toString());        
+    await getRoles(new URLSearchParams(to.query).toString());        
   }
 });
 

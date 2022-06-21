@@ -2,8 +2,8 @@ import Http from "@/utils/Http";
 
 const path = "/api/roles"
 
-export const getRoles = () => {
-  return Http.get(path);
+export const getRoles = (query) => {  
+  return Http.get(`${path}/?${query}`);
 }
 
 /*export const getMenus = () => {  
