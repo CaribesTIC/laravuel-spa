@@ -1,53 +1,19 @@
 <script setup lang="ts">
-import { ref, reactive, onMounted } from "vue"
 import FlashMessage from "@/components/FlashMessage.vue";
 import PageHeader from "@/components/PageHeader.vue";
 import Form from "./Form.vue";
-//import useRole from "./useRole";
-import * as MenuService from "@/modules/Authorization/services/MenuService";
-import * as RoleService from "@/modules/Authorization/services/RoleService";
-
+import useRole from "./useRole";
 
 const props = defineProps<{ id?: string }>()
 
-const form = reactive({
-    name:'',
-    description: '',
-    menu_ids: []
-})
-
-const menus = ref([])
-const sending = ref(false)
-const errors = ref({})
-
-onMounted(() => {  
-  MenuService.getMenus()
-    .then(response => {
-    menus.value = response.data.data
-    console.log(menus.value)
-    })
-  if (props.id){
-    RoleService.getRole(props.id)
-    .then(response => {        
-        form.name = response.data.role.name
-        form.description = response.data.role.description
-        form.menu_ids = response.data.role.menu_ids        
-      }
-    )
-  }    
-});
-
-/*const {
-  user,
+const {
+  role,
   errors,
-  roles,
   sending,
   loading,
-  router,
-  submit    
-} = useRole(props.id)*/
-
-
+  menus,
+  submit,
+} = useRole(props.id)
 </script>
 
 <template>
@@ -56,7 +22,7 @@ onMounted(() => {
     <transition name="fade" mode="out-in">
       <FlashMessage
         message="loading..."
-        v-if="loading && !user"
+        v-if="loading && !role"
         key="loading"
       />
       <div v-else class="panel mt-6 p-4">           
@@ -75,9 +41,9 @@ onMounted(() => {
             :id="props.id"            
             :sending='sending'
             :loading='false'
-            :errors='{}'
+            :errors='errors'
             :menus="menus"
-            :form="form"       
+            :role="role"       
           />
         </div>
       </div>
