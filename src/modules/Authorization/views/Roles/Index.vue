@@ -68,8 +68,7 @@ onBeforeRouteUpdate(async (to, from) => {
 });
 
 onMounted(() => {
-  getRoles(new URLSearchParams(route.query).toString());
-  console.log(data)  
+  getRoles(new URLSearchParams(route.query).toString());  
 });
 
 const deleteRow = (rowId?: string) => {
@@ -118,27 +117,27 @@ const deleteRow = (rowId?: string) => {
             </tr>
           </thead>
           <tbody>
-            <tr v-for="user in data.rows" :key="user.id" class="">
+            <tr v-for="role in data.rows" :key="role.id" class="">
               <td class="">
                 <RouterLink
                   class="text-indigo-600 hover:text-indigo-800 underline"
-                  :to="{ name: 'userEdit', params: { id: user.id }}"                  
+                  :to="{ name: 'roleEdit', params: { id: role.id }}"                  
                 >
-                  {{ user.name }}
+                  {{ role.name }}
                 </RouterLink>
               </td>
               <td class="">
-                {{ user.description }}
+                {{ role.description }}
               </td>
               <td class="">
                 <div class="flex items-center space-x-1">                
                   <button
                     class="btn btn-primary btn-xs"
-                    @click="router.push({ path: '/roles/edit/'+user.id })">
+                    @click="router.push({ path: '/roles/edit/'+role.id })">
                       Editar
                   </button>
                   <button
-                    @click="deleteRow(user.id)"
+                    @click="deleteRow(role.id)"
                     class="btn btn-danger btn-xs"
                   >
                     Eliminar

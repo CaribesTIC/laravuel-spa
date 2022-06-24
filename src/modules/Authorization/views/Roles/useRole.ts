@@ -21,8 +21,7 @@ export default (roleId?: string) => {
   onMounted(() => {  
     MenuService.getMenus()
       .then(response => {
-      menus.value = response.data.data
-      console.log(menus.value)
+        menus.value = response.data.data
       })
     if (roleId){
       RoleService.getRole(roleId)
@@ -33,6 +32,44 @@ export default (roleId?: string) => {
       })
     }    
   });
+  
+  
+  const insertRole = async (role: Role) => {
+    console.log(role) 
+    /*sending.value = true
+    return RoleService.insertRole(role)
+      .then((response) => {         
+        alert( response.data.message );
+        router.push( { path: '/roles' } );
+      })
+      .catch((err) => {                
+        console.log( err.response.data );
+        errors.value = getError(err)
+      })
+      .finally(() => {
+        sending.value = false
+      });*/
+  };
+
+  const updateRole = async (role: Role, roleId: string) => {
+    console.log(role, roleId)
+    /*sending.value= true
+    return RoleService.updateRole(roleId, role)
+      .then((response) => {
+        alert( response.data.message );
+        router.push( { path: '/roles' } );
+      })
+      .catch((err) => {                
+        console.log( err.response.data );
+        errors.value = getError(err)
+      })
+      .finally(() => {
+        sending.value = false
+      });*/
+  };
+  
+  
+  
 
   const submit = (role: Role, roleId?: string) => {  
     !roleId ? insertRole (role)  : updateRole(role, roleId)
@@ -44,8 +81,7 @@ export default (roleId?: string) => {
     sending,
     loading,
     errors,
-    submit
-  
+    submit  
   }
 
 };

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, reactive } from "vue"
+import { ref, reactive, shallowRef } from "vue"
 import BaseBtn from "@/components/BaseBtn.vue";
 import type Role from "./Role"
 import type Errors from "./Errors"
@@ -23,11 +23,12 @@ const allSelected = ref(false)
 const selected = ref([])
 
 const submit = async () => {
-  emit('submit', {
+  /*emit('submit', {
     name: form.name,
     description: form.description,
     menu_ids: form.menu_ids,
-  }, props.id)
+  }, props.id)*/
+  emit('submit', form, props.id)  
 }
 
 const selectAll = () => {
