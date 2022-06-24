@@ -74,7 +74,7 @@ onMounted(() => {
 const deleteRow = (rowId?: string) => {
   if (rowId === undefined) return;
   if (confirm(`¿Estás seguro de que quieres eliminar el registro ${rowId}?`)) {
-    deleteUser(rowId)
+    deleteRole(rowId)
   }
 };
 </script>

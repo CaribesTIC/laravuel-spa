@@ -32,11 +32,9 @@ export default (roleId?: string) => {
       })
     }    
   });
-  
-  
-  const insertRole = async (role: Role) => {
-    console.log(role) 
-    /*sending.value = true
+
+  const insertRole = async (role: Role) => {     
+    sending.value = true
     return RoleService.insertRole(role)
       .then((response) => {         
         alert( response.data.message );
@@ -48,12 +46,12 @@ export default (roleId?: string) => {
       })
       .finally(() => {
         sending.value = false
-      });*/
+      });
   };
 
   const updateRole = async (role: Role, roleId: string) => {
-    console.log(role, roleId)
-    /*sending.value= true
+    sending.value= true
+    role._method = 'PUT';
     return RoleService.updateRole(roleId, role)
       .then((response) => {
         alert( response.data.message );
@@ -65,14 +63,27 @@ export default (roleId?: string) => {
       })
       .finally(() => {
         sending.value = false
-      });*/
+      });
   };
-  
-  
-  
 
   const submit = (role: Role, roleId?: string) => {  
     !roleId ? insertRole (role)  : updateRole(role, roleId)
+  }
+  
+  const deleteRole = (roleId?: string) => {
+    if (roleId === undefined) return;
+    sending.value= true
+    return RoleService.deleteRole(roleId)
+      .then((response) => {
+        router.push( { path: '/roles' } );
+      })
+      .catch((err) => {                
+        console.log( err.response.data );
+        errors.value = getError(err)
+      })
+      .finally(() => {
+        sending.value = false
+      });
   }
   
   return {
@@ -81,7 +92,8 @@ export default (roleId?: string) => {
     sending,
     loading,
     errors,
-    submit  
+    submit,
+    deleteRole  
   }
 
 };
