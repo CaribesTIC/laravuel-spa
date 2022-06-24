@@ -34,7 +34,7 @@ const urlImg = `${process.env.VUE_APP_API_URL}/menu/`
       v-if="menu.path === '#'"
       class="mb-2 py-1 px-2"
     >
-      <button href="#"
+      <button v-if="menu.children_menus.length" href="#"
         @click="toggleChildren"
         style="color:gray"
         class="flex items-center group py-0">
