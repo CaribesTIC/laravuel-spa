@@ -1,6 +1,6 @@
 import { describe, it, vi, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
-import UserForm from '@/modules/User/components/CreateOrEditForm.vue'
+import UserForm from '@/modules/User/components/Form.vue'
 
 describe('UserForm Component',  () => {
   it('emits the input to its parent', async () => {

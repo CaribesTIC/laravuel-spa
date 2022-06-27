@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import FlashMessage from "@/components/FlashMessage.vue";
 import PageHeader from "@/components/PageHeader.vue";
-import Form from "../components/CreateOrEditForm.vue";
+import Form from "../components/Form.vue";
 import useUser from "../composables/useUser";
 
 const props = defineProps<{ id?: string }>()
