@@ -2,9 +2,9 @@ import { onMounted, reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { getError } from "@/utils/helpers";
 import UserService from "@/modules/User/services";
-import type Role from "./Role"
-import type User from "./User"
-import type Errors from "./Errors"
+import type Role from "../types/Role"
+import type User from "../types/User"
+import type Errors from "../types/Errors"
 
 export default (userId?: string) => {
   const router = useRouter();

@@ -3,10 +3,10 @@ import { onMounted, reactive } from "vue";
 import { onBeforeRouteUpdate, useRouter, useRoute } from 'vue-router' 
 import Pagination from "@/components/Pagination.vue";
 import PageHeader from "@/components/PageHeader.vue"
-import UserService from "@/modules/User/services";
 import { useSearch } from "@/composables/useTableGrid";
-import useUser from "./useUser";
-import type User from "./User"
+import useUser from "../composables/useUser";
+import UserService from "../services";
+import type User from "../types/User"
 
 const router = useRouter();
 const route = useRoute();

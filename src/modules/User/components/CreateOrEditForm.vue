@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { reactive } from "vue"
 import BaseBtn from "@/components/BaseBtn.vue";
-import type User from "./User"
-import type Role from "./Role"
-import type Errors from "./Errors"
+import type User from "../types/User"
+import type Role from "../types/Role"
+import type Errors from "../types/Errors"
 
 const props = defineProps<{
   id?: string
