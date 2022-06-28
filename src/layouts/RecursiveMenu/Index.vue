@@ -16,18 +16,24 @@ interface Menu {
 
 const menus = ref<Menu[]>([])
 const depth = ref(-1)
+const loading = ref(false)
 const store = useAuthStore()
 
 onMounted(async () => {
   if (store.authUser) {
+    loading.value = true
     const response = await getAuthMenu()
     menus.value = response.data
+    loading.value = false
   }
 })
 </script>
 
 <template>
-  <nav class="py-6 px-6">
+  <div v-if="loading" class="text-white p-5">
+    Loading...
+  </div>
+  <nav v-else class="py-6 px-6">     
     <ul v-if="menus && menus.length>0">
       <TreeMenu
         v-for="(menu, index) in menus"
