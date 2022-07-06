@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue"
-import BaseBtn from "@/components/BaseBtn.vue"
+import AppBtn from "@/components/AppBtn.vue"
 import FlashMessage from "@/components/FlashMessage.vue"
 
 defineProps<{
@@ -59,7 +59,7 @@ const submit = async () => {
          data-testid="password-confirm-input"
       />
     </div>
-    <BaseBtn type="submit" text="Update" />
+    <AppBtn type="submit" text="Update" />
     <FlashMessage :message="message" :error="error" />
   </form>
 </template>

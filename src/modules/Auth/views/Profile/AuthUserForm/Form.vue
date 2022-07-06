@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue"
 import { useAuthStore } from "@/modules/Auth/stores"
-import BaseBtn from "@/components/BaseBtn.vue"
-import BaseInput from '@/components/BaseInput.vue'
+import AppBtn from "@/components/AppBtn.vue"
+import AppInput from '@/components/AppInput.vue'
 import FlashMessage from "@/components/FlashMessage.vue"
  
 defineProps<{
@@ -32,7 +32,7 @@ onMounted(() => {
 
 <template>
   <form @submit.prevent="submit">
-    <BaseInput
+    <AppInput
       type="text"
       label="Name"
       name="name"
@@ -40,7 +40,7 @@ onMounted(() => {
       class="mb-2"
       data-testid="name-input"
     />
-    <BaseInput
+    <AppInput
       type="email"
       label="Email"
       name="email"
@@ -50,7 +50,7 @@ onMounted(() => {
       class="mb-4"
       data-testid="email-input"
     />
-    <BaseBtn type="submit" text="Update" data-testid="submit-button"/>
+    <AppBtn type="submit" text="Update" data-testid="submit-button"/>
     <FlashMessage :message="message" :error="error" />
   </form>
 </template>

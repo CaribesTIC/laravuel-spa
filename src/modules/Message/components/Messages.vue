@@ -2,7 +2,7 @@
 import { useMessageStore } from "@/modules/Message/stores"
 import FlashMessage from "@/components/FlashMessage.vue";
 import AvatarIcon from "@/components/icons/AvatarIcon.vue";
-import BasePagination from "@/components/BasePagination.vue";
+import AppPagination from "@/components/AppPagination.vue";
 
 const store = useMessageStore()
 //["loading", "error", "messages", "meta", "links"]
@@ -47,7 +47,7 @@ store.getMessages(currentPage);
       <FlashMessage :error="error" v-if="store.error" key="error" />
     </transition>
     <transition name="fade">    
-      <BasePagination
+      <AppPagination
         :store="store"
         :meta="store.meta"
         :links="store.links"

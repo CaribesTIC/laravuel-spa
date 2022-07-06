@@ -1,7 +1,7 @@
 <script lang="ts">
 import { getError } from "@/utils/helpers";
 import FileService from "@/modules/Auth/services/FileService"
-import BaseBtn from "@/components/BaseBtn.vue";
+import AppBtn from "@/components/AppBtn.vue";
 import FlashMessage from "@/components/FlashMessage.vue";
 
 export default {
@@ -21,7 +21,7 @@ export default {
     },
   },
   components: {
-    BaseBtn,
+    AppBtn,
     FlashMessage,
   },
   data() {
@@ -66,7 +66,7 @@ export default {
       </label>
       <input type="file" :accept="fileTypes" @change="fileChange" id="file" />
     </div>
-    <BaseBtn text="Upload" />
+    <AppBtn text="Upload" />
     <FlashMessage :message="message" :error="error" />
   </form>
 </template>

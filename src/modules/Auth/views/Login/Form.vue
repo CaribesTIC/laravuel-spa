@@ -1,7 +1,7 @@
 <script setup lang="ts">
   import { ref } from "vue"  
-  import BaseBtn from "@/components/BaseBtn.vue"
-  import BaseInput from '@/components/BaseInput.vue'
+  import AppBtn from "@/components/AppBtn.vue"
+  import AppInput from '@/components/AppInput.vue'
   import FlashMessage from "@/components/FlashMessage.vue"
   
   defineProps({
@@ -21,7 +21,7 @@
 
 <template>
   <form @submit.prevent="submit">
-    <BaseInput
+    <AppInput
       type="email"
       label="Correo Electrónico"
       name="email"
@@ -31,7 +31,7 @@
       class="mb-2"
       data-testid="email-input"      
     />
-    <BaseInput
+    <AppInput
       type="password"
       label="Contraseña"
       name="password"
@@ -51,7 +51,7 @@
             Recuérdame
           </span>
       </label>
-      <BaseBtn
+      <AppBtn
         type="submit"
         :text="sending ? 'Iniciando sesión...' : 'Iniciar sesión'"
         :isDisabled='sending'

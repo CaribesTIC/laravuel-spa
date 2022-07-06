@@ -9,5 +9,11 @@ const DashboardLayout = defineAsyncComponent(
   () => import('@/layouts/DashboardLayout.vue')
 )
 
+const AppLink = defineAsyncComponent(
+  () => import('@/components/AppLink.vue')
+)
+
 app.component('empty-layout', EmptyLayout)
    .component('default-layout', DashboardLayout)
+   .component('AppLink', AppLink)
+

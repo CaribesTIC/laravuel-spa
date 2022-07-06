@@ -3,7 +3,7 @@ import { ref } from "vue"
 import { useAuthStore } from '@/modules/Auth/stores'
 import { getError } from "@/utils/helpers"
 import * as AuthService from "@/modules/Auth/services"
-import BaseBtn from "@/components/BaseBtn.vue"
+import AppBtn from "@/components/AppBtn.vue"
 import FlashMessage from "@/components/FlashMessage.vue"
 
 const store = useAuthStore()
@@ -25,7 +25,7 @@ const sendVerification = () => {
 <template>
   <div>
     <form @submit.prevent="sendVerification">
-      <BaseBtn type="submit" text="Verify Email" />
+      <AppBtn type="submit" text="Verify Email" />
     </form>
     <FlashMessage :message="message" :error="error" />
   </div>

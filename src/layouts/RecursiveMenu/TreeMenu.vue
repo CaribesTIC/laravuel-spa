@@ -48,7 +48,7 @@ const urlImg = `${process.env.VUE_APP_API_URL}/menu/`
       class="mb-2 py-1 px-2"
       :class="routePathRoot ? 'activeClass' : 'inactiveClass'"      
     >      
-      <RouterLink :to="{ name: menu.path }">
+      <AppLink :to="{ name: menu.path }">
         <span class="flex items-center group py-0">
           <img
             v-if="menu.icon!==''"
@@ -56,7 +56,7 @@ const urlImg = `${process.env.VUE_APP_API_URL}/menu/`
             class="w-5 h-5 mr-2"/>
           {{ menu.title }}
         </span>
-      </RouterLink>
+      </AppLink>
     </div>
     <ul
       v-if="menu"

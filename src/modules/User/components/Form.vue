@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { reactive } from "vue"
-import BaseBtn from "@/components/BaseBtn.vue";
+import AppBtn from "@/components/AppBtn.vue";
 import type User from "../types/User"
 import type Role from "../types/Role"
 import type Errors from "../types/Errors"
@@ -72,7 +72,7 @@ const submit = async () => {
     </div>
 
     <div class="mt-4 px-2 border-gray-100 flex justify-end space-x-2">
-      <BaseBtn
+      <AppBtn
         type="submit"
         :text="sending ? 'Guardando...' : 'Guardar'"
         :isDisabled='sending'

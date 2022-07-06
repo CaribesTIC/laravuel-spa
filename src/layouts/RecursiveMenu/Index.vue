@@ -42,6 +42,12 @@ onMounted(async () => {
         :depth="depth + 1"/>
       </ul>
     </nav>
+    <AppLink to="https://github.com/CaribesTIC/laravel-backend">
+      Backend-Laravel
+    </AppLink><br/>
+    <AppLink to="https://github.com/CaribesTIC/vue-frontend-ts">
+      Frontend-Vue
+    </AppLink>
 </template>
 
 

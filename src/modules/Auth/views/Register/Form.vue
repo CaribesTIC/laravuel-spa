@@ -1,7 +1,7 @@
 <script setup lang="ts">
   import { ref } from "vue"  
-  import BaseBtn from "@/components/BaseBtn.vue"
-  import BaseInput from "@/components/BaseInput.vue"  
+  import AppBtn from "@/components/AppBtn.vue"
+  import AppInput from "@/components/AppInput.vue"  
   import FlashMessage from "@/components/FlashMessage.vue"  
 
   defineProps({
@@ -25,7 +25,7 @@
 
 <template>
   <form @submit.prevent="submit">  
-    <BaseInput
+    <AppInput
       type="text"
       label="Nombre completo"
       name="name"
@@ -34,7 +34,7 @@
       class="mb-2"
       data-testid="name-input"
     />
-    <BaseInput
+    <AppInput
       type="email"
       label="Correo"
       name="email"
@@ -43,7 +43,7 @@
       class="mb-2"
       data-testid="email-input"
     />
-    <BaseInput
+    <AppInput
       type="password"
       label="Clave"
       name="password"
@@ -52,7 +52,7 @@
       class="mb-2"
       data-testid="password-input"
     />
-    <BaseInput
+    <AppInput
       type="password"
       label="Confirmar clave"
       name="password-confirm"
@@ -62,7 +62,7 @@
       data-testid="confirm-password-input"
     />    
     
-    <BaseBtn
+    <AppBtn
         type="submit"
         :text="sending ? 'Registrándose...' : 'Registrarse'"
         :isDisabled='sending'
