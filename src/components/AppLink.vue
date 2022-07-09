@@ -21,7 +21,7 @@ export default {
 </script>
 
 <template>
-  <!--a
+  <a
     v-if="isExternalLink"
     v-bind="$attrs"
     :href="to"
@@ -31,21 +31,11 @@ export default {
   >
     <slot />
   </a>
+  
   <router-link
     v-else
     v-bind="$props"
     class="internal-link"
-  >
-    <slot />
-  </router-link-->
-
-  <a v-if="isExternalLink" v-bind="$attrs" :href="to" target="_blank">
-    <slot />
-  </a>
-  <router-link
-    v-else
-    v-bind="$props"
-    custom
     v-slot="{ isActive, href, navigate }"
   >
     <a

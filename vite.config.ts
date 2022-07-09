@@ -12,7 +12,7 @@ export default defineConfig({
   },
   define: {
     'process.env': {
-      VUE_APP_API_URL: "http://localhost:8000" //"http://backend.entrepreneur.com",        
+      VUE_APP_API_URL: "http://localhost:8000"
     }
   },
   test: {
