@@ -20,7 +20,7 @@ describe('RecursiveMenu', ()=> {
 
     const wrapper = mount(Menu, {
       global: {
-        plugins: [
+        plugins: [          
           router,
           createTestingPinia({
             initialState: {
@@ -32,12 +32,14 @@ describe('RecursiveMenu', ()=> {
               } 
             }
           })
-        ]
+        ],
+        stubs: {
+          AppLink: true
+        }
       }
     })
 
-    await flushPromises()
- 
+    await flushPromises()    
     expect(wrapper.html()).toEqual(nav)
   })
 
