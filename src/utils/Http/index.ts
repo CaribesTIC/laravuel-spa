@@ -1,11 +1,11 @@
 import axios, { AxiosInstance, AxiosResponse, AxiosError } from "axios";
 import init from "./init";
-import { InitInterface } from "./init.interface" 
-import { Paiload } from "./Paiload.Interface";
+import type { Init } from "./Http";
+import type { Paiload } from "@/utils/Types"
 
 export class Http {
   private service:AxiosInstance;
-  constructor( init: InitInterface ) {    
+  constructor( init: Init ) {    
     this.defaultInit()    
     let service = axios.create({
       headers: init.customHeaders,
