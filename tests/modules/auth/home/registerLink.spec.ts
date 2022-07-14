@@ -2,7 +2,7 @@ import { mount, flushPromises } from "@vue/test-utils"
 import { createPinia } from "pinia"
 import router from "../router"
 import App from "@/App.vue"
-import Register from "@/modules/Auth/views/Register/Index.vue"
+import AppLink from "@/components/AppLink.vue"
 
 const FlashMessage = { }
 
@@ -14,7 +14,9 @@ test("this should go to the register page", async () => {
   const wrapper = mount(App, {
     global: {
       plugins: [createPinia(), router],
-      stubs: {FlashMessage: true}    }
+      stubs: { FlashMessage: true },
+      components: { AppLink }
+    }
   })
   
   router.push('/')

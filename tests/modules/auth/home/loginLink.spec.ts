@@ -2,7 +2,7 @@ import { mount, flushPromises } from "@vue/test-utils"
 import { createPinia } from "pinia"
 import router from "../router"
 import App from "@/App.vue"
-import Login from "@/modules/Auth/views/Login/Index.vue"
+import AppLink from "@/components/AppLink.vue"
 
 const FlashMessage = { }
 
@@ -13,8 +13,9 @@ test("this should go to the login page", async () => {
 
   const wrapper = mount(App, {
     global: {
-      plugins: [createPinia(), router],
-      stubs: {FlashMessage: true}
+      plugins: [createPinia(), router ],
+      stubs: {FlashMessage: true},
+      components: { AppLink }
     }
   })
   

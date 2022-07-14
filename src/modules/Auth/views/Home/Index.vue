@@ -8,20 +8,20 @@
       <IconApple/>
     </div>      
     <div class="flex justify-center text-lg mt-10 space-x-5">      
-      <router-link 
+      <AppLink 
         to="/login" 
         class="btn btn-primary"        
         data-testid="login-link"
       >
         Iniciar sesión
-      </router-link>
-      <router-link
+      </AppLink>
+      <AppLink
         to="/register"
         class="btn btn-default"
         data-testid="register-link"
       >
         Registrarse
-      </router-link>      
+      </AppLink>      
     </div>
   </div>  
 </template>

@@ -15,13 +15,13 @@
       :error='error'
     />
     <p class="mt-2 text-center text-gray-500">
-      <router-link
+      <AppLink
         to="/login"
         class="text-gray-500 transition hover:text-gray-600"
         data-testid="login-link"
       >
         ¿Ya registrado?
-      </router-link>
+      </AppLink>
     </p>
   </div>
 </template>

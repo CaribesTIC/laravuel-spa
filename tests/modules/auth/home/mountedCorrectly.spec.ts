@@ -1,5 +1,6 @@
 import { shallowMount, flushPromises } from "@vue/test-utils"
 import router from "../router"
+import AppLink from "@/components/AppLink.vue"
 import Home from "@/modules/Auth/views/Home/Index.vue"
 
 beforeEach(() => { window.scrollTo = vi.fn() })
@@ -9,7 +10,8 @@ test("component must be mounted correctly", async () => {
 
   const wrapper = shallowMount(Home, {
     global: {
-      plugins: [router]
+      plugins: [ router ],
+      components: { AppLink }
     }
   }) 
    

@@ -15,20 +15,20 @@
       :error='error'
     />
     <p class="mt-2 text-center text-gray-500">
-      <router-link
+      <AppLink
         to="/register"
         class="text-gray-500 transition hover:text-gray-600"
         data-testid="register-link"
       >
         Regístrese para obtener una cuenta
-      </router-link><br>
-      <router-link
+      </AppLink><br>
+      <AppLink
         to="/forgot-password"
         class="underline text-sm text-gray-600 hover:text-gray-900"
         data-testid="forgot-password-link"
       >
         ¿Olvidaste tu contraseña?
-      </router-link>
+      </AppLink>
     </p>
   </div>
 </template>
