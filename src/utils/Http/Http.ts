@@ -1,10 +1,11 @@
-import type { GenericFunction, GenericObject } from "@/utils/Types"
+import type { GenericObject } from "@/utils/Types"
+import { AxiosResponse } from "axios";
 
 export interface Init {  
   baseURL?: string;
   withCredentials?: boolean;
-  handleError?: GenericFunction;
-  handleSuccess?:  GenericFunction;
   customHeaders?: GenericObject;
   customParams?: GenericObject | URLSearchParams;
+  handleSuccess?: (value: AxiosResponse<any, any>) => AxiosResponse<any, any> | Promise<AxiosResponse<any, any>>;
+  handleError?: ((error: any) => any) | undefined;
 }

@@ -26,9 +26,9 @@ export class Http {
     init.handleError = init.handleError !== undefined ? init.handleError : this.defaultHandleError
   }
   
-  defaultHandleSuccess(response: AxiosResponse ) { return response; }
+  defaultHandleSuccess(response: AxiosResponse) { return Promise.resolve(response); }
   
-  defaultHandleError(error: AxiosError) { return error; }
+  defaultHandleError(error: AxiosError) { return Promise.reject(error); }
 
   get(path: string) {
     return this.service.request({
