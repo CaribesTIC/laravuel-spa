@@ -59,7 +59,11 @@ const submit = async () => {
          data-testid="password-confirm-input"
       />
     </div>
-    <AppBtn type="submit" text="Update" />
+    <AppBtn type="submit"
+      :text="sending ? 'Guardando...': 'Guardar'"
+      :isDisabled="sending"
+      data-testid="submit-button"
+    />    
     <FlashMessage :message="message" :error="error" />
   </form>
 </template>

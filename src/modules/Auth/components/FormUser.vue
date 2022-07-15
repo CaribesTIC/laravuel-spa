@@ -34,7 +34,7 @@ onMounted(() => {
   <form @submit.prevent="submit">
     <AppInput
       type="text"
-      label="Name"
+      label="Nombre"
       name="name"
       v-model="name"
       class="mb-2"
@@ -42,7 +42,7 @@ onMounted(() => {
     />
     <AppInput
       type="email"
-      label="Email"
+      label="Correo"
       name="email"
       v-model="email"
       autocomplete="email"
@@ -50,7 +50,12 @@ onMounted(() => {
       class="mb-4"
       data-testid="email-input"
     />
-    <AppBtn type="submit" text="Update" data-testid="submit-button"/>
+    <AppBtn
+      type="submit"
+      :text="sending ? 'Guardando...': 'Guardar'"
+      :isDisabled="sending"
+      data-testid="submit-button"
+    />
     <FlashMessage :message="message" :error="error" />
   </form>
 </template>
