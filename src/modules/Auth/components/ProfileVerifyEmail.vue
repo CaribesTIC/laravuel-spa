@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useAuthStore } from "@/modules/Auth/stores"
-import VerifyEmail from "./VerifyEmail.vue"
+import FormVerifyEmail from "./FormVerifyEmail.vue"
 
 const store = useAuthStore()
 </script>
@@ -22,7 +22,7 @@ const store = useAuthStore()
         Emailed Verified
       </li>
     </ul>
-    <VerifyEmail v-if="!store.authUser.emailVerified" class="mt-4" />
+    <FormVerifyEmail v-if="!store.authUser.emailVerified" class="mt-4" />
   </div>
 </template>
 

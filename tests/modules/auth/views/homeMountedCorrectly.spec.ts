@@ -1,7 +1,7 @@
-import { shallowMount, flushPromises } from "@vue/test-utils"
+import { shallowMount } from "@vue/test-utils"
 import router from "../router"
 import AppLink from "@/components/AppLink.vue"
-import Home from "@/modules/Auth/views/Home/Index.vue"
+import Home from "@/modules/Auth/views/Home.vue"
 
 beforeEach(() => { window.scrollTo = vi.fn() })
 afterEach(() => { vi.clearAllMocks() })

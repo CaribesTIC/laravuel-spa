@@ -2,7 +2,7 @@
 import { ref } from "vue"
 import { getError } from "@/utils/helpers"
 import * as AuthService from "@/modules/Auth/services"
-import Form from "./Form.vue"
+import FormUpdatePassword from "./FormUpdatePassword.vue"
 
 const error = ref<String>()
 const message = ref<String>()
@@ -22,7 +22,7 @@ const updatePassword = (payload: {
 </script>
 
 <template>
-  <Form
+  <FormUpdatePassword
     class="p-5 bg-white border rounded shadow"
     @submit='updatePassword'      
     :sending='true'

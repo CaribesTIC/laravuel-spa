@@ -1,6 +1,6 @@
 <script setup lang="ts">
-  import Form from "./Form.vue";
-  import { useRegister } from './useRegister'
+  import FormRegister from "../components/FormRegister.vue";
+  import { useRegister } from '../composables/useRegister'
 
   const { register, sending, error } = useRegister()
 </script>
@@ -8,7 +8,7 @@
 <template>
   <div class="p-5 m-auto w-full sm:w-4/12">
     <h2 class="mb-4 text-xl text-center">Regístrerse</h2>
-    <Form
+    <FormRegister
       class="p-5 bg-white border rounded shadow"
       @submit='register'      
       :sending='sending'

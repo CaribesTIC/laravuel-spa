@@ -1,11 +1,11 @@
 import { shallowMount } from '@vue/test-utils'
-import RegisterForm from '@/modules/Auth/views/Register/Form.vue'
+import FormRegister from '@/modules/Auth/components/FormRegister.vue'
 
 const FlashMessage = {}
 
 test('component must be mounted correctly', () => {
 
-  const wrapper = shallowMount(RegisterForm, {
+  const wrapper = shallowMount(FormRegister, {
     global: {
       stubs: { FlashMessage: true }
     }    

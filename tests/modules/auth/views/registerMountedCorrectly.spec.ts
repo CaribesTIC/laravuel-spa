@@ -2,7 +2,7 @@ import { shallowMount } from '@vue/test-utils'
 import { createPinia } from 'pinia'
 import router from '@/router'
 import AppLink from "@/components/AppLink.vue"
-import RegisterIndex from '@/modules/Auth/views/Register/Index.vue'
+import RegisterIndex from '@/modules/Auth/views/Register.vue'
 
 beforeEach(() => { window.scrollTo = vi.fn() })
 afterEach(() => { vi.clearAllMocks() })
@@ -17,7 +17,7 @@ test('component must be mounted correctly', () => {
   })
   
   expect(wrapper.html()).toContain('Regístrerse')
-  expect(wrapper.html()).toContain('form-stub')     
+  expect(wrapper.html()).toContain('form-register-stub')     
   expect(wrapper.find('[data-testid="login-link"]').exists()).toBe(true)
 
   const loginLink = wrapper.find('[data-testid="login-link"]')

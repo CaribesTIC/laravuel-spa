@@ -2,10 +2,10 @@ import { describe, it, vi, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
 import { nextTick } from 'vue'
 import { createTestingPinia } from '@pinia/testing'
-import ProfileForm from '@/modules/Auth/views/Profile/AuthUserForm/Form.vue'
+import FormUser from '@/modules/Auth/components/FormUser.vue'
 
 const factory = () => {
-  return mount(ProfileForm, {
+  return mount(FormUser, {
     props: {
       message: "",
       error: "",

@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { useAuthStore } from "@/modules/Auth/stores"
-import AuthUser from "./AuthUser.vue"
-import AuthUserForm from "./AuthUserForm/Index.vue"
-import UpdatePassword from "./UpdatePassword/Index.vue"
-import FileUpload from "./FileUpload.vue"
+import { useAuthStore } from "../stores"
+import ProfileUser from "../components/ProfileUser.vue"
+import ProfileUpdatePassword from "../components/ProfileUpdatePassword.vue"
+import ProfileVerifyEmail from "../components/ProfileVerifyEmail.vue"
+import ProfileFileUpload from "../components/ProfileFileUpload.vue"
 import SectionBorder from "@/components/SectionBorder.vue"
 import SectionInfo from "@/components/SectionInfo.vue"
 
@@ -26,7 +26,7 @@ const updateUser = () => {
             title="Información de su cuenta"
             description="Actualice la información de perfil y la dirección de correo electrónico de su cuenta."
           />
-          <AuthUserForm class="p-5 bg-white border rounded shadow col-span-2" />
+          <ProfileUser class="p-5 bg-white border rounded shadow col-span-2" />
           <SectionBorder />                 
         </div>
 
@@ -35,7 +35,7 @@ const updateUser = () => {
             title="Actualizar contraseña"
             description="Asegúrese de que su cuenta esté usando una contraseña larga y aleatoria para mantenerse seguro."
           />
-          <UpdatePassword class="p-5 bg-white border rounded shadow col-span-2" />
+          <ProfileUpdatePassword class="p-5 bg-white border rounded shadow col-span-2" />
           <SectionBorder />
         </div>
         
@@ -44,7 +44,7 @@ const updateUser = () => {
             title="Verificación de correo"
             description="Asegúrese de que su correo está correctamente configurado para los envios de mensajes de notificaciones."
           />
-          <AuthUser class="p-5 bg-white border rounded shadow col-span-2" />
+          <ProfileVerifyEmail class="p-5 bg-white border rounded shadow col-span-2" />
           <SectionBorder />          
         </div>
         
@@ -53,7 +53,7 @@ const updateUser = () => {
             title="Suba su Avatar"
             description="Suba el avatar que desea que aparezca en su perfil."
           />
-          <FileUpload
+          <ProfileFileUpload
             label="Upload Avatar"
             :fileTypes="['image/*']"
             endpoint="/users/auth/avatar"

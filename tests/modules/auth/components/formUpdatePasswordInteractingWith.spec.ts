@@ -1,10 +1,10 @@
 import { describe, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
-import ProfileForm from '@/modules/Auth/views/Profile/UpdatePassword/Form.vue'
+import FormUpdatePassword from '@/modules/Auth/components/FormUpdatePassword.vue'
 
-describe('Profile UpdatePassword/Form Component',  () => {
+describe('ModuleAuthComponentFormUpdatePassword.vue',  () => {
   it('emits the input to its parent', async () => {
-    const wrapper = mount(ProfileForm, {
+    const wrapper = mount(FormUpdatePassword, {
       props: {
         message: "",
         error: "",

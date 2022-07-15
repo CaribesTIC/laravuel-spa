@@ -1,18 +1,16 @@
 import { describe, it, vi, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
 import { createTestingPinia } from '@pinia/testing'
-import ProfileIndex from '@/modules/Auth/views/Profile/AuthUserForm/Index.vue'
-import { updateUser } from "@/modules/Auth/services"
-import * as Mock from "../../../../apiMock/AuthService"
+import ProfileUser from '@/modules/Auth/components/ProfileUser.vue'
 
 const payload = {
   name: "John Doe",
   email: "user@email.ext"
 }
 
-describe('Profile Index Component',  async () => {
+describe('ModuleAuthComponentProfileUser.vue',  () => {
   it('should be called updateUser with payload', async () => {
-    const wrapper = mount(ProfileIndex, {
+    const wrapper = mount(ProfileUser, {
       global: {
         plugins: [createTestingPinia({
           initialState: {
@@ -21,11 +19,12 @@ describe('Profile Index Component',  async () => {
         })]
       }
     })
+    const updateUserSpy = vi.spyOn(wrapper.vm, 'updateUser');
 
-    vi.mock("@/modules/Auth/services");
-    updateUser.mockImplementation(Mock.updateUser); 
-    
-    expect(await updateUser()).toBe("User updated.");
+    wrapper.vm.updateUser(payload)
 
+    expect(updateUserSpy).toHaveBeenCalled()
+    expect(updateUserSpy).toHaveBeenCalledTimes(1)
+    expect(updateUserSpy).toHaveBeenCalledWith(payload)
   })  
 })

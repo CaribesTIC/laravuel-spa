@@ -3,7 +3,7 @@ import { ref } from "vue"
 import { getError } from "@/utils/helpers"
 import * as AuthService from "@/modules/Auth/services"
 import { useAuthStore } from "@/modules/Auth/stores"
-import Form from "./Form.vue"
+import FormUser from "./FormUser.vue"
 
 const error = ref<String>()
 const message = ref<String>()
@@ -22,7 +22,7 @@ const updateUser = (payload: { name: string, email: string }) => {
 </script>
 
 <template>
-  <Form
+  <FormUser
     class="p-5 bg-white border rounded shadow"
     @submit='updateUser($event)'      
     :sending='true'

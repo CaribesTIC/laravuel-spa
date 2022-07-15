@@ -1,10 +1,10 @@
 import { mount } from '@vue/test-utils'
-import RegisterForm from '@/modules/Auth/views/Register/Form.vue'
+import FormRegister from '@/modules/Auth/components/FormRegister.vue'
 
-describe('Register Form Component', () => {
+describe('ModuleAuthComponentFormRegister.vue', () => {
 
   it('sets the value and emits the input to its parent', async () => {
-    const wrapper = mount(RegisterForm)
+    const wrapper = mount(FormRegister)
 
     const inputName = wrapper.find('[data-testid="name-input"] input')
     const inputEmail = wrapper.find('[data-testid="email-input"] input')

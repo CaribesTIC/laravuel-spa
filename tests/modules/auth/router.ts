@@ -1,9 +1,9 @@
 //import { defineAsyncComponent } from "vue"
 import {createRouter, createWebHistory, RouteRecordRaw} from 'vue-router'
-import Home from "@/modules/Auth/views/Home/Index.vue"
+import Home from "@/modules/Auth/views/Home.vue"
 import About from "@/modules/Auth/components/About.vue"
-import Login from "@/modules/Auth/views/Login/Index.vue"
-import Register from "@/modules/Auth/views/Register/Index.vue"
+import Login from "@/modules/Auth/views/Login.vue"
+import Register from "@/modules/Auth/views/Register.vue"
 import NotFound from "@/modules/Auth/components/NotFound.vue"
 
 const routes: Array<RouteRecordRaw> = [{
