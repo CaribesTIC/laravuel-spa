@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useMessageStore } from "@/modules/Message/stores"
 import FlashMessage from "@/components/FlashMessage.vue";
-import AvatarIcon from "@/components/icons/AvatarIcon.vue";
+import AvatarIcon from "@/modules/Auth/icons/AvatarIcon.vue";
 import AppPagination from "@/components/AppPagination.vue";
 
 const store = useMessageStore()

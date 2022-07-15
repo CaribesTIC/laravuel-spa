@@ -1,14 +1,14 @@
 <script setup lang="ts">
-  import { ref, computed } from "vue";
-  import { useAuthStore } from '@/modules/Auth/stores'
-  import { useSidebar } from "@/composables/useSidebar";
-  import LoginIcon from "@/components/icons/LoginIcon.vue";
-  import HomeIcon from "@/components/icons/HomeIcon.vue";
-  import Logout from "@/components/Logout.vue";
+import { ref, computed } from "vue";
+import { useAuthStore } from "@/modules/Auth/stores"
+import { useSidebar } from "@/composables/useSidebar"
+import Logout from "@/modules/Auth/components/Logout.vue"
+import LoginIcon from "@/modules/Auth/icons/LoginIcon.vue"
+import HomeIcon from "@/modules/Auth/icons/HomeIcon.vue"
 
-  const { isOpen } = useSidebar()
-  const dropdownOpen = ref(false)
-  const store = computed(() => useAuthStore())
+const { isOpen } = useSidebar()
+const dropdownOpen = ref(false)
+const store = computed(() => useAuthStore())
 </script>
 
 <template>
@@ -35,15 +35,15 @@
       </button>
 
       <div v-if="store.authUser" class="flex items-center space-x-5 ml-3">
-        <router-link to="/dashboard">
+        <AppLink to="/dashboard">
           <HomeIcon class="w-6 h-6 text-white" />
           <span class="sr-only">Dashboard</span>
-        </router-link>        
+        </AppLink>        
       </div>
       
-      <router-link to="/" v-else>
+      <AppLink to="/" v-else>
         <HomeIcon class="w-6 h-6 text-white" />
-      </router-link>
+      </AppLink>
 
       <div class="relative mr-4 lg:mx-0">
         <span class="absolute inset-y-0 left-0 pl-3 flex items-center">
@@ -104,19 +104,19 @@
           @click="dropdownOpen = false"
           class="absolute right-0 mt-2 py-2 w-48 bg-gray-600 rounded-md shadow-xl z-20"
         >
-          <router-link
+          <AppLink
             to="/profile"
             class="block px-4 py-2 text-sm text-white hover:bg-gray-400"
           >
             {{ store.authUser ? store.authUser.name : 'Profile' }}
-          </router-link>
+          </AppLink>
 
-          <router-link
+          <AppLink
             to="/"
             class="block px-4 py-2 text-sm text-white hover:bg-gray-400"
           >
             <Logout />
-          </router-link> 
+          </AppLink> 
         </div>        
       </div>
     </div>
