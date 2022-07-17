@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import FlashMessage from "@/components/FlashMessage.vue";
-import PageHeader from "@/components/PageHeader.vue";
-import Form from "../components/Form.vue";
+import AppFlashMessage from "@/components/AppFlashMessage.vue";
+import AppPageHeader from "@/components/AppPageHeader.vue";
+import FormCreateOrEdit from "../components/FormCreateOrEdit.vue";
 import useUser from "../composables/useUser";
 
 const props = defineProps<{ id?: string }>()
@@ -19,9 +19,9 @@ const {
 
 <template>
   <div>
-    <page-header>Usuarios / {{ !props.id ? "Crear" : "Editar" }}</page-header>
+    <AppPageHeader>Usuarios / {{ !props.id ? "Crear" : "Editar" }}</AppPageHeader>
     <transition name="fade" mode="out-in">
-      <FlashMessage
+      <AppPageHeader
         message="loading..."
         v-if="loading && !user"
         key="loading"
@@ -36,7 +36,7 @@ const {
           </button>
         </div>
         <div class="panel mt-6">
-          <Form
+          <FormCreateOrEdit
             class="p-5 bg-white border rounded shadow"
             @submit='submit'
             :id="props.id"

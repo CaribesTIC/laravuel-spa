@@ -9,7 +9,7 @@
         <div class="mt-6">
           <a
               class="bg-indigo-600 border-2 border-solid border-indigo-600 hover:bg-indigo-700 hover:border-indigo-700 text-white rounded-full py-3 px-8 transition-colors duration-300 mx-2 mt-4">
-            <router-link to="/">Go Back</router-link>
+            <AppLink to="/">Regresar...</AppLink>
           </a>
         </div>
       </div>

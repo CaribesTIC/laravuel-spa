@@ -4,7 +4,7 @@ import { useMessageStore } from "@/modules/Message/stores"
 import { getError } from "@/utils/helpers";
 import AppBtn from "@/components/AppBtn.vue";
 import AppInput from "@/components/AppInput.vue";
-import FlashMessage from "@/components/FlashMessage.vue";
+import AppFlashMessage from "@/components/AppFlashMessage.vue";
 
 const store = useMessageStore()
 
@@ -36,7 +36,7 @@ const postMessage = async () => {
     <div class="flex justify-end mb-2">
       <AppBtn type="submit" text="Message" />
     </div>
-    <FlashMessage :error="error" />
+    <AppFlashMessage :error="error" />
   </form>
 </template>
 

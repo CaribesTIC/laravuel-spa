@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import FlashMessage from "@/components/FlashMessage.vue";
-import PageHeader from "@/components/PageHeader.vue";
+import AppFlashMessage from "@/components/AppFlashMessage.vue";
+import AppPageHeader from "@/components/AppPageHeader.vue";
 import Form from "./Form.vue";
 import useRole from "./useRole";
 
@@ -18,9 +18,9 @@ const {
 
 <template>
   <div>
-    <page-header>Roles / {{ !props.id ? "Crear" : "Editar" }}</page-header>
+    <AppPageHeader>Roles / {{ !props.id ? "Crear" : "Editar" }}</AppPageHeader>
     <transition name="fade" mode="out-in">
-      <FlashMessage
+      <AppFlashMessage
         message="loading..."
         v-if="loading && !role"
         key="loading"

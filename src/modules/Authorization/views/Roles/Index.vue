@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { onMounted, reactive } from "vue";
 import { onBeforeRouteUpdate, useRouter, useRoute } from 'vue-router' 
-import Pagination from "@/components/Pagination.vue";
-import PageHeader from "@/components/PageHeader.vue"
+import AppPaginationB from "@/components/AppPaginationB.vue";
+import AppPageHeader from "@/components/AppPageHeader.vue"
 import * as RoleService from "@/modules/Authorization/services/RoleService";
 import { useSearch } from "@/composables/useTableGrid";
 import useRole from "./useRole";
@@ -81,12 +81,12 @@ const deleteRow = (rowId?: string) => {
 
 <template>
   <div>
-    <PageHeader> Roles </PageHeader>
+    <AppPageHeader> Roles </AppPageHeader>
 
     <div class="flex space-x-2">
-      <RouterLink class="btn btn-primary" to="/roles/create">
+      <AppLink class="btn btn-primary" to="/roles/create">
         <span>Crear</span>
-      </RouterLink>
+      </AppLink>
     </div>
 
     <div class="overflow-hidden panel mt-6">
@@ -108,10 +108,10 @@ const deleteRow = (rowId?: string) => {
           <thead>
             <tr class="">
               <th class="">
-                <a href="#" @click.prevent="setSort('name')">Name</a>
+                <AppLink to="#" @click.prevent="setSort('name')">Name</AppLink>
               </th>
               <th class="">
-                <a href="#" @click.prevent="setSort('description')">Description</a>
+                <AppLink to="#" @click.prevent="setSort('description')">Description</AppLink>
               </th>
               <th class="">Acción</th>
             </tr>
@@ -119,12 +119,12 @@ const deleteRow = (rowId?: string) => {
           <tbody>
             <tr v-for="role in data.rows" :key="role.id" class="">
               <td class="">
-                <RouterLink
+                <AppLink
                   class="text-indigo-600 hover:text-indigo-800 underline"
                   :to="{ name: 'roleEdit', params: { id: role.id }}"                  
                 >
                   {{ role.name }}
-                </RouterLink>
+                </AppLink>
               </td>
               <td class="">
                 {{ role.description }}
@@ -151,7 +151,7 @@ const deleteRow = (rowId?: string) => {
           </tbody>
         </table>
       </div>
-      <Pagination v-if="data.links" :links="data.links" />
+      <AppPaginationB v-if="data.links" :links="data.links" />
     </div>
   </div>
 </template>

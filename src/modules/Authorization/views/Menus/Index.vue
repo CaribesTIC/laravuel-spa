@@ -1,14 +1,14 @@
 <script lang="ts">
 import * as MenuService from "@/modules/Authorization/services/MenuService"
-import Pagination from "@/components/Pagination.vue";
-import PageHeader from "@/components/PageHeader.vue"
+import AppPaginationB from "@/components/AppPaginationB.vue";
+import AppPageHeader from "@/components/AppPageHeader.vue"
 import Create from './Create.vue'
 import Edit from './Edit.vue'
 export default {
   metaInfo: { title: 'Menus' },
   components: {    
-    Pagination,
-    PageHeader,
+    AppPaginationB,
+    AppPageHeader,
     Create,
     Edit,    
   },
@@ -68,7 +68,7 @@ export default {
 
 <template>
   <div>  
-    <page-header> Menús </page-header>
+    <AppPageHeader> Menús </AppPageHeader>
     
     <div class="flex space-x-2">
       <button
@@ -112,7 +112,7 @@ export default {
       </table>
         
       
-      <Pagination :links="menus.links" />
+      <AppPaginationB :links="menus.links" />
       
       <div class="fixed z-10 inset-0 overflow-y-auto ease-out duration-400" v-if="isOpenCreate">
         <Create @closeModal0="closeModalCreate"/>

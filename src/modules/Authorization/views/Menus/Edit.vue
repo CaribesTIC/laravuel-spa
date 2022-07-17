@@ -1,9 +1,9 @@
 <script>
 import * as MenuService from "@/modules/Authorization/services/MenuService"
-import LoadingButton from '@/components/LoadingButton.vue'
+//import AppLoadingButton from '@/components/AppLoadingButton.vue'
 export default {
   components: {    
-    LoadingButton,
+    //AppLoadingButton,
   },
   props: ['menu'],
   data() {

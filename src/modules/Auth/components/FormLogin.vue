@@ -2,7 +2,7 @@
   import { ref } from "vue"  
   import AppBtn from "@/components/AppBtn.vue"
   import AppInput from '@/components/AppInput.vue'
-  import FlashMessage from "@/components/FlashMessage.vue"
+  import AppFlashMessage from "@/components/AppFlashMessage.vue"
   
   defineProps({
     error: [Object, String],
@@ -58,6 +58,6 @@
         data-testid="submit-btn"
       />
     </div>
-    <FlashMessage :error='error' />
+    <AppFlashMessage :error='error' />
   </form>
 </template>

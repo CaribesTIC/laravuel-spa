@@ -2,7 +2,7 @@
 import { getError } from "@/utils/helpers";
 import FileService from "@/modules/Auth/services/FileService"
 import AppBtn from "@/components/AppBtn.vue";
-import FlashMessage from "@/components/FlashMessage.vue";
+import AppFlashMessage from "@/components/AppFlashMessage.vue";
 
 export default {
   name: "FileUpload",
@@ -22,7 +22,7 @@ export default {
   },
   components: {
     AppBtn,
-    FlashMessage,
+    AppFlashMessage,
   },
   data() {
     return {
@@ -67,6 +67,6 @@ export default {
       <input type="file" :accept="fileTypes" @change="fileChange" id="file" />
     </div>
     <AppBtn text="Upload" />
-    <FlashMessage :message="message" :error="error" />
+    <AppFlashMessage :message="message" :error="error" />
   </form>
 </template>

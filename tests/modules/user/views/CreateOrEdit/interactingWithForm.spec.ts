@@ -1,10 +1,10 @@
 import { describe, it, vi, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
-import UserForm from '@/modules/User/components/Form.vue'
+import FormCreateOrEdit from '@/modules/User/components/FormCreateOrEdit.vue'
 
 describe('UserForm Component',  () => {
   it('emits the input to its parent', async () => {
-    const wrapper = mount(UserForm, {
+    const wrapper = mount(FormCreateOrEdit, {
       props: {
         id: "1",
         user: {

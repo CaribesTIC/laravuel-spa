@@ -15,7 +15,7 @@ export default {
     isExternalLink():boolean {
       return typeof this.to === 'string' && this.to.startsWith('http')
     },
-  },
+  }
 }
 
 </script>

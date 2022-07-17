@@ -3,7 +3,7 @@ import { ref, onMounted } from "vue"
 import { useAuthStore } from "@/modules/Auth/stores"
 import AppBtn from "@/components/AppBtn.vue"
 import AppInput from '@/components/AppInput.vue'
-import FlashMessage from "@/components/FlashMessage.vue"
+import AppFlashMessage from "@/components/AppFlashMessage.vue"
  
 defineProps<{
   message: String | undefined
@@ -56,6 +56,6 @@ onMounted(() => {
       :isDisabled="sending"
       data-testid="submit-button"
     />
-    <FlashMessage :message="message" :error="error" />
+    <AppFlashMessage :message="message" :error="error" />
   </form>
 </template>

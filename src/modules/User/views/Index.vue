@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { onMounted, reactive } from "vue";
 import { onBeforeRouteUpdate, useRouter, useRoute } from 'vue-router' 
-import Pagination from "@/components/Pagination.vue";
-import PageHeader from "@/components/PageHeader.vue"
 import { useSearch } from "@/composables/useTableGrid";
+import AppPaginationB from "@/components/AppPaginationB.vue";
+import AppPageHeader from "@/components/AppPageHeader.vue"
 import useUser from "../composables/useUser";
 import UserService from "../services";
 import type User from "../types/User"
@@ -81,12 +81,12 @@ const deleteRow = (rowId?: string) => {
 
 <template>
   <div>
-    <PageHeader> Usuarios </PageHeader>
+    <AppPageHeader> Usuarios </AppPageHeader>
 
     <div class="flex space-x-2">
-      <RouterLink class="btn btn-primary" to="/users/create">
+      <AppLink class="btn btn-primary" to="/users/create">
         <span>Crear</span>
-      </RouterLink>
+      </AppLink>
     </div>
 
     <div class="overflow-hidden panel mt-6">
@@ -108,13 +108,13 @@ const deleteRow = (rowId?: string) => {
           <thead>
             <tr class="">
               <th class="">
-                <a href="#" @click.prevent="setSort('name')">Nombre</a>
+                <AppLink to="#" @click.prevent="setSort('name')">Nombre</AppLink>
               </th>
               <th class="">
-                <a href="#" @click.prevent="setSort('email')">Correo</a>
+                <AppLink to="#" @click.prevent="setSort('email')">Correo</AppLink>
               </th>
               <th class="">
-                <a href="#" @click.prevent="setSort('role')">Role</a>
+                <AppLink to="#" @click.prevent="setSort('role')">Role</AppLink>
               </th>
               <th class="">Acción</th>
             </tr>
@@ -122,12 +122,12 @@ const deleteRow = (rowId?: string) => {
           <tbody>
             <tr v-for="user in data.rows" :key="user.id" class="">
               <td class="">
-                <RouterLink
+                <AppLink
                   class="text-indigo-600 hover:text-indigo-800 underline"
                   :to="{ name: 'userEdit', params: { id: user.id }}"                  
                 >
                   {{ user.name }}
-                </RouterLink>
+                </AppLink>
               </td>
               <td class="">
                 {{ user.email }}
@@ -157,7 +157,7 @@ const deleteRow = (rowId?: string) => {
           </tbody>
         </table>
       </div>
-      <Pagination v-if="data.links" :links="data.links" />
+      <AppPaginationB v-if="data.links" :links="data.links" />
     </div>
   </div>
 </template>

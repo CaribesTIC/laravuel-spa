@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { useMessageStore } from "@/modules/Message/stores"
-import FlashMessage from "@/components/FlashMessage.vue";
+import AppFlashMessage from "@/components/AppFlashMessage.vue";
+import AppPaginationA from "@/components/AppPaginationA.vue";
 import AvatarIcon from "@/modules/Auth/icons/AvatarIcon.vue";
-import AppPagination from "@/components/AppPagination.vue";
 
 const store = useMessageStore()
 //["loading", "error", "messages", "meta", "links"]
@@ -13,7 +13,7 @@ store.getMessages(currentPage);
 <template>
   <div>
     <transition name="fade" mode="out-in">
-      <FlashMessage
+      <AppFlashMessage
         message="loading..."
         v-if="store.loading && !store.messages.length"
         key="store.loading"
@@ -44,10 +44,10 @@ store.getMessages(currentPage);
       </ul>
     </transition>
     <transition name="fade">
-      <FlashMessage :error="error" v-if="store.error" key="error" />
+      <AppFlashMessage :error="error" v-if="store.error" key="error" />
     </transition>
     <transition name="fade">    
-      <AppPagination
+      <AppPaginationA
         :store="store"
         :meta="store.meta"
         :links="store.links"
