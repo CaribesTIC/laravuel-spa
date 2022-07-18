@@ -5,7 +5,7 @@ const attrs = useAttrs()
 
 const props = defineProps<{
   type?: "submit" | "button" | "reset"
-  text?: string | "Submit"  
+  text?: string
   isDisabled?: boolean  
 }>()
 
