@@ -1,23 +1,20 @@
 <script setup lang="ts">
-import { computed, onMounted, useAttrs } from "vue"
+import { computed, useAttrs } from "vue"
 
 const attrs = useAttrs()
 
 const props = defineProps<{
-  type?: string | "submit"
+  type?: "submit" | "button" | "reset"
   text?: string | "Submit"  
-  isDisabled?: Boolean
-  btnColor?: "btn-danger" | "btn-default" | "btn-primary" | "btn-success"
+  isDisabled?: boolean  
 }>()
 
-const btnColor = computed(
-  () => props.isDisabled
-    ? "btn-default" : props.btnColor
-        ? props.btnColor : "btn-primary"
-)
-
-onMounted(()=>
-console.log(attrs)
+const myClass = computed(
+  () => attrs.class
+    ? attrs.class
+      : props.isDisabled
+        ? 'btn btn-default'
+          : 'btn btn-primary'
 )
 
 </script>
@@ -26,8 +23,7 @@ console.log(attrs)
   <button
     :disabled="isDisabled"
     :type="type"
-    class="btn"
-    :class="btnColor"
+    :class="myClass"
   >
     <slot>{{ text }}</slot>    
   </button>

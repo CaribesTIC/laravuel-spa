@@ -139,15 +139,14 @@ const deleteRow = (rowId?: string) => {
               <td class="">
                 <div class="flex items-center space-x-1">                
                   <AppBtn
-                    class="btn btn-xs"
-                    :btnColor="'btn-primary'"
-                    @click="router.push({ path: '/users/edit/'+user.id })">
-                      Editar
+                    class="btn btn-primary btn-xs"                    
+                    @click="router.push({ path: '/users/edit/'+user.id })"
+                  >
+                    Editar
                   </AppBtn>
                   <AppBtn
-                    @click="deleteRow(user.id)"
-                    :btnColor="'btn-danger'"
-                    class="btn btn-xs"                    
+                    @click="deleteRow(user.id)"                    
+                    class="btn btn-danger btn-xs"                    
                   >
                     Eliminar
                   </AppBtn>
