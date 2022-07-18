@@ -4,6 +4,7 @@ import { onBeforeRouteUpdate, useRouter, useRoute } from 'vue-router'
 import { useSearch } from "@/composables/useTableGrid";
 import AppPaginationB from "@/components/AppPaginationB.vue";
 import AppPageHeader from "@/components/AppPageHeader.vue"
+import AppBtn from "@/components/AppBtn.vue"
 import useUser from "../composables/useUser";
 import UserService from "../services";
 import type User from "../types/User"
@@ -137,17 +138,19 @@ const deleteRow = (rowId?: string) => {
               </td>
               <td class="">
                 <div class="flex items-center space-x-1">                
-                  <button
-                    class="btn btn-primary btn-xs"
+                  <AppBtn
+                    class="btn btn-xs"
+                    :btnColor="'btn-primary'"
                     @click="router.push({ path: '/users/edit/'+user.id })">
                       Editar
-                  </button>
-                  <button
+                  </AppBtn>
+                  <AppBtn
                     @click="deleteRow(user.id)"
-                    class="btn btn-danger btn-xs"
+                    :btnColor="'btn-danger'"
+                    class="btn btn-xs"                    
                   >
                     Eliminar
-                  </button>
+                  </AppBtn>
                 </div>
               </td>
             </tr>

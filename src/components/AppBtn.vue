@@ -1,38 +1,35 @@
-<script lang="ts">
-export default {
-  name: "BaseBtn",
-  props: {
-    type: {
-      type: String,
-      default: "submit",
-    },
-    text: {
-      type: String,
-      default: "Submit",
-    },
-    isDisabled: {
-      type: Boolean,
-      default: false
-    }
-  },
-};
+<script setup lang="ts">
+import { computed, onMounted, useAttrs } from "vue"
+
+const attrs = useAttrs()
+
+const props = defineProps<{
+  type?: string | "submit"
+  text?: string | "Submit"  
+  isDisabled?: Boolean
+  btnColor?: "btn-danger" | "btn-default" | "btn-primary" | "btn-success"
+}>()
+
+const btnColor = computed(
+  () => props.isDisabled
+    ? "btn-default" : props.btnColor
+        ? props.btnColor : "btn-primary"
+)
+
+onMounted(()=>
+console.log(attrs)
+)
+
 </script>
 
 <template>
-  <!--button
-    :disabled="isDisabled"
-    :type="type"
-    v-on="$listeners"
-    class="btn"
-    :class="isDisabled ? 'btn-default' : 'btn-primary'"
-  -->
   <button
     :disabled="isDisabled"
     :type="type"
     class="btn"
-    :class="isDisabled ? 'btn-default' : 'btn-primary'"
+    :class="btnColor"
   >
-    {{ text }}
+    <slot>{{ text }}</slot>    
   </button>
 </template>
 
