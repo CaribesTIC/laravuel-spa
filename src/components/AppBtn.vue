@@ -24,8 +24,8 @@ const myClass = computed(
     :disabled="isDisabled"
     :type="type"
     :class="myClass"
-  >
-    <slot>{{ text }}</slot>    
+  > 
+    <slot>{{ text ?? "Submit" }}</slot>    
   </button>
 </template>
 
