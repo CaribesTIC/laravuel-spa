@@ -87,22 +87,6 @@ export default (userId?: string) => {
     !userId ? insertUser (user)  : updateUser(user, userId)
   }
 
-  const deleteUser = (userId?: string) => {
-    if (userId === undefined) return;
-    sending.value= true
-    return UserService.deleteUser(userId)
-      .then((response) => {
-        router.push( { path: '/users' } );
-      })
-      .catch((err) => {                
-        console.log( err.response.data );
-        errors.value = getError(err)
-      })
-      .finally(() => {
-        sending.value = false
-      });
-  }
-
   return {
     user,
     errors,
@@ -110,8 +94,7 @@ export default (userId?: string) => {
     sending,
     loading,
     router,
-    submit,
-    deleteUser
+    submit    
   }
 
 };

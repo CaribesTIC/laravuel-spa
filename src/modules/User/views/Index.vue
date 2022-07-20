@@ -2,21 +2,20 @@
 import { onMounted, reactive } from "vue";
 import { onBeforeRouteUpdate, useRouter, useRoute } from 'vue-router' 
 import { useSearch } from "@/composables/useTableGrid";
+import { useHttp } from "@/composables/useHttp";
 import AppPaginationB from "@/components/AppPaginationB.vue";
 import AppPageHeader from "@/components/AppPageHeader.vue"
 import AppBtn from "@/components/AppBtn.vue"
-import useUser from "../composables/useUser";
 import UserService from "../services";
 import type User from "../types/User"
 
 const router = useRouter();
 const route = useRoute();
 
-const {
-  deleteUser,
-  errors,
-  sending,     
-} = useUser()
+const {  
+  errors,  
+  getError     
+} = useHttp()
 
 const data = reactive({
   rows: [] as User[],
@@ -24,7 +23,7 @@ const data = reactive({
   search: "",
   sort: "",
   direction: ""
-});
+})
 
 const load = (newParams: object) => {
   const params = {
@@ -32,7 +31,7 @@ const load = (newParams: object) => {
     sort: data.sort || "",
     direction: data.direction || "",
     ...newParams,
-  };
+  }
 
   router.push({
     path:'/users',
@@ -40,44 +39,54 @@ const load = (newParams: object) => {
       ...route.query,
       ...params
     }
-  });
-};
+  })
+}
 
 const { 
   setSearch,
   setSort, //setFilter
 } = useSearch(data, load)
 
-const getUsers = (routeQuery: string) => {
+const getUsers = (routeQuery: string) => {  
   return UserService.getUsers(routeQuery)
     .then((response) => {
-      data.rows = response.data.rows.data;
-      data.links = response.data.rows.links;
-      data.search = response.data.search;
-      data.sort = response.data.sort;
-      data.direction = response.data.direction;
+      errors.value = null
+      data.rows = response.data.rows.data
+      data.links = response.data.rows.links
+      data.search = response.data.search
+      data.sort = response.data.sort
+      data.direction = response.data.direction      
     })
     .catch((error) => {
-      console.log(error);
-    });
-};
-    
+      console.log(error)
+    })    
+}
+
+const deleteRow = (rowId?: string) => {
+  if (rowId === undefined)
+    return
+  else if (confirm(`¿Estás seguro que desea eliminar el registro ${rowId}?`)) {    
+    return UserService.deleteUser(rowId)
+      .then((response) => {
+        errors.value = null
+        router.push( { path: '/users' } )        
+      })
+      .catch((err) => {                
+        console.log( err.response.data )
+        errors.value = getError(err)
+      })
+  }
+}
+
 onBeforeRouteUpdate(async (to, from) => {      
   if (to.query !== from.query) {        
     await getUsers(new URLSearchParams(to.query).toString());        
   }
-});
+})
 
 onMounted(() => {
   getUsers(new URLSearchParams(route.query).toString());    
-});
-
-const deleteRow = (rowId?: string) => {
-  if (rowId === undefined) return;
-  if (confirm(`¿Estás seguro de que quieres eliminar el registro ${rowId}?`)) {
-    deleteUser(rowId)
-  }
-};
+})
 </script>
 
 <template>
@@ -89,8 +98,8 @@ const deleteRow = (rowId?: string) => {
         <span>Crear</span>
       </AppLink>
     </div>
-
-    <div class="overflow-hidden panel mt-6">
+    
+    <div class="overflow-hidden panel mt-6">      
       <div class="mb-6 flex justify-between items-center">
         <div class="flex items-center">
           <div class="flex w-full bg-white shadow rounded">
@@ -103,7 +112,7 @@ const deleteRow = (rowId?: string) => {
             />
           </div>
         </div>
-      </div>
+      </div>      
       <div class="table-data__wrapper">
         <table class="table-data">
           <thead>
@@ -121,31 +130,31 @@ const deleteRow = (rowId?: string) => {
             </tr>
           </thead>
           <tbody>
-            <tr v-for="user in data.rows" :key="user.id" class="">
+            <tr v-for="row in data.rows" :key="row.id" class="">
               <td class="">
                 <AppLink
                   class="text-indigo-600 hover:text-indigo-800 underline"
-                  :to="{ name: 'userEdit', params: { id: user.id }}"                  
+                  :to="{ name: 'userEdit', params: { id: row.id }}"                  
                 >
-                  {{ user.name }}
+                  {{ row.name }}
                 </AppLink>
               </td>
               <td class="">
-                {{ user.email }}
+                {{ row.email }}
               </td>
               <td class="">
-                {{ user.role_id }}
+                {{ row.role_id }}
               </td>
               <td class="">
                 <div class="flex items-center space-x-1">                
                   <AppBtn
                     class="btn btn-primary btn-xs"                    
-                    @click="router.push({ path: '/users/edit/'+user.id })"
+                    @click="router.push({ path: '/users/edit/'+row.id })"
                   >
                     Editar
                   </AppBtn>
                   <AppBtn
-                    @click="deleteRow(user.id)"                    
+                    @click="deleteRow(row.id)"                    
                     class="btn btn-danger btn-xs"                    
                   >
                     Eliminar
@@ -159,7 +168,8 @@ const deleteRow = (rowId?: string) => {
           </tbody>
         </table>
       </div>
-      <AppPaginationB v-if="data.links" :links="data.links" />
+      <span v-if="errors" class="text-red-500">{{ errors }}</span>
+      <AppPaginationB v-if="data.links" :links="data.links" />      
     </div>
   </div>
 </template>
