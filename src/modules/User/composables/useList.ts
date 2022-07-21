@@ -1,11 +1,11 @@
 import { reactive, onMounted } from "vue";
-import { useSearch } from "@/composables/useTableGrid";
 import { onBeforeRouteUpdate, useRouter, useRoute } from 'vue-router'
+import { useSearch } from "@/composables/useTableGrid";
 import { useHttp } from "@/composables/useHttp";
 import UserService from "../services";
 import type User from "../types/User"
 
-export function useUserTablaGrid() {
+export default () => {
 
   const data = reactive({
     rows: [] as User[],

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import AppPageHeader from "@/components/AppPageHeader.vue";
 import FormCreateOrEdit from "../components/FormCreateOrEdit.vue";
-import useUserCreateOrEdit from "../composables/useUserCreateOrEdit";
+import useCreateOrEdit from "../composables/useCreateOrEdit";
 
 const props = defineProps<{ id?: string }>()
 
@@ -14,7 +14,7 @@ const {
   router,
 
   submit    
-} = useUserCreateOrEdit(props.id)
+} = useCreateOrEdit(props.id)
 </script>
 
 <template>

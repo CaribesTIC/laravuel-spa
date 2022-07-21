@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useUserTablaGrid } from "../composables/useUserTablaGrid";
+import useList from "../composables/useList";
 import AppPaginationB from "@/components/AppPaginationB.vue";
 import AppPageHeader from "@/components/AppPageHeader.vue"
 import AppBtn from "@/components/AppBtn.vue"
@@ -12,7 +12,7 @@ const {
   deleteRow,
   setSearch,
   setSort  
-} = useUserTablaGrid()
+} = useList()
 </script>
 
 <template>
