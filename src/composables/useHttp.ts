@@ -4,7 +4,7 @@ import { getError } from "@/utils/helpers";
 export function useHttp() {
   const sending = ref(false)
   const loading = ref(false)
-  const errors = ref()
+  const errors = ref({})
   
   return {
     errors,

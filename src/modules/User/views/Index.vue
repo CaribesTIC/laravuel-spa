@@ -7,8 +7,9 @@ import AppBtn from "@/components/AppBtn.vue"
 const {
   errors,
   data,
+  router,
+
   deleteRow,
-  router,  
   setSearch,
   setSort  
 } = useUserTablaGrid()

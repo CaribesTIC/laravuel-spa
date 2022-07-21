@@ -8,7 +8,7 @@ import type Errors from "../types/Errors"
 const props = defineProps<{
   id?: string
   user: User  
-  sending: Boolean
+  sending: boolean
   errors: Errors
   roles: Role[]
 }>()
@@ -60,6 +60,7 @@ const submit = async () => {
       <label class="block">
         <span class="text-gray-700">Rol</span>
         <select v-model="form.role_id" class="p-2">
+          <option value="" class="text-gray-200">Seleccione...</option>
           <option v-for="role in roles" :value="role.id" :key="role">
             {{ role.name }}
           </option>

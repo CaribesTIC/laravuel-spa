@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import AppFlashMessage from "@/components/AppFlashMessage.vue";
 import AppPageHeader from "@/components/AppPageHeader.vue";
 import FormCreateOrEdit from "../components/FormCreateOrEdit.vue";
-import useUser from "../composables/useUser";
+import useUserCreateOrEdit from "../composables/useUserCreateOrEdit";
 
 const props = defineProps<{ id?: string }>()
 
@@ -13,8 +12,9 @@ const {
   sending,
   loading,
   router,
+
   submit    
-} = useUser(props.id)
+} = useUserCreateOrEdit(props.id)
 </script>
 
 <template>

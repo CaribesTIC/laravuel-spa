@@ -1,25 +1,28 @@
 import { onMounted, reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { getError } from "@/utils/helpers";
+// import { getError } from "@/utils/helpers";
+import { useHttp } from "@/composables/useHttp";
 import UserService from "@/modules/User/services";
 import type Role from "../types/Role"
 import type User from "../types/User"
-import type Errors from "../types/Errors"
+// import type Errors from "../types/Errors"
 
 export default (userId?: string) => {
   const router = useRouter();
   
   const user: User = reactive({    
-    name: null, email: null, password: null, role_id: null
+    name: "", email: "", password: "", role_id: ""
   })
-
-  const errors = ref<Errors>({
-    name: [], email: [], password: [], role_id: []
-  })
-  
+ 
   const roles = ref<Role[]>([])
-  const sending = ref(false);
-  const loading = ref(false);
+  
+  const {  
+    errors,
+    sending,
+    loading,
+
+    getError
+  } = useHttp()
   
   onMounted(async () => {
     if (userId) {
