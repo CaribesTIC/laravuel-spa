@@ -1,7 +1,7 @@
 import { ref } from 'vue'
 import { getError } from "@/utils/helpers";
 
-export function useHttp() {
+export default () => {
   const sending = ref(false)
   const loading = ref(false)
   const errors = ref({})

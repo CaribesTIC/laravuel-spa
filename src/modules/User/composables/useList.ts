@@ -1,14 +1,14 @@
-import { reactive, onMounted } from "vue";
-import { onBeforeRouteUpdate, useRouter, useRoute } from 'vue-router'
-import { useSearch } from "@/composables/useTableGrid";
-import { useHttp } from "@/composables/useHttp";
-import UserService from "../services";
-import type User from "../types/User"
+import { reactive, onMounted } from "vue"
+import { onBeforeRouteUpdate } from "vue-router"
+import useTableGrid from "@/composables/useTableGrid"
+import useHttp from "@/composables/useHttp"
+import UserService from "../services"
+
+type Params =  string | string[][] | Record<string, string> | URLSearchParams | undefined
 
 export default () => {
-
   const data = reactive({
-    rows: [] as User[],
+    rows: [],
     links: [],
     search: "",
     sort: "",
@@ -17,38 +17,22 @@ export default () => {
 
   const {  
     errors,
+
     getError     
   } = useHttp()
 
-  const router = useRouter();
-  const route = useRoute();
+  const {
+    route,
+    router,
 
-  const load = (newParams: object) => {
-    const params = {
-      search: data.search || "",
-      sort: data.sort || "",
-      direction: data.direction || "",
-      ...newParams,
-    }
-
-    router.push({
-      path:'/users',
-      query: {
-        ...route.query,
-        ...params
-      }
-    })
-  }
-
-  const { 
     setSearch,
     setSort, 
-  } = useSearch(data, load)
+  } = useTableGrid(data, "/users")
 
   const getUsers = (routeQuery: string) => {  
     return UserService.getUsers(routeQuery)
       .then((response) => {
-        errors.value = null
+        errors.value = {}
         data.rows = response.data.rows.data
         data.links = response.data.rows.links
         data.search = response.data.search
@@ -66,7 +50,7 @@ export default () => {
     else if (confirm(`¿Estás seguro que desea eliminar el registro ${rowId}?`)) {    
       return UserService.deleteUser(rowId)
         .then((response) => {
-          errors.value = null
+          errors.value = {}
           router.push( { path: '/users' } )        
         })
         .catch((err) => {                
@@ -78,19 +62,24 @@ export default () => {
 
   onBeforeRouteUpdate(async (to, from) => {      
     if (to.query !== from.query) {        
-      await getUsers(new URLSearchParams(to.query).toString())
+      await getUsers(
+        new URLSearchParams(to.query as Params).toString()
+      )
     }
   })
 
   onMounted(() => {
-    getUsers(new URLSearchParams(route.query).toString())
+    getUsers(
+      new URLSearchParams(route.query as Params).toString()
+    )
   })
 
   return {
     errors,
     data,
+    router,
+
     deleteRow,
-    router,  
     setSearch,
     setSort
   }

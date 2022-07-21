@@ -1,6 +1,6 @@
 import { onMounted, reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { useHttp } from "@/composables/useHttp";
+import useHttp from "@/composables/useHttp";
 import UserService from "@/modules/User/services";
 import type Role from "../types/Role"
 import type User from "../types/User"
@@ -37,52 +37,52 @@ export default (userId?: string) => {
         })
         .finally(() => {
           loading.value = false;
-        });
+        })
     }
     loading.value = true
     UserService.helperTablesGet()
-    .then((response) => {
-      roles.value = response.data.roles;      
-    })
-    .catch((err) => {
-      errors.value = getError(err)
-    })
-    .finally(() => {
-      loading.value = false
-    });    
-  });
+      .then((response) => {
+        roles.value = response.data.roles
+      })
+      .catch((err) => {
+        errors.value = getError(err)
+      })
+      .finally(() => {
+        loading.value = false
+      })
+  })
 
   const insertUser = async (user: User) => {  
     sending.value = true
     return UserService.insertUser(user)
       .then((response) => {         
-        alert( response.data.message );
-        router.push( { path: '/users' } );
+        alert( response.data.message )
+        router.push( { path: '/users' } )
       })
       .catch((err) => {                
-        console.log( err.response.data );
+        console.log( err.response.data )
         errors.value = getError(err)
       })
       .finally(() => {
         sending.value = false
-      });
-  };
+      })
+  }
 
   const updateUser = async (user: User, userId: string) => {
     sending.value= true
     return UserService.updateUser(userId, user)
       .then((response) => {
-        alert( response.data.message );
-        router.push( { path: '/users' } );
+        alert( response.data.message )
+        router.push( { path: '/users' } )
       })
       .catch((err) => {                
-        console.log( err.response.data );
+        console.log( err.response.data )
         errors.value = getError(err)
       })
       .finally(() => {
         sending.value = false
-      });
-  };
+      })
+  }
   
   const submit = (user: User, userId?: string) => {  
     !userId ? insertUser (user)  : updateUser(user, userId)
@@ -95,7 +95,8 @@ export default (userId?: string) => {
     sending,
     loading,
     router,
+
     submit    
   }
 
-};
+}
