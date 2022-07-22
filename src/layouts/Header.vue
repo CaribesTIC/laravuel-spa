@@ -89,7 +89,13 @@ const store = computed(() => useAuthStore())
           @click="dropdownOpen = !dropdownOpen"
           class="relative z-10 block h-8 w-8 rounded-full overflow-hidden focus:outline-none"
         >
-          <svg
+            <img
+              v-if="store.authUser.avatar"
+              :src="store.authUser.avatar"
+              class="w-10 h-10 rounded-full"
+              alt=""
+            />
+          <svg v-else
             xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"
             aria-hidden="true" class="w-8 h-10 text-white rounded-full"
           >
