@@ -58,6 +58,17 @@ const {
           </thead>
           <tbody>
             <tr v-for="row in data.rows" :key="row.id" class="">
+              <td>
+              <div class="inline-flex items-center space-x-2">
+            <img
+              v-if="row.avatar"
+              :src="row.avatar"
+              class="w-10 h-10 rounded-full"
+              alt=""
+            />
+            
+          </div>
+              </td>
               <td class="">
                 <AppLink
                   class="text-indigo-600 hover:text-indigo-800 underline"

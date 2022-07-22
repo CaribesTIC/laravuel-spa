@@ -56,7 +56,7 @@ const updateUser = () => {
           <ProfileFileUpload
             label="Upload Avatar"
             :fileTypes="['image/*']"
-            endpoint="/users/auth/avatar"
+            endpoint="/api/users/auth/avatar"
             @fileUploaded="updateUser"
             class="p-5 bg-white border rounded shadow col-span-2"
           />
