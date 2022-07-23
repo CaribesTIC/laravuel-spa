@@ -3,6 +3,7 @@ import useIndex from "../composables/useIndex";
 import AppPaginationB from "@/components/AppPaginationB.vue";
 import AppPageHeader from "@/components/AppPageHeader.vue"
 import AppBtn from "@/components/AppBtn.vue"
+import AvatarIcon from "@/components/AvatarIcon.vue"
 
 const {
   errors,
@@ -45,6 +46,9 @@ const {
           <thead>
             <tr class="">
               <th class="">
+                Avatar
+              </th>
+              <th class="">
                 <AppLink to="#" @click.prevent="setSort('name')">Nombre</AppLink>
               </th>
               <th class="">
@@ -66,7 +70,7 @@ const {
               class="w-10 h-10 rounded-full"
               alt=""
             />
-            
+            <AvatarIcon class="w-10 h-10 text-gray-400 rounded-full" v-else />            
           </div>
               </td>
               <td class="">
