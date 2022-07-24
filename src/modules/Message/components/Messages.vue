@@ -2,7 +2,7 @@
 import { useMessageStore } from "@/modules/Message/stores"
 import AppFlashMessage from "@/components/AppFlashMessage.vue";
 import AppPaginationA from "@/components/AppPaginationA.vue";
-import AvatarIcon from "@/modules/Auth/icons/AvatarIcon.vue";
+import AvatarIcon from "@/icons/AvatarIcon.vue";
 
 const store = useMessageStore()
 //["loading", "error", "messages", "meta", "links"]

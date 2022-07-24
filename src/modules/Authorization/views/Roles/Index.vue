@@ -1,15 +1,12 @@
 <script setup lang="ts">
 import { onMounted, reactive } from "vue";
-import { onBeforeRouteUpdate, useRouter, useRoute } from 'vue-router' 
+import { onBeforeRouteUpdate } from 'vue-router' 
 import AppPaginationB from "@/components/AppPaginationB.vue";
 import AppPageHeader from "@/components/AppPageHeader.vue"
 import * as RoleService from "@/modules/Authorization/services/RoleService";
-import { useSearch } from "@/composables/useTableGrid";
+import useTableGrid from "@/composables/useTableGrid";
 import useRole from "./useRole";
 //import type User from "./User"
-
-const router = useRouter();
-const route = useRoute();
 
 const {
   deleteRole,
@@ -43,9 +40,12 @@ const load = (newParams: object) => {
 };
 
 const { 
-  setSearch,
-  setSort, //setFilter
-} = useSearch(data, load)
+    route,
+    router,
+
+    setSearch,
+    setSort,
+} = useTableGrid(data, "/roles")
 
 const getRoles = (routeQuery: string) => {
   return RoleService.getRoles(routeQuery)
