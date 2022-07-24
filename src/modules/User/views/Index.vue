@@ -3,7 +3,7 @@ import useIndex from "../composables/useIndex";
 import AppPaginationB from "@/components/AppPaginationB.vue";
 import AppPageHeader from "@/components/AppPageHeader.vue"
 import AppBtn from "@/components/AppBtn.vue"
-import AvatarIcon from "@/components/AvatarIcon.vue"
+import AvatarIcon from "@/icons/AvatarIcon.vue"
 
 const {
   errors,

@@ -3,8 +3,8 @@ import { ref, computed } from "vue";
 import { useAuthStore } from "@/modules/Auth/stores"
 import { useSidebar } from "@/composables/useSidebar"
 import Logout from "@/modules/Auth/components/Logout.vue"
-import LoginIcon from "@/modules/Auth/icons/LoginIcon.vue"
-import HomeIcon from "@/modules/Auth/icons/HomeIcon.vue"
+import LoginIcon from "@/icons/LoginIcon.vue"
+import HomeIcon from "@/icons/HomeIcon.vue"
 
 const { isOpen } = useSidebar()
 const dropdownOpen = ref(false)
