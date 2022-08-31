@@ -25,7 +25,6 @@ const routePathRoot = computed(
 
 const showChildren = ref(true)
 const toggleChildren = ()=> showChildren.value = !showChildren.value
-const urlImg = `${process.env.VUE_APP_API_URL}/menu/`
 </script>
 
 <template>
@@ -51,8 +50,8 @@ const urlImg = `${process.env.VUE_APP_API_URL}/menu/`
       <AppLink :to="{ name: menu.path }">
         <span class="flex items-center group py-0">
           <img
-            v-if="menu.icon!==''"
-            :src="urlImg + menu.icon"
+            v-if="menu.icon!==''"            
+            :src="`menu/${menu.icon}`"
             class="w-5 h-5 mr-2"/>
           {{ menu.title }}
         </span>
