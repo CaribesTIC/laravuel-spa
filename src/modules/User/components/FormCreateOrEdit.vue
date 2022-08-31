@@ -61,7 +61,7 @@ const submit = async () => {
         <span class="text-gray-700">Rol</span>
         <select v-model="form.role_id" class="p-2">
           <option value="" class="text-gray-200">Seleccione...</option>
-          <option v-for="role in roles" :value="role.id" :key="role">
+          <option v-for="role in roles" :value="role.id" :key="role.id">
             {{ role.name }}
           </option>
         </select>

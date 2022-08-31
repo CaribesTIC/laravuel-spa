@@ -2,6 +2,8 @@
 defineProps<{
   links: array
 }>()
+
+const baseUrlApi = process.env.VUE_APP_API_URL+'/api'
 </script>
 
 <template>
@@ -15,7 +17,7 @@ defineProps<{
       <RouterLink
         v-if="link.url !== null"        
         class="mr-1 mb-1 px-4 py-3 text-sm border rounded hover:bg-white focus:border-indigo-500 focus:text-indigo-500"
-        :class="{ 'bg-white': link.active, 'ml-auto': link.label === 'Next' }" :to="link.url" v-html=link.label
+        :class="{ 'bg-white': link.active, 'ml-auto': link.label === 'Next' }" :to="link.url.replace(baseUrlApi, '')" v-html=link.label
       ></RouterLink>
     </template>
   </div>
