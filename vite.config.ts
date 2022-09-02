@@ -17,8 +17,10 @@ export default defineConfig({
   },
   define: {
     'process.env': {
-      // VUE_APP_API_URL: "http://localhost:8000",
-      VUE_APP_API_URL: "http://api.laravuel.dev.com"
+      // comment this line to containerize
+      VUE_APP_API_URL: "http://localhost:8000",
+      // uncomment this line to containerize
+      //VUE_APP_API_URL: "http://api.laravuel.dev.com"
     }
   },
   test: {
