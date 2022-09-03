@@ -4,9 +4,9 @@ import AppBtn from "@/components/AppBtn.vue"
 import AppFlashMessage from "@/components/AppFlashMessage.vue"
 
 defineProps<{
-  message: String | undefined
-  error: String | undefined
-  sending: Boolean
+  message: string | undefined
+  error: string | undefined
+  sending: boolean
 }>()
 
 const emit = defineEmits(['submit'])

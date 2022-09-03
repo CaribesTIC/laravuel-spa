@@ -1,3 +1,4 @@
+// @ts-nocheck
 import router from "@/router";
 import * as AuthService from "@/modules/Auth/services";
 import { getError } from "@/utils/helpers";

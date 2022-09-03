@@ -53,7 +53,7 @@ m-110 -115 l0 -45 -45 0 -45 0 0 45 0 45 45 0 45 0 0 -45z m110 0 l0 -45 -45
           
 </template>
 
-<script>
+<script lang="ts">
 export default {
   props: {
     name: String,

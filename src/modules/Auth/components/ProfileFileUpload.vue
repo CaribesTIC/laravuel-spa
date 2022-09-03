@@ -1,10 +1,12 @@
 <script lang="ts">
+import { defineComponent } from 'vue'
 import { getError } from "@/utils/helpers";
 import FileService from "@/modules/Auth/services/FileService"
 import AppBtn from "@/components/AppBtn.vue";
 import AppFlashMessage from "@/components/AppFlashMessage.vue";
 
-export default {
+export default defineComponent({
+
   name: "FileUpload",
   props: {
     fileTypes: {
@@ -44,7 +46,9 @@ export default {
       const payload = {};
       const formData = new FormData();
       formData.append("file", this.file);
+      // @ts-ignore
       payload.file = formData;
+      // @ts-ignore
       payload.endpoint = this.endpoint;
       this.clearMessage();
       FileService.uploadFile(payload)
@@ -55,7 +59,7 @@ export default {
         .catch((error) => (this.error = getError(error)));
     },
   },
-};
+});
 </script>
 
 <template>
@@ -64,7 +68,7 @@ export default {
       <label for="file" class="sr-only">
         {{ label }}
       </label>
-      <input type="file" :accept="fileTypes" @change="fileChange" id="file" />
+      <input type="file" :accept="fileTypes.toString()" @change="fileChange" id="file" />
     </div>
     <AppBtn text="Upload" />
     <AppFlashMessage :message="message" :error="error" />

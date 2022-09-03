@@ -30,7 +30,9 @@
 </template>
 
 <script lang="ts">
-export default {
+import { defineComponent } from 'vue'
+
+export default defineComponent({
   name: "FlashMessage",
   props: {
     message: {
@@ -61,5 +63,5 @@ export default {
       return value.replace("_", " ");
     },
   }
-};
+});
 </script>

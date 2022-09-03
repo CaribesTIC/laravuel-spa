@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 // imports
 import { useAuthUserStore } from "@/modules/ShopCart/stores/AuthUserStore";
 import { mapState, mapActions } from "pinia";

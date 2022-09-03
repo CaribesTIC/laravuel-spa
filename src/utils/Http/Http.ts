@@ -1,5 +1,5 @@
 import type { GenericObject } from "@/utils/Types"
-import { AxiosResponse } from "axios";
+import type { AxiosResponse } from "axios";
 
 export interface Init {  
   baseURL?: string;

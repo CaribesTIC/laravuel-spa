@@ -3,9 +3,9 @@ import { getError } from "@/utils/helpers"
 import * as AuthService from "@/modules/Auth/services"
 
 export function useProfileUpdatePassword() {
-  const error = ref<String>()
-  const message = ref<String>()
-  const sending = ref<Boolean>()
+  const error = ref<string>()
+  const message = ref<string>()
+  const sending = ref<boolean>()
 
   const updatePassword = (payload: { 
     current_password: string,

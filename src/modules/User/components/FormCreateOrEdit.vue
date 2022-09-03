@@ -3,13 +3,13 @@ import { reactive } from "vue"
 import AppBtn from "@/components/AppBtn.vue";
 import type User from "../types/User"
 import type Role from "../types/Role"
-import type Errors from "../types/Errors"
+// import type Errors from "../types/Errors"
 
 const props = defineProps<{
   id?: string
   user: User  
   sending: boolean
-  errors: Errors
+  errors: any
   roles: Role[]
 }>()
 
@@ -36,7 +36,7 @@ const submit = async () => {
       <label class="block">
         <span class="text-gray-700">Nombre</span>
         <input v-model="form.name" type="text" class="" />
-        <div v-if="errors.name" class="form-error">
+        <div v-if="errors && errors.name" class="form-error">
           {{ errors.name[0] }}
         </div>
       </label>

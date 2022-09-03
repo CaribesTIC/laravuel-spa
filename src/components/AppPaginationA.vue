@@ -4,11 +4,11 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 
 const props = defineProps<{
-  store: Object
-  action: String
+  store: any
+  action: string
   path: string
-  meta: Object
-  links: Object
+  meta: any
+  links: any
 }>()
 
 const isPropsPath = (page: number) => {

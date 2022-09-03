@@ -1,6 +1,6 @@
 import { useAuthStore } from '@/modules/Auth/stores'
 import type { Init } from "./Http"
-import { AxiosError } from "axios";
+import type { AxiosError } from "axios";
 
 export default<Init> {
   baseURL: process.env.VUE_APP_API_URL,  

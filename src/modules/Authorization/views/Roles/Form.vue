@@ -1,16 +1,17 @@
 <script setup lang="ts">
 import { ref, reactive, shallowRef } from "vue"
 import AppBtn from "@/components/AppBtn.vue";
-import type Role from "./Role"
-import type Errors from "./Errors"
+import type Role from "../../types/Role"
+import type { Error } from "@/types/Error"
+import type { Menu } from "@/types/Menu"
 
 const props = defineProps<{
   id?: string
-  role: object  
+  role: Role  
   sending: boolean
   loading: boolean
-  errors: Errors
-  menus: []
+  errors: Error | undefined
+  menus: Menu[]
 }>()
 
 const emit = defineEmits<{
@@ -23,17 +24,12 @@ const allSelected = ref(false)
 const selected = ref([])
 
 const submit = async () => {
-  /*emit('submit', {
-    name: form.name,
-    description: form.description,
-    menu_ids: form.menu_ids,
-  }, props.id)*/
   emit('submit', form, props.id)  
 }
 
 const selectAll = () => {
   if (!allSelected.value) {        
-    let temp = [];
+    let temp:number[] = [];
     props.menus.forEach(menu => {
       if (menu.path !== '#')
         temp.push(menu.id);
@@ -54,7 +50,7 @@ const selectAll = () => {
       <label class="block">
         <span class="text-gray-700">Nombre del rol</span>
         <input v-model="form.name" type="text" class="" />
-        <div v-if="errors.name" class="form-error">
+        <div v-if="errors && errors.name" class="form-error">
           {{ errors.name }}
         </div>
       </label>          
@@ -62,7 +58,7 @@ const selectAll = () => {
       <label class="block">
         <span class="text-gray-700">Descripción del rol</span>
         <input v-model="form.description" type="text" class="" />
-        <div v-if="errors.description" class="form-error">
+        <div v-if="errors && errors.description" class="form-error">
           {{ errors.description }}
         </div>
       </label>
@@ -89,7 +85,7 @@ const selectAll = () => {
 	          </td> 
             <td>              
               <div v-if="menu.path !== '#'" class="flex items-center space-x-1">                                
-                <input type="checkbox" v-model="form.menu_ids" @click="select" :value="menu.id">
+                <input type="checkbox" v-model="form.menu_ids" :value="menu.id">
               </div>
             </td>               
           </tr>                

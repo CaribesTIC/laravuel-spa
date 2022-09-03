@@ -1,3 +1,4 @@
+// @ts-nocheck
 export default [{
            "id":1,
           "title":"Dashboard",

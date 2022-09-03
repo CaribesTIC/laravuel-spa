@@ -1,7 +1,8 @@
-import axios, { AxiosInstance, AxiosResponse, AxiosError } from "axios";
-import init from "./init";
-import type { Init } from "./Http";
+import axios from "axios";
+import type { AxiosInstance, AxiosResponse, AxiosError } from "axios";
 import type { Paiload } from "@/utils/Types"
+import type { Init } from "./Http";
+import init from "./init";
 
 export class Http {
   private service:AxiosInstance;

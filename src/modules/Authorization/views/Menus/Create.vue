@@ -1,7 +1,8 @@
 <script lang="ts">
+import { defineComponent } from 'vue'
 import * as MenuService from "@/modules/Authorization/services/MenuService"
 //import AppLoadingButton from '@/components/AppLoadingButton.vue'
-export default {
+export default defineComponent({
   components: {    
     //AppLoadingButton,
   }, 
@@ -66,10 +67,10 @@ export default {
       this.selTexs = [];
       this.stepFrontward(0);
     },
-    submit() {
+    async submit(){
       //console.log(this.form)
       //sending.value= true        
-      return MenuService.insertMenu(this.form)
+      return await MenuService.insertMenu(this.form)
         .then((response) => {
           alert( response.data.message );
           //this.$router.push( { path: '/menus' } );
@@ -77,31 +78,13 @@ export default {
         })
         .catch((err) => {                
           console.log( err.response.data );
-          errors.value = getError(err)
+          //errors.value = getError(err)
         })
-        .finally(() => {
-          //sending.value = false
-        });
+        //.finally(() => {
+        //  //sending.value = false
+        //});
     },
-    /*submit() {
-      if (this.isDisabled === false) {
-        this.isDisabled = true;
-        this.form._method = 'POST';           
-        this.$inertia.post(this.route('menus.store'), this.form, {         
-          onStart: () => this.sending = true,
-          onFinish: () => {
-            //this.sending = false;
-            //this.isDisabled = false;
-          },
-          onSuccess: () => {
-            if (Object.keys(this.$page.props.errors).length === 0) {
-              //this.isDisabled = false;
-              this.$emit('closeModal0');
-            }
-          },
-        })
-      }
-    }, 
+    /*
     createMenu: function () {
       let url = `${process.env.MIX_APP_URL}menu/store`;
       axios.post(url, {
@@ -121,7 +104,7 @@ export default {
       });
     }*/
   }
-}
+})
 </script>
 
 <template>
@@ -164,7 +147,7 @@ export default {
                         title="Retroceder todos los pasos"
                         class="glyphicon glyphicon-fast-backward"
                         style="cursor:pointer"
-                        @click="fastBackward()">&lt;&lt;</span>
+                        @click="fastBackward">&lt;&lt;</span>
                       <span v-else >&nbsp;</span>
                     </td>
                   </tr>

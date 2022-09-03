@@ -1,4 +1,5 @@
 import { getError } from "@/utils/helpers";
+// @ts-ignore
 import MessageService from "@/services/MessageService";
 
 export const namespaced = true;

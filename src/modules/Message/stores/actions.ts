@@ -1,3 +1,4 @@
+// @ts-nocheck
 import MessageService from "@/modules/Message/services";
 
 export default {

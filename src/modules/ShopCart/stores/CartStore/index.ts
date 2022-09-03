@@ -4,6 +4,7 @@ import getters from "./getters"
 import actions from "./actions"
 
 export const useCartStore = defineStore("CartStore", {
+  // @ts-ignore
   historyEnabled: true,
   state,
   getters,

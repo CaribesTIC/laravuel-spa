@@ -17,13 +17,13 @@
       :placeholder="placeholder"
       :autocomplete="autocomplete"
       :value="modelValue"
-      @input="$emit('update:modelValue', $event.target.value)"      
+      @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)"
       ref="input"
     />
   </label>
 </template>
 
-<script>
+<script lang="ts">
 export default {
   //https://vuejs.org/guide/components/attrs.html#disabling-attribute-inheritance
   name: 'BaseInput',

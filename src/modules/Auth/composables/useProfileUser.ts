@@ -4,9 +4,9 @@ import * as AuthService from "../services"
 import { useAuthStore } from "../stores"
 
 export function useProfileUser() {  
-  const error = ref<String>()
-  const message = ref<String>()  
-  const sending = ref<Boolean>()
+  const error = ref<string>()
+  const message = ref<string>()  
+  const sending = ref<boolean>()
 
   const updateUser = (payload: { name: string, email: string }) => {
     error.value = ''

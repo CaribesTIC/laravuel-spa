@@ -1,10 +1,13 @@
 <script lang="ts">
+// @ts-nocheck
+import { defineComponent } from 'vue'
 import * as MenuService from "@/modules/Authorization/services/MenuService"
 import AppPaginationB from "@/components/AppPaginationB.vue";
 import AppPageHeader from "@/components/AppPageHeader.vue"
 import Create from './Create.vue'
 import Edit from './Edit.vue'
-export default {
+
+export default defineComponent({  
   metaInfo: { title: 'Menus' },
   components: {    
     AppPaginationB,
@@ -17,14 +20,14 @@ export default {
       // editMode: false,
       isOpenCreate: false,
       isOpen: false,
-      menu:{},
+      menu: {},
       menus: {},
       //links: {},
     }
   },
   async mounted (){
     const response = await MenuService.getMenus();
-    this.menus = response.data
+    this.menus = response.data.data
     //this.links.links = response.data.rows.links;
     //this.links.search = response.data.search;
     //this.links.sort = response.data.sort;
@@ -47,9 +50,6 @@ export default {
       //this.reset();
       //this.editMode=false;
     },
-    closeModalCreate: function () {
-      this.isOpenCreate = false;
-    },
     edit: function (data) {      
       //this.editMode = true;
       this.menu=data;
@@ -63,7 +63,7 @@ export default {
       }
     }
   }
-}
+})
 </script>
 
 <template>
@@ -92,7 +92,7 @@ export default {
             </tr>
           </thead>
         <tbody>              
-          <tr v-for="menu in menus.data" :key="menu.id" class="hover:bg-gray-100 focus-within:bg-gray-100">               
+          <tr v-for="menu in menus" :key="menu.id" class="hover:bg-gray-100 focus-within:bg-gray-100">               
             <td class="">{{ menu.alias }}</td>                                
             <td class="">{{ menu.path }}</td>
             <td class="">{{ menu.icon }}</td>  

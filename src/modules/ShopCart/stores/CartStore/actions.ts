@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useAuthUserStore } from "@/modules/ShopCart/stores/AuthUserStore";
 import type Product from "@/modules/ShopCart/types/Product";
 

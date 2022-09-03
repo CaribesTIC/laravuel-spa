@@ -1,7 +1,8 @@
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue'
 import * as MenuService from "@/modules/Authorization/services/MenuService"
 //import AppLoadingButton from '@/components/AppLoadingButton.vue'
-export default {
+export default defineComponent({
   components: {    
     //AppLoadingButton,
   },
@@ -13,7 +14,8 @@ export default {
         title: this.menu.title,
         path: this.menu.path,
         icon: this.menu.icon,
-        sort: this.menu.sort
+        sort: this.menu.sort,
+        _method: 'PUT'
       }
     }
   },
@@ -42,17 +44,17 @@ export default {
           })
           .catch((err) => {                
             console.log( err.response.data );
-            errors.value = getError(err)
+            //errors.value = getError(err)
           })
-          .finally(() => {
+          //.finally(() => {
             //sending.value = false
-          });
+          //});
       },     
       closeModal111: function () {
         this.$emit('closeModal1');        
       }
   }
-}
+})
 </script>
 
 <template>

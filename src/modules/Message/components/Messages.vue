@@ -44,7 +44,7 @@ store.getMessages(currentPage);
       </ul>
     </transition>
     <transition name="fade">
-      <AppFlashMessage :error="error" v-if="store.error" key="error" />
+      <AppFlashMessage :error="store.error" v-if="store.error" key="store.error" />
     </transition>
     <transition name="fade">    
       <AppPaginationA

@@ -1,4 +1,5 @@
-import {createRouter, createWebHistory, RouteRecordRaw} from 'vue-router'
+import {createRouter, createWebHistory} from 'vue-router'
+import type {RouteRecordRaw} from 'vue-router'
 import { computed } from "vue"
 import { useAuthStore } from '@/modules/Auth/stores'
 import middlewarePipeline from "@/router/middlewarePipeline"

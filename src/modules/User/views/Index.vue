@@ -1,4 +1,5 @@
 <script setup lang="ts">
+// @ts-nocheck
 import useIndex from "../composables/useIndex";
 import AppPaginationB from "@/components/AppPaginationB.vue";
 import AppPageHeader from "@/components/AppPageHeader.vue"

@@ -329,7 +329,8 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+// @ts-nocheck
 import { defineComponent } from "vue";
 
 import { useTableData } from "../composables/useTableData";

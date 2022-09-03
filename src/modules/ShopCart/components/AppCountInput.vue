@@ -1,14 +1,16 @@
 <script setup lang="ts">
 defineProps({
-  modelValue: { type: [Number, String], default: 0 },
+  modelValue: { type: Number, default: 0 },
 });
 
 const emit = defineEmits(["update:modelValue", "input"]);
-const updateValue = (value) => {
+const updateValue = (value: number | string) => {
   if (value !== "") {
     emit("update:modelValue", value);
   }
 };
+
+
 </script>
 <template>
   <span class="inline-flex">
@@ -22,7 +24,7 @@ const updateValue = (value) => {
       :value="modelValue"
       type="number"
       min="0"
-      @input="updateValue($event.target.value)"
+      @input="updateValue(($event.target as HTMLInputElement).value)"
     />
     <button
       class="bg-gray-200 px-2 rounded-r cursor-pointer"
