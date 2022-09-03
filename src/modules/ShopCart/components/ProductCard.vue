@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 // imports
 import { ref } from "vue";
 import AppCountInput from "./AppCountInput.vue";

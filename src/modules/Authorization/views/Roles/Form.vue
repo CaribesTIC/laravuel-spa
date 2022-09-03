@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref, reactive, shallowRef } from "vue"
 import AppBtn from "@/components/AppBtn.vue";
-import type Role from "./Role"
-import type Errors from "./Errors"
+import type Role from "../../types/Role"
+import type Errors from "../../types/Errors"
 
 const props = defineProps<{
   id?: string

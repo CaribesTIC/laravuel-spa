@@ -1,6 +1,7 @@
 <script setup lang="ts">
+// @ts-nocheck
 defineProps<{
-  links: array
+  links: []
 }>()
 
 const baseUrlApi = process.env.VUE_APP_API_URL+'/api'

@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 import * as MenuService from "@/modules/Authorization/services/MenuService"
 //import AppLoadingButton from '@/components/AppLoadingButton.vue'
 export default {

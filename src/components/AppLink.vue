@@ -7,12 +7,13 @@ export default {
   inheritAttrs: false,
 
   props: {
-    // add @ts-ignore if using TypeScript
+    // @ts-ignore if it shows check error
     ...RouterLink.props,
     inactiveClass: String,
   },
   computed: {
     isExternalLink():boolean {
+      // @ts-ignore if it shows check error
       return typeof this.to === 'string' && this.to.startsWith('http')
     },
   }

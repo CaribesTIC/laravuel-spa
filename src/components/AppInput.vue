@@ -23,7 +23,7 @@
   </label>
 </template>
 
-<script>
+<script lang="ts">
 export default {
   //https://vuejs.org/guide/components/attrs.html#disabling-attribute-inheritance
   name: 'BaseInput',
