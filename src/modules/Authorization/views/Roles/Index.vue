@@ -1,4 +1,5 @@
 <script setup lang="ts">
+// @ts-nocheck
 import { onMounted, reactive } from "vue";
 import { onBeforeRouteUpdate } from 'vue-router' 
 import AppPaginationB from "@/components/AppPaginationB.vue";
@@ -62,12 +63,14 @@ const getRoles = (routeQuery: string) => {
 };
     
 onBeforeRouteUpdate(async (to, from) => {      
-  if (to.query !== from.query) {        
+  if (to.query !== from.query) {     
+    // @ts-ignore   
     await getRoles(new URLSearchParams(to.query).toString());        
   }
 });
 
 onMounted(() => {
+  // @ts-ignore
   getRoles(new URLSearchParams(route.query).toString());  
 });
 

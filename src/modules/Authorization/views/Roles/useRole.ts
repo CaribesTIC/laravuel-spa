@@ -3,16 +3,18 @@ import { useRouter } from 'vue-router'
 import { getError } from "@/utils/helpers";
 import * as MenuService from "@/modules/Authorization/services/MenuService";
 import * as RoleService from "@/modules/Authorization/services/RoleService";
+import type { Error } from "@/types/Error"
+import type Role from "../../types/Role"
 
 export default (roleId?: string) => {
   const router = useRouter();
       
   const sending = ref(false);
   const loading = ref(false);
-  const errors = ref({})
+  const errors = ref<Error | undefined>()
 
   const menus = ref([])
-  const role = reactive({
+  const role = reactive<Role>({
     name:'',
     description: '',
     menu_ids: []
@@ -35,7 +37,7 @@ export default (roleId?: string) => {
 
   const insertRole = async (role: Role) => {     
     sending.value = true
-    return RoleService.insertRole(role)
+    return await RoleService.insertRole(role)
       .then((response) => {         
         alert( response.data.message );
         router.push( { path: '/roles' } );
@@ -52,7 +54,7 @@ export default (roleId?: string) => {
   const updateRole = async (role: Role, roleId: string) => {
     sending.value= true
     role._method = 'PUT';
-    return RoleService.updateRole(roleId, role)
+    return await RoleService.updateRole(roleId, role)
       .then((response) => {
         alert( response.data.message );
         router.push( { path: '/roles' } );
@@ -70,10 +72,10 @@ export default (roleId?: string) => {
     !roleId ? insertRole (role)  : updateRole(role, roleId)
   }
   
-  const deleteRole = (roleId?: string) => {
+  const deleteRole = async (roleId?: string) => {
     if (roleId === undefined) return;
     sending.value= true
-    return RoleService.deleteRole(roleId)
+    return await RoleService.deleteRole(roleId)
       .then((response) => {
         router.push( { path: '/roles' } );
       })

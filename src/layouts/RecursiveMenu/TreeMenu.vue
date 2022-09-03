@@ -1,20 +1,11 @@
 <script setup lang="ts">
 import { ref, computed } from "vue"
 import { useRoute } from 'vue-router'
-
-interface Menu {
-  id: number;
-  title: string;
-  menu_id: number;
-  path: string;
-  sort: number;
-  icon: string;
-  children_menus?: Menu[];
-}
+import type { Menu } from "@/types/Menu"
 
 const props = defineProps<{
   menu: Menu
-  depth: numeric
+  depth: number
 }>()
 
 const route = useRoute();

@@ -1,4 +1,7 @@
 export default interface Role {    
-  id: number;
+  id?: number;
   name: string;
+  description: string;
+  menu_ids: number[];
+  _method?: "POST" | "PUT";
 }

@@ -1,4 +1,4 @@
-import { Ref, UnwrapRef } from 'vue'
+import type { Ref, UnwrapRef } from 'vue'
 
 export interface FormLogin {
     email: string
