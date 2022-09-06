@@ -6,9 +6,9 @@ import AppInput from '@/components/AppInput.vue'
 import AppFlashMessage from "@/components/AppFlashMessage.vue"
  
 defineProps<{
-  message: string | undefined
-  error: string | undefined
-  sending: boolean
+  message?: string
+  error?: string
+  sending?: boolean
 }>()
    
 const emit = defineEmits(['submit'])
