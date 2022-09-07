@@ -39,8 +39,10 @@ describe('RecursiveMenu', ()=> {
       }
     })
 
-    await flushPromises()    
+    await flushPromises()
+
     expect(wrapper.html()).toEqual(nav)
+    expect(true).toBe(true)
   })
 
 })
