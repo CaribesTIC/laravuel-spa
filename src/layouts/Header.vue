@@ -5,6 +5,7 @@ import { useSidebar } from "@/composables/useSidebar"
 import Logout from "@/modules/Auth/components/Logout.vue"
 import LoginIcon from "@/icons/LoginIcon.vue"
 import HomeIcon from "@/icons/HomeIcon.vue"
+//import IconLogo from "@/icons/IconLogo.vue"
 
 const { isOpen } = useSidebar()
 const dropdownOpen = ref(false)
@@ -37,6 +38,10 @@ const store = computed(() => useAuthStore())
       <div v-if="store.authUser" class="flex items-center space-x-5 ml-3">
         <AppLink to="/dashboard">
           <HomeIcon class="w-6 h-6 text-white" />
+          <!--IconLogo
+            class= "flex justify-center pt-4 sm:justify-start sm:pt-0 h-12 w-12 bg-transparent"
+            fill="#ffffff"
+          /-->
           <span class="sr-only">Dashboard</span>
         </AppLink>        
       </div>
