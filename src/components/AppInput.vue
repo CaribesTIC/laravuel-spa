@@ -1,87 +1,39 @@
-<template>
-  <label
-    :for="name"
-  >
-    <span
-      class="text-sm text-gray-800"
-      :class="{ 'sr-only': !showLabel }"
-      v-if="label"
-      >
-        {{ label }}
-      </span>
-    <input
-      :id="name"
-      :name="name"
-      :type="type"
-      :required="required"
-      :placeholder="placeholder"
-      :autocomplete="autocomplete"
-      :value="modelValue"
-      @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)"
-      ref="input"
-    />
-  </label>
-</template>
+<script setup lang="ts">
+import useUniqueId from '@/composables/useUniqueId'
 
-<script lang="ts">
-export default {
-  //https://vuejs.org/guide/components/attrs.html#disabling-attribute-inheritance
-  name: 'BaseInput',
-  inheritAttrs: true,
-  emits: ['update:modelValue'],
-  props: {
-    name: {
-      type: String,
-      required: true,
-    },
-    label: {
-      type: String,
-      default: "",
-    },
-    modelValue: {
-      type: [String, Number],
-    },
-    type: {
-      type: String,
-      default: "text",
-    },
-    showLabel: {
-      type: Boolean,
-      default: true,
-    },
-    required: {
-      type: Boolean,
-      default: false,
-    },
-    placeholder: {
-      type: String,
-      default: null,
-    },
-    autocomplete: {
-      type: String,
-      default: null,
-    }
-  }
-}
+withDefaults(defineProps<{
+  label?: string
+  modelValue?: string | number
+  error?: string
+}>(), {
+  label: '',
+  modelValue: '',
+  error: ''
+})
+
+const uuid = useUniqueId().getID()
 </script>
 
+<template>
+  <label :for="uuid" v-if="label">{{ label }}</label>
+  <input
+    v-bind="$attrs"
+    :value="modelValue"
+    :placeholder="label"
+    @input="$emit(
+      'update:modelValue',
+      ($event.target as HTMLInputElement).value
+    )"
+    class="field"
+    :id="uuid"
+    :aria-describedby="error ? `${uuid}-error` : undefined"
+    :aria-invalid="error ? true : undefined"
+  >
+  <AppErrorMessage
+    v-if="error"
+    :id="`${uuid}-error`"
+  >
+    {{ error }}
+  </AppErrorMessage>
+</template>
 
-<style scoped>
-  input {
-    @apply
-      block
-      w-full
-      px-3
-      py-2
-      mb-3
-      placeholder-gray-400
-      border
-      border-gray-300
-      rounded-md
-      shadow-sm
-      appearance-none
-      focus:outline-none
-      focus:ring-blue-500
-      focus:border-blue-500;
-  }
-</style>

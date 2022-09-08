@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { ref, onMounted } from "vue"
 import { useAuthStore } from "@/modules/Auth/stores"
-import AppBtn from "@/components/AppBtn.vue"
-import AppInput from '@/components/AppInput.vue'
-import AppFlashMessage from "@/components/AppFlashMessage.vue"
+//import AppBtn from "@/components/AppBtn.vue"
+//import AppInput from '@/components/AppInput.vue'
+//import AppFlashMessage from "@/components/AppFlashMessage.vue"
  
 defineProps<{
   message?: string
