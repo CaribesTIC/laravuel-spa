@@ -1,8 +1,5 @@
 <script setup lang="ts">
   import { ref } from "vue"  
-  import AppBtn from "@/components/AppBtn.vue"
-  import AppInput from '@/components/AppInput.vue'
-  import AppFlashMessage from "@/components/AppFlashMessage.vue"
   
   defineProps({
     error: [Object, String],

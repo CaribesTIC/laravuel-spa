@@ -1,15 +1,25 @@
 import { mount } from '@vue/test-utils'
 import FormRegister from '@/modules/Auth/components/FormRegister.vue'
+import { AppBtn, AppInput, AppErrorMessage, AppFlashMessage } from '../../../globalComponents'
 
 describe('ModuleAuthComponentFormRegister.vue', () => {
 
   it('sets the value and emits the input to its parent', async () => {
-    const wrapper = mount(FormRegister)
+    const wrapper = mount(FormRegister, {
+      global: {
+        components: {
+          AppBtn,
+          AppInput,
+          AppErrorMessage,
+          AppFlashMessage
+        }
+      }
+    })
 
-    const inputName = wrapper.find('[data-testid="name-input"] input')
-    const inputEmail = wrapper.find('[data-testid="email-input"] input')
-    const inputPassword = wrapper.find('[data-testid="password-input"] input')
-    const inputConfirmPassword = wrapper.find('[data-testid="confirm-password-input"] input')
+    const inputName = wrapper.find('[data-testid="name-input"]')
+    const inputEmail = wrapper.find('[data-testid="email-input"]')
+    const inputPassword = wrapper.find('[data-testid="password-input"]')
+    const inputConfirmPassword = wrapper.find('[data-testid="confirm-password-input"]')
     
     await inputName.setValue('John Doe')
     await inputEmail.setValue('user@email.ext')

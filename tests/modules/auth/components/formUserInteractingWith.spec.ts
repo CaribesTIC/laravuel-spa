@@ -3,6 +3,7 @@ import { mount } from '@vue/test-utils'
 import { nextTick } from 'vue'
 import { createTestingPinia } from '@pinia/testing'
 import FormUser from '@/modules/Auth/components/FormUser.vue'
+import { AppBtn, AppInput, AppErrorMessage, AppFlashMessage } from '../../../globalComponents'
 
 const factory = () => {
   return mount(FormUser, {
@@ -12,6 +13,12 @@ const factory = () => {
       sending: true
     },
     global: {
+      components: {
+        AppBtn,
+        AppInput,
+        AppErrorMessage,
+        AppFlashMessage
+      },
       plugins: [createTestingPinia({
         initialState: {
           auth: {
@@ -22,6 +29,7 @@ const factory = () => {
           }, 
         }
       })]
+      
     }
   })
 }
@@ -33,8 +41,8 @@ describe('Profile AuthUserForm/Form Component',  () => {
     expect(wrapper.vm.name).toBe("John Doe")
     expect(wrapper.vm.email).toBe("user@email.ext")
     
-    const inputName = wrapper.get('[data-testid="name-input"] input')
-    const inputEmail = wrapper.get('[data-testid="email-input"] input')
+    const inputName = wrapper.get('[data-testid="name-input"]')
+    const inputEmail = wrapper.get('[data-testid="email-input"]')
 
     await nextTick()
 
