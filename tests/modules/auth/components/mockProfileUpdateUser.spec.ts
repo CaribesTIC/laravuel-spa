@@ -4,7 +4,7 @@ import { createTestingPinia } from '@pinia/testing'
 import ProfileUser from '@/modules/Auth/components/ProfileUser.vue'
 import { updateUser } from "@/modules/Auth/services"
 import * as Mock from "../../../apiMock/AuthService"
-import { AppBtn, AppInput, AppErrorMessage, AppFlashMessage } from '../../../globalComponents'
+import { AppBtn, AppInput, AppErrorMessage, AppFlashMessage, AppSelect } from '../../../globalComponents'
 
 const payload = {
   name: "John Doe",
@@ -19,7 +19,8 @@ describe('ModuleauthComponentProfileUser.vue',  async () => {
           AppBtn,
           AppInput,
           AppErrorMessage,
-          AppFlashMessage
+          AppFlashMessage,
+          AppSelect
         },
         plugins: [createTestingPinia({
           initialState: {

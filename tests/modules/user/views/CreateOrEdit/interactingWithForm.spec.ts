@@ -1,10 +1,20 @@
 import { describe, it, vi, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
 import FormCreateOrEdit from '@/modules/User/components/FormCreateOrEdit.vue'
+import { AppBtn, AppInput, AppErrorMessage, AppFlashMessage, AppSelect } from '../../../../globalComponents'
 
 describe('UserForm Component',  () => {
   it('emits the input to its parent', async () => {
     const wrapper = mount(FormCreateOrEdit, {
+        global: {
+        components: {
+          AppBtn,
+          AppInput,
+          AppErrorMessage,
+          AppFlashMessage,
+          AppSelect
+        }
+      },
       props: {
         id: "1",
         user: {

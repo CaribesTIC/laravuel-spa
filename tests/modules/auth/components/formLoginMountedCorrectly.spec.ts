@@ -1,6 +1,6 @@
 import { shallowMount } from '@vue/test-utils'
 import FormLogin from '@/modules/Auth/components/FormLogin.vue'
-import { AppBtn, AppInput, AppErrorMessage, AppFlashMessage } from '../../../globalComponents'
+import { AppBtn, AppInput, AppErrorMessage, AppFlashMessage, AppSelect } from '../../../globalComponents'
 
 const FlashMessage = {}
 
@@ -12,7 +12,8 @@ test('component must be mounted correctly', async () => {
         AppBtn,
         AppInput,
         AppErrorMessage,
-        AppFlashMessage
+        AppFlashMessage,
+        AppSelect
       },
       stubs: { FlashMessage: true }
     }    

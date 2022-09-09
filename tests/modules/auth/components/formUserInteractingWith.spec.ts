@@ -3,7 +3,7 @@ import { mount } from '@vue/test-utils'
 import { nextTick } from 'vue'
 import { createTestingPinia } from '@pinia/testing'
 import FormUser from '@/modules/Auth/components/FormUser.vue'
-import { AppBtn, AppInput, AppErrorMessage, AppFlashMessage } from '../../../globalComponents'
+import { AppBtn, AppInput, AppErrorMessage, AppFlashMessage, AppSelect } from '../../../globalComponents'
 
 const factory = () => {
   return mount(FormUser, {
@@ -17,7 +17,8 @@ const factory = () => {
         AppBtn,
         AppInput,
         AppErrorMessage,
-        AppFlashMessage
+        AppFlashMessage,
+        AppSelect
       },
       plugins: [createTestingPinia({
         initialState: {

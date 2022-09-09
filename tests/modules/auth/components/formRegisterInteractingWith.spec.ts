@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
 import FormRegister from '@/modules/Auth/components/FormRegister.vue'
-import { AppBtn, AppInput, AppErrorMessage, AppFlashMessage } from '../../../globalComponents'
+import { AppBtn, AppInput, AppErrorMessage, AppFlashMessage, AppSelect } from '../../../globalComponents'
 
 describe('ModuleAuthComponentFormRegister.vue', () => {
 
@@ -11,7 +11,8 @@ describe('ModuleAuthComponentFormRegister.vue', () => {
           AppBtn,
           AppInput,
           AppErrorMessage,
-          AppFlashMessage
+          AppFlashMessage,
+          AppSelect
         }
       }
     })
