@@ -2,7 +2,7 @@ import { describe, it, vi, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
 import { createTestingPinia } from '@pinia/testing'
 import ProfileUser from '@/modules/Auth/components/ProfileUser.vue'
-import { AppBtn, AppInput, AppErrorMessage, AppFlashMessage } from '../../../globalComponents'
+import { AppBtn, AppInput, AppErrorMessage, AppFlashMessage, AppSelect } from '../../../globalComponents'
 
 const payload = {
   name: "John Doe",
@@ -17,7 +17,8 @@ describe('ModuleAuthComponentProfileUser.vue',  () => {
           AppBtn,
           AppInput,
           AppErrorMessage,
-          AppFlashMessage
+          AppFlashMessage,
+          AppSelect
         },
         plugins: [createTestingPinia({
           initialState: {

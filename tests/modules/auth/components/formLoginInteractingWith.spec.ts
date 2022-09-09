@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
 import FormLogin from '@/modules/Auth/components/FormLogin.vue'
-import { AppBtn, AppInput, AppErrorMessage, AppFlashMessage } from '../../../globalComponents'
+import { AppBtn, AppInput, AppErrorMessage, AppFlashMessage, AppSelect } from '../../../globalComponents'
 
 const factory = () => {
   return mount(FormLogin, {
@@ -9,7 +9,8 @@ const factory = () => {
         AppBtn,
         AppInput,
         AppErrorMessage,
-        AppFlashMessage
+        AppFlashMessage,
+        AppSelect
       }
     }
   })
