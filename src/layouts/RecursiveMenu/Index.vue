@@ -21,7 +21,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div v-if="loading" class="text-white p-5">
+  <div v-if="loading" class="p-5">
     Loading...
   </div>
   <nav v-else class="py-6 px-6">     

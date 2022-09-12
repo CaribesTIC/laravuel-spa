@@ -6,18 +6,28 @@ import Logout from "@/modules/Auth/components/Logout.vue"
 import LoginIcon from "@/icons/LoginIcon.vue"
 import HomeIcon from "@/icons/HomeIcon.vue"
 //import IconLogo from "@/icons/IconLogo.vue"
+import { useDark, useToggle } from '@vueuse/core'
 
 const { isOpen } = useSidebar()
 const dropdownOpen = ref(false)
 const store = computed(() => useAuthStore())
+
+const isDark = useDark({
+  selector: 'body',
+  attribute: 'data-theme',
+  valueDark: 'dark',
+  valueLight: 'winter'
+})
+
+const toggleDark = useToggle(isDark)
 </script>
 
 <template>
-  <header class="flex justify-between items-center p-5 bg-gray-700 border-b-2 border-red-700">
+  <header class="flex justify-between items-center p-5 bg-base-300 border-b-2 border-red-700">  
     <div class="flex items-center">
       <button
         @click="isOpen = true"
-        class="text-white focus:outline-none lg:hidden"
+        class="focus:outline-none lg:hidden"
       >
         <svg
           class="h-6 w-6"
@@ -37,7 +47,7 @@ const store = computed(() => useAuthStore())
 
       <div v-if="store.authUser" class="flex items-center space-x-5 ml-3">
         <AppLink to="/dashboard">
-          <HomeIcon class="w-6 h-6 text-white" />
+          <HomeIcon class="w-6 h-6" />
           <!--IconLogo
             class= "flex justify-center pt-4 sm:justify-start sm:pt-0 h-12 w-12 bg-transparent"
             fill="#ffffff"
@@ -47,7 +57,7 @@ const store = computed(() => useAuthStore())
       </div>
       
       <AppLink to="/" v-else>
-        <HomeIcon class="w-6 h-6 text-white" />
+        <HomeIcon class="w-6 h-6" />
       </AppLink>
 
       <div class="relative mr-4 lg:mx-0">
@@ -72,7 +82,7 @@ const store = computed(() => useAuthStore())
     </div>
 
     <div class="flex items-center">
-      <button class="flex mx-4 text-white focus:outline-none">
+      <button class="flex mx-4 focus:outline-none">
         <svg
           class="h-6 w-6"
           viewBox="0 0 24 24"
@@ -102,7 +112,7 @@ const store = computed(() => useAuthStore())
             />
           <svg v-else
             xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"
-            aria-hidden="true" class="w-8 h-10 text-white rounded-full"
+            aria-hidden="true" class="w-8 h-10 rounded-full"
           >
             <path
               d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z">
@@ -113,23 +123,33 @@ const store = computed(() => useAuthStore())
         <div
           v-show="dropdownOpen"
           @click="dropdownOpen = false"
-          class="absolute right-0 mt-2 py-2 w-48 bg-gray-600 rounded-md shadow-xl z-20"
+          class="absolute right-0 mt-2 py-2 w-48 bg-base-100 rounded-md shadow-xl z-20"
         >
+        
+        <div class="ml-4">
+        <!-- v-slot="{ isDark, toggleDark }"-->{{ !isDark ? 'isDark' : 'isLight' }}
+  <button @click="toggleDark()" class="toggle ">
+    
+  </button>
+<!--/UseDark-->
+        </div>
           <AppLink
             to="/profile"
-            class="block px-4 py-2 text-sm text-white hover:bg-gray-400"
+            class="block px-4 py-2 text-sm hover:bg-gray-400"
           >
             {{ store.authUser ? store.authUser.name : 'Profile' }}
           </AppLink>
 
           <AppLink
             to="/"
-            class="block px-4 py-2 text-sm text-white hover:bg-gray-400"
+            class="block px-4 py-2 text-sm hover:bg-gray-400"
           >
             <Logout />
           </AppLink> 
         </div>        
       </div>
     </div>
+    
+    
   </header> 
 </template>
