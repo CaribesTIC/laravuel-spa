@@ -10,6 +10,7 @@
 
 @import "./forms.css";
 @import "./panels.css";
+@import "./tables.css";
 .section {
   @apply flex justify-center min-h-screen;
 }

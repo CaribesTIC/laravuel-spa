@@ -15,7 +15,7 @@ const store = computed(() => useAuthStore())
 const isDark = useDark({
   selector: 'body',
   attribute: 'data-theme',
-  valueDark: 'dark',
+  valueDark: 'night',
   valueLight: 'winter'
 })
 
@@ -23,7 +23,7 @@ const toggleDark = useToggle(isDark)
 </script>
 
 <template>
-  <header class="flex justify-between items-center p-5 bg-base-300 border-b-2 border-red-700">  
+  <header class="flex justify-between items-center p-5 bg-base-300 border-b-2 border-gray-700">  
     <div class="flex items-center">
       <button
         @click="isOpen = true"
@@ -62,7 +62,7 @@ const toggleDark = useToggle(isDark)
 
       <div class="relative mr-4 lg:mx-0">
         <span class="absolute inset-y-0 left-0 pl-3 flex items-center">
-          <svg class="h-5 w-5 text-white" viewBox="0 0 24 24" fill="none">
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none">
             <path
               d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z"
               stroke="currentColor"
@@ -74,7 +74,7 @@ const toggleDark = useToggle(isDark)
         </span>
 
         <input
-          class="w-32 sm:w-64 rounded-md pl-10 pr-4 focus:border-indigo-600 bg-gray-400 ml-2 "
+          class="ml-10 w-32 sm:w-64 rounded-md pl-10 pr-4 focus:border-indigo-600 bg-gray-400 ml-2 "
           type="text"
           placeholder="Search"
         />
