@@ -1,12 +1,16 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
-@import "./utils.css";
+/*@import "./utils.css";
 @import "./forms.css";
 @import "./buttons.css";
 @import "./tables.css";
 @import "./panels.css";
+*/
 
+@import "./forms.css";
+@import "./panels.css";
+@import "./tables.css";
 .section {
-  @apply flex justify-center min-h-screen bg-gray-200;
+  @apply flex justify-center min-h-screen;
 }

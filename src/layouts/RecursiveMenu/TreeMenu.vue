@@ -43,7 +43,7 @@ const toggleChildren = ()=> showChildren.value = !showChildren.value
           <img
             v-if="menu.icon!==''"            
             :src="`menu/${menu.icon}`"
-            class="w-5 h-5 mr-2"/>
+            class="w-5 h-5 mr-2 fill-current"/>
           {{ menu.title }}
         </span>
       </AppLink>
@@ -67,7 +67,7 @@ const toggleChildren = ()=> showChildren.value = !showChildren.value
   @apply
     bg-gray-600
     bg-opacity-25
-    text-gray-100
+    /*text-gray-100*/
     border-gray-100
     border-l-4
     -ml-3;
@@ -75,7 +75,7 @@ const toggleChildren = ()=> showChildren.value = !showChildren.value
 .inactiveClass {
   @apply
     border-gray-900
-    text-gray-300
+    /*text-gray-300*/
     hover:bg-gray-200
     hover:bg-opacity-25
     hover:text-gray-100;

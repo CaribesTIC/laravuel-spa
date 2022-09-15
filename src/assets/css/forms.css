@@ -16,6 +16,22 @@ textarea,
 select {
     @apply block w-full rounded-sm border border-gray-300 shadow-sm p-2;
 }
+
+[data-theme="winter"] input[type="text"],
+[data-theme="winter"] input[type="email"],
+[data-theme="winter"] input[type="password"],
+[data-theme="winter"] select {
+  @apply bg-gray-100 text-gray-900;
+}
+
+[data-theme="night"] input[type="text"],
+[data-theme="night"] input[type="email"],
+[data-theme="night"] input[type="password"],
+[data-theme="night"] select {
+  @apply bg-gray-900 text-gray-100;
+}
+
+
 .form-error {
     @apply text-red-500 text-sm mt-1;
 }
