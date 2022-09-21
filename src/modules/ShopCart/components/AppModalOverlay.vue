@@ -25,7 +25,7 @@ defineEmits(["close"]);
   @apply fixed top-0 left-0 right-0 bottom-0 bg-gray-900 opacity-80;
 }
 .modal-overlay-content{
-  @apply fixed bg-white p-10 w-4/5 rounded;
+  @apply fixed bg-gray-200 text-gray-800 p-10 w-4/5 rounded z-10;
   top: 50%;
   left:50%;
   transform: translate(-50%, -50%);
