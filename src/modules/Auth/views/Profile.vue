@@ -26,7 +26,7 @@ const updateUser = () => {
             title="Información de su cuenta"
             description="Actualice la información de perfil y la dirección de correo electrónico de su cuenta."
           />
-          <ProfileUser class="p-5 bg-white border rounded shadow col-span-2" />
+          <ProfileUser class="p-5 bg-base-200 border rounded shadow col-span-2" />
           <AppSectionBorder />                 
         </div>
 
@@ -35,7 +35,7 @@ const updateUser = () => {
             title="Actualizar contraseña"
             description="Asegúrese de que su cuenta esté usando una contraseña larga y aleatoria para mantenerse seguro."
           />
-          <ProfileUpdatePassword class="p-5 bg-white border rounded shadow col-span-2" />
+          <ProfileUpdatePassword class="p-5 bg-base-200 border rounded shadow col-span-2" />
           <AppSectionBorder />
         </div>
         
@@ -44,7 +44,7 @@ const updateUser = () => {
             title="Verificación de correo"
             description="Asegúrese de que su correo está correctamente configurado para los envios de mensajes de notificaciones."
           />
-          <ProfileVerifyEmail class="p-5 bg-white border rounded shadow col-span-2" />
+          <ProfileVerifyEmail class="p-5 bg-base-200 border rounded shadow col-span-2" />
           <AppSectionBorder />          
         </div>
         
@@ -58,7 +58,7 @@ const updateUser = () => {
             :fileTypes="['image/*']"
             endpoint="/api/users/auth/avatar"
             @fileUploaded="updateUser"
-            class="p-5 bg-white border rounded shadow col-span-2"
+            class="p-5 bg-base-200 border rounded shadow col-span-2"
           />
           <AppSectionBorder />          
         </div>

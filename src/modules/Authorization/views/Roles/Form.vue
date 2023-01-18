@@ -48,7 +48,7 @@ const selectAll = () => {
   <form @submit.prevent="submit" class="p-4">    
     <div class="grid lg:grid-cols-2 gap-4">          
       <label class="block">
-        <span class="text-gray-700">Nombre del rol</span>
+        <span>Nombre del rol</span>
         <input v-model="form.name" type="text" class="" />
         <div v-if="errors && errors.name" class="form-error">
           {{ errors.name }}
@@ -56,7 +56,7 @@ const selectAll = () => {
       </label>          
 
       <label class="block">
-        <span class="text-gray-700">Descripción del rol</span>
+        <span>Descripción del rol</span>
         <input v-model="form.description" type="text" class="" />
         <div v-if="errors && errors.description" class="form-error">
           {{ errors.description }}
@@ -67,9 +67,9 @@ const selectAll = () => {
     <br/>
 
     <div class="table-data__wrapper">
-      <table class="table-data">
+      <table class="table-data bg-base-200">
         <thead>
-          <tr class=""> 
+          <tr class="bg-base-100"> 
             <th class="">Opciones del Menú</th>                             
             <th><input type="checkbox"  v-model="allSelected" @click="selectAll" title="Seleccionar todos"></th>
           </tr>
@@ -78,7 +78,7 @@ const selectAll = () => {
           <tr
 	          v-for="menu in menus"
 	          :key="menu.id"
-	          :class="menu.path==='#'?'bg-gray-50 uppercase text-gray-500 text-xs':'hover:bg-gray-100 focus-within:bg-gray-100'"
+	          :class="menu.path==='#'?'bg-base-100 uppercase text-gray-500 text-xs':'hover:bg-gray-500 focus-within:bg-gray-400'"
 	        > 
             <td>
 	            {{ menu.alias }}

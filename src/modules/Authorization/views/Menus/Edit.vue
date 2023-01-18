@@ -70,9 +70,9 @@ export default defineComponent({
       aria-modal="true"
       aria-labelledby="modal-headline">
       <form @submit.prevent="submit">
-        <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+        <div class="bg-base-200 px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
           <table style="width: 100%" id="main" border="1">                
-            <tr class="bg-gray-200 text-left font-bold">
+            <tr class="text-left font-bold">
               <th colspan="2" class="px-6 pt-6 pb-4 items-center">Update menu option</th>
             </tr>
             <tr class="hover:bg-gray-100 focus-within:bg-gray-100">
@@ -145,7 +145,7 @@ export default defineComponent({
             </tr>
           </table>
         </div>
-        <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+        <div class="bg-base-100 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
           <!--loading-button :loading="sending" class="btn-indigo ml-auto" type="submit">Update Organization</loading-button-->
           <span class="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">
             <button

@@ -120,11 +120,11 @@ export default defineComponent({
       aria-modal="true"
       aria-labelledby="modal-headline">      
       <form @submit.prevent="submit">
-        <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+        <div class="bg-base-200 px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
 
           <table style="width: 100%" id="main">                
             <tr>
-              <th colspan="2" class="bg-gray-200 text-center font-bold py-2">Crear nueva opción del menú</th>
+              <th colspan="2" class="text-center font-bold py-2">Crear nueva opción del menú</th>
             </tr>
             <tr>
               <td colspan="2">
@@ -154,9 +154,9 @@ export default defineComponent({
                 </table>
               </td>                   
             </tr>
-            <tr style="display:{DISPLAY}">
-              <td id="id_td_seleccion" width="50%" class="bg-gray-100 py-2">Selección (nivel {{ nivel }})</td>
-              <td class="bg-gray-100 py-2">
+            <tr>
+              <td id="id_td_seleccion" width="50%" class="bg-base-200 py-2">Selección (nivel {{ nivel }})</td>
+              <td class="py-2">
                 <select
                   style="width: 100%;cursor:pointer;"
                   title="Seleccione una opción"
@@ -240,7 +240,7 @@ export default defineComponent({
           </table>
         
         </div>
-        <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+        <div class="bg-base-100 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
           <!--loading-button :loading="sending" class="btn-indigo ml-auto" type="submit">
 	    Update Organization
 	  </loading-button-->

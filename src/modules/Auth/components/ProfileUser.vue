@@ -12,7 +12,7 @@ const {
 
 <template>
   <FormUser
-    class="p-5 bg-white border rounded shadow"
+    class="p-5 border rounded shadow"
     @submit='updateUser($event)'      
     :sending='sending'
     :error='error'

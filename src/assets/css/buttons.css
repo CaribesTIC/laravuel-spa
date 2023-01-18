@@ -1,5 +1,5 @@
 .btn {
-    @apply text-white py-1 px-4 rounded transition;
+    @apply text-white py-2 px-4 rounded transition;
 }
 
 .btn-danger {
