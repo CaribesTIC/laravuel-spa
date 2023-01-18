@@ -9,8 +9,36 @@
 */
 
 @import "./forms.css";
+@import "./buttons.css";
 @import "./panels.css";
 @import "./tables.css";
 .section {
   @apply flex justify-center min-h-screen;
 }
+
+
+
+[data-theme="winter"] {
+  @apply bg-gray-100 text-gray-900;
+}
+
+[data-theme="night"] {
+  @apply bg-gray-900 text-gray-100;
+}
+
+[data-theme="winter"] .bg-base-100{
+  @apply dark:bg-gray-900 bg-gray-100;
+}
+
+[data-theme="night"] .bg-base-100{
+  @apply bg-gray-900;
+}
+
+[data-theme="winter"] .bg-base-200{
+  @apply dark:bg-gray-800 bg-gray-200;
+}
+
+[data-theme="night"] .bg-base-200{
+  @apply bg-gray-800;
+}
+

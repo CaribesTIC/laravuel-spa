@@ -92,7 +92,7 @@ export default defineComponent({
             </tr>
           </thead>
         <tbody>              
-          <tr v-for="menu in menus" :key="menu.id" class="hover:bg-gray-100 focus-within:bg-gray-100">               
+          <tr v-for="menu in menus" :key="menu.id" class="hover:bg-gray-500 focus-within:bg-gray-400">               
             <td class="">{{ menu.alias }}</td>                                
             <td class="">{{ menu.path }}</td>
             <td class="">{{ menu.icon }}</td>  

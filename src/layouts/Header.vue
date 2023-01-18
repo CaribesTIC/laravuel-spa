@@ -127,10 +127,8 @@ const toggleDark = useToggle(isDark)
         >
         
         <div class="ml-4">
-        <!-- v-slot="{ isDark, toggleDark }"-->{{ !isDark ? 'isDark' : 'isLight' }}
-  <button @click="toggleDark()" class="toggle ">
-    
-  </button>
+        <!-- v-slot="{ isDark, toggleDark }"-->
+  <button @click="toggleDark()" class="hover:bg-gray-400">{{ !isDark ? 'isDark' : 'isLight' }}</button>
 <!--/UseDark-->
         </div>
           <AppLink

@@ -36,7 +36,7 @@ const {
         </div>
         <div class="panel mt-6">
           <Form
-            class="p-5 bg-white border rounded shadow"
+            class="p-5 border rounded shadow"
             @submit='submit'
             :id="props.id"            
             :sending='sending'
