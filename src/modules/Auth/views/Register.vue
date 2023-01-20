@@ -8,10 +8,10 @@
 
 <template>
   <div class="p-5 m-auto w-full sm:w-4/12">
-    <IconLogo class= "flex justify-center pt-4 sm:justify-start sm:pt-0 w-1/3 y-1/3 h-auto m-auto bg-transparent"/>
-    <h2 class="mb-4 text-xl text-center">Regístrerse</h2>
+    <IconLogo class= "flex justify-center pt-4 sm:justify-start sm:pt-0 w-1/4 y-1/4 h-auto m-auto bg-transparent"/>
+    <h2 class="my-4 text-2xl text-center">Regístrerse</h2>
     <FormRegister
-      class="p-5 bg-white border rounded shadow"
+      class="p-5 bg-base-200 border rounded shadow"
       @submit='register'      
       :sending='sending'
       :error='error'
