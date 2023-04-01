@@ -8,7 +8,7 @@ import HomeIcon from "@/icons/HomeIcon.vue"
 //import IconLogo from "@/icons/IconLogo.vue"
 import { useDark, useToggle } from '@vueuse/core'
 
-const { isOpen } = useSidebar()
+const { isOpen, isClose } = useSidebar()
 const dropdownOpen = ref(false)
 const store = computed(() => useAuthStore())
 
@@ -28,6 +28,25 @@ const toggleDark = useToggle(isDark)
       <button
         @click="isOpen = true"
         class="focus:outline-none lg:hidden"
+      >
+        <svg
+          class="h-6 w-6"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M4 6H20M4 12H20M4 18H11"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </button>
+      <button
+        @click="isClose = !isClose"
+        class="focus:outline-none"
       >
         <svg
           class="h-6 w-6"
