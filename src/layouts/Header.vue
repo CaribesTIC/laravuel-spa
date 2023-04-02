@@ -26,7 +26,7 @@ const toggleDark = useToggle(isDark)
   <header class="flex justify-between items-center p-5 bg-base-300 border-b-2 border-gray-700">  
     <div class="flex items-center">
       <button
-        @click="isOpen = true"
+        @click="isOpen = true; isClose = true"
         class="focus:outline-none lg:hidden"
       >
         <svg
@@ -45,8 +45,8 @@ const toggleDark = useToggle(isDark)
         </svg>
       </button>
       <button
-        @click="isClose = !isClose"
-        class="focus:outline-none"
+        @click="isClose = !isClose; isOpen = false"
+        class="focus:outline-none hidden lg:block"
       >
         <svg
           class="h-6 w-6"
