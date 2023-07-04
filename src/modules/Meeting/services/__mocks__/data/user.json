@@ -1,0 +1,19 @@
+[
+  {
+	"id": 1,
+	"name": "Luke Skywalker",
+	"email": "luke@jedi.com",
+	"avatar": null,
+	"isAdmin": true,
+	"role_id": 1,
+	"emailVerified": null
+  }, {
+	"id": 2,
+	"name": "Mr. Omari Hills",
+	"email": "bradtke.oleta@example.net",
+	"avatar": null,
+	"isAdmin": false,
+	"role_id": 2,
+	"emailVerified": "2022-06-06T20:52:29.000000Z"
+  }
+]

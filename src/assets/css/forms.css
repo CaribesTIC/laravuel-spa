@@ -20,6 +20,7 @@ select {
 [data-theme="winter"] input[type="text"],
 [data-theme="winter"] input[type="email"],
 [data-theme="winter"] input[type="password"],
+[data-theme="winter"] textarea,
 [data-theme="winter"] select {
   @apply bg-gray-100 text-gray-900;
 }
@@ -27,6 +28,7 @@ select {
 [data-theme="night"] input[type="text"],
 [data-theme="night"] input[type="email"],
 [data-theme="night"] input[type="password"],
+[data-theme="night"] textarea,
 [data-theme="night"] select {
   @apply bg-gray-900 text-gray-100;
 }

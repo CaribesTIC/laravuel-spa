@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed } from "vue"
+import { ref, computed, defineAsyncComponent } from "vue"
 import { useRoute } from 'vue-router'
 import type { Menu } from "@/types/Menu"
 
@@ -12,6 +12,15 @@ const route = useRoute();
 
 const routePathRoot = computed(
   () => route.path.startsWith(`/${props.menu.path}`)
+)
+
+const iconName = computed(
+  ()=> {
+      const name = props.menu.icon.substring(0,props.menu.icon.length-4)
+      return defineAsyncComponent(
+      () => import(/* @vite-ignore */ `../../components/icons/menu/icon-${name}.vue`).then(c => c.default)
+      )
+  }
 )
 
 const showChildren = ref(true)
@@ -40,10 +49,10 @@ const toggleChildren = ()=> showChildren.value = !showChildren.value
     >      
       <AppLink :to="{ name: menu.path }">
         <span class="flex items-center group py-0">
-          <img
-            v-if="menu.icon!==''"            
-            :src="`menu/${menu.icon}`"
-            class="w-5 h-5 mr-2 fill-current"/>
+          <Component v-if="menu && menu.icon!==''"
+            :is="iconName"
+            class="w-5 h-5 mr-2 fill-current"
+          />
           {{ menu.title }}
         </span>
       </AppLink>
