@@ -137,7 +137,7 @@ const {
                 </AppBtn>
                 <AppBtn
                   @click="deleteRow(row.id)"                    
-                  class="btn btn-secondary btn-xs"                    
+                  class="btn btn-danger btn-xs"                    
                 >
                   Eliminar
                 </AppBtn>
