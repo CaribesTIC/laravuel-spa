@@ -20,7 +20,8 @@ export const getError = (error) => {
       ) 
     } else {
       console.error('Data', error.response.data)
-      return error.response.data.errors ?? {}
+      if (error.response.data.errors)
+        return error.response.data.errors
     }
   }  
   return errorMessage;

@@ -3,28 +3,18 @@ import { ref, computed } from "vue";
 import { useAuthStore } from "@/modules/Auth/stores"
 import { useSidebar } from "@/composables/useSidebar"
 import Logout from "@/modules/Auth/components/Logout.vue"
-import LoginIcon from "@/icons/LoginIcon.vue"
+//import LoginIcon from "@/icons/LoginIcon.vue"
 import HomeIcon from "@/icons/HomeIcon.vue"
+import SelectTheme from "./SelectTheme.vue"
 //import IconLogo from "@/icons/IconLogo.vue"
-import { useDark, useToggle } from '@vueuse/core'
 
 const { isOpen, isClose } = useSidebar()
 const dropdownOpen = ref(false)
 const store = computed(() => useAuthStore())
-
-const isDark = useDark({
-  selector: 'body',
-  attribute: 'data-theme',
-  valueDark: 'night',
-  valueLight: 'winter'
-})
-
-const toggleDark = useToggle(isDark)
 </script>
 
 <template>
-  <header class="flex justify-between items-center p-5 bg-base-300 border-b-2 border-gray-700">  
-    <div class="flex items-center">
+  <header class="sticky top-0 z-40 flex justify-between items-center p-5 bg-base-200 border-b-1 border-gray-700">    <div class="flex items-center">
       <button
         @click="isOpen = true; isClose = true"
         class="focus:outline-none lg:hidden"
@@ -44,6 +34,7 @@ const toggleDark = useToggle(isDark)
           />
         </svg>
       </button>
+
       <button
         @click="isClose = !isClose; isOpen = false"
         class="focus:outline-none hidden lg:block"
@@ -101,7 +92,7 @@ const toggleDark = useToggle(isDark)
     </div>
 
     <div class="flex items-center">
-      <button class="flex mx-4 focus:outline-none">
+      <button class="flex focus:outline-none">
         <svg
           class="h-6 w-6"
           viewBox="0 0 24 24"
@@ -117,18 +108,21 @@ const toggleDark = useToggle(isDark)
           />
         </svg>
       </button>
-
+      
+      <div class="relative">
+        <SelectTheme />
+      </div>
       <div class="relative">
         <button
           @click="dropdownOpen = !dropdownOpen"
           class="relative z-10 block h-8 w-8 rounded-full overflow-hidden focus:outline-none"
         >
-            <img
-              v-if="store.authUser && store.authUser.avatar"
-              :src="store.authUser.avatar"
-              class="w-10 h-10 rounded-full"
-              alt=""
-            />
+          <img
+            v-if="store.authUser && store.authUser.avatar"
+            :src="store.authUser.avatar"
+            class="w-10 h-10 rounded-full"
+            alt=""
+          />
           <svg v-else
             xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"
             aria-hidden="true" class="w-8 h-10 rounded-full"
@@ -144,12 +138,7 @@ const toggleDark = useToggle(isDark)
           @click="dropdownOpen = false"
           class="absolute right-0 mt-2 py-2 w-48 bg-base-100 rounded-md shadow-xl z-20"
         >
-        
-        <div class="ml-4">
-        <!-- v-slot="{ isDark, toggleDark }"-->
-  <button @click="toggleDark()" class="hover:bg-gray-400">{{ !isDark ? 'isDark' : 'isLight' }}</button>
-<!--/UseDark-->
-        </div>
+
           <AppLink
             to="/profile"
             class="block px-4 py-2 text-sm hover:bg-gray-400"
@@ -165,8 +154,7 @@ const toggleDark = useToggle(isDark)
           </AppLink> 
         </div>        
       </div>
-    </div>
-    
-    
+    </div>    
+
   </header> 
 </template>
