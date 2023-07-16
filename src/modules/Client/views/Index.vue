@@ -76,10 +76,6 @@ const {
               <th class="">
                 <AppLink to="#" @click.prevent="setSort('domicile')">domicile</AppLink>
               </th>
-            
-              <th class="">
-                <AppLink to="#" @click.prevent="setSort('deleted_at')">deleted_at</AppLink>
-              </th>
                                         
             <th class="">Acción</th>
           </tr>
@@ -121,10 +117,6 @@ const {
           
             <td class="">
               {{ row.domicile }}
-            </td>
-          
-            <td class="">
-              {{ row.deleted_at }}
             </td>
                         
             <td class="">
