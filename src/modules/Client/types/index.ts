@@ -7,7 +7,6 @@ export type Client = {
   phone?: string; 
   country_id?: number;
   domicile?: string; 
-  deleted_at?: date; 
 }
 
 export interface ClientTG {
