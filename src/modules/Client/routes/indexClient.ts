@@ -18,21 +18,4 @@ export default [{
     meta: { middleware: [auth, admin] },
     component: () => import("@/modules/Client/views/Client/CreateOrEdit.vue").then(m => m.default),
     props: true
-}, {
-    path: "/countries",
-    name: "countries",
-    meta: { middleware: [auth, admin] },
-    component: () => import("@/modules/Client/views/Country/Index.vue").then(m => m.default)
-}, {
-    path: "/countries/create",
-    name: "countryCreate",
-    meta: { middleware: [auth, admin] },
-    component: () => import("@/modules/Client/views/Country/CreateOrEdit.vue").then(m => m.default),
-    props: true
-}, {
-    path: "/countries/edit/:id(\\d+)",
-    name: "countryEdit",
-    meta: { middleware: [auth, admin] },
-    component: () => import("@/modules/Client/views/Country/CreateOrEdit.vue").then(m => m.default),
-    props: true
 }]
