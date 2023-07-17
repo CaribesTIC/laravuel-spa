@@ -1,20 +1,14 @@
 import { onMounted, reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import useHttp from "@/composables/useHttp";
-import ClientService from "@/modules/Client/services";
-import type { Client } from "../types"
+import CountryService from "../../services/Country"
+import type { Country } from "../types"
 
-export default (clientId?: string) => {
+export default (countryId?: string) => {
   const router = useRouter();
   
-  const client: Client = reactive({
-    email: "", 
-    type: "", 
-    identification_card: "", 
-    business_name: "", 
-    phone: "", 
-    country_id: "", 
-    domicile: "", 
+  const country: Country = reactive({
+    name: "", 
   })
 
   // const roles = ref<Role[]>([])
@@ -27,17 +21,11 @@ export default (clientId?: string) => {
   } = useHttp()
   
   onMounted(async () => {
-    if (clientId) {
+    if (countryId) {
       pending.value = true
-      ClientService.getClient(clientId)
+      CountryService.getCountry(countryId)
         .then((response) => { 
-          client.email = response.data.data.email 
-          client.type = response.data.data.type 
-          client.identification_card = response.data.data.identification_card 
-          client.business_name = response.data.data.business_name 
-          client.phone = response.data.data.phone 
-          client.country_id = response.data.data.country_id 
-          client.domicile = response.data.data.domicile 
+          country.name = response.data.data.name 
         })
         .catch((err) => {        
           errors.value = getError(err)
@@ -46,8 +34,8 @@ export default (clientId?: string) => {
           pending.value = false;
         })
     }
-    pending.value = true
-    /*ClientService.helperTablesGet()
+    // pending.value = true
+    /*CountryService.helperTablesGet()
       .then((response) => {
         //roles.value = response.data.roles
       })
@@ -59,12 +47,12 @@ export default (clientId?: string) => {
       })*/
   })
 
-  const insertClient = async (client: Client) => {  
+  const insertCountry = async (country: Country) => {  
     pending.value = true
-    return ClientService.insertClient(client)
+    return CountryService.insertCountry(country)
       .then((response) => {         
         alert( response.data.message )
-        router.push( { path: '/clients' } )
+        router.push( { path: '/countries' } )
       })
       .catch((err) => {                
         console.log( err.response.data )
@@ -75,12 +63,12 @@ export default (clientId?: string) => {
       })
   }
 
-  const updateClient = async (client: Client, clientId: string) => {
+  const updateCountry = async (country: Country, countryId: string) => {
     pending.value= true
-    return ClientService.updateClient(clientId, client)
+    return CountryService.updateCountry(countryId, country)
       .then((response) => {
         alert( response.data.message )
-        router.push( { path: '/clients' } )
+        router.push( { path: '/countries' } )
       })
       .catch((err) => {                
         console.log( err.response.data )
@@ -91,12 +79,12 @@ export default (clientId?: string) => {
       })
   }
   
-  const submit = (client: Client, clientId?: string) => {  
-    !clientId ? insertClient(client)  : updateClient(client, clientId)
+  const submit = (country: Country, countryId?: string) => {  
+    !countryId ? insertCountry(country)  : updateCountry(country, countryId)
   }
 
   return {
-    client,
+    country,
     errors,
     //roles,
     pending,

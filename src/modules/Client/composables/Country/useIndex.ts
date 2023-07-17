@@ -2,7 +2,7 @@ import { reactive, onMounted } from "vue"
 import { onBeforeRouteUpdate } from "vue-router"
 import useTableGrid from "@/composables/useTableGrid"
 import useHttp from "@/composables/useHttp"
-import ClientService from "../services"
+import CountryService from "../../services/Country"
 
 type Params =  string | string[][] | Record<string, string> | URLSearchParams | undefined
 
@@ -27,10 +27,10 @@ export default () => {
 
     setSearch,
     setSort, 
-  } = useTableGrid(data, "/clients")
+  } = useTableGrid(data, "/countries")
 
-  const getClients = (routeQuery: string) => {
-    return ClientService.getClients(routeQuery)
+  const getCountries = (routeQuery: string) => {
+    return CountryService.getCountries(routeQuery)
       .then((response) => {
         errors.value = {}
         data.rows = response.data.rows.data
@@ -48,10 +48,10 @@ export default () => {
     if (rowId === undefined)
       return
     else if (confirm(`¿Estás seguro que desea eliminar el registro ${rowId}?`)) {    
-      return ClientService.deleteClient(rowId)
+      return CountryService.deleteCountry(rowId)
         .then((response) => {
           errors.value = {}
-          router.push( { path: '/clients' } )        
+          router.push( { path: '/countries' } )        
         })
         .catch((err) => {                
           console.log( err.response.data )
@@ -62,14 +62,14 @@ export default () => {
 
   onBeforeRouteUpdate(async (to, from) => {      
     if (to.query !== from.query) {        
-      await getClients(
+      await getCountries(
         new URLSearchParams(to.query as Params).toString()
       )
     }
   })
 
   onMounted(() => {
-    getClients(
+    getCountries(
       new URLSearchParams(route.query as Params).toString()
     )
   })

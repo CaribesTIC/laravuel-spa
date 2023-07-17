@@ -1,6 +1,6 @@
 <script setup lang="ts">
 // @ts-nocheck
-import useIndex from "../composables/useIndex";
+import useIndex from "../../composables/Country/useIndex";
 import AppPaginationB from "@/components/AppPaginationB.vue";
 import AppPageHeader from "@/components/AppPageHeader.vue"
 import AppBtn from "@/components/AppBtn.vue"
@@ -18,10 +18,10 @@ const {
 
 <template>
 <div>
-  <AppPageHeader> Clients </AppPageHeader>
+  <AppPageHeader> Countries </AppPageHeader>
 
   <div class="flex space-x-2">
-    <AppLink class="btn btn-primary" to="/clients/create">
+    <AppLink class="btn btn-primary" to="/countries/create">
       <span>Crear</span>
     </AppLink>
   </div>
@@ -50,31 +50,7 @@ const {
               </th>
             
               <th class="">
-                <AppLink to="#" @click.prevent="setSort('email')">email</AppLink>
-              </th>
-            
-              <th class="">
-                <AppLink to="#" @click.prevent="setSort('type')">type</AppLink>
-              </th>
-            
-              <th class="">
-                <AppLink to="#" @click.prevent="setSort('identification_card')">identification_card</AppLink>
-              </th>
-            
-              <th class="">
-                <AppLink to="#" @click.prevent="setSort('business_name')">business_name</AppLink>
-              </th>
-            
-              <th class="">
-                <AppLink to="#" @click.prevent="setSort('phone')">phone</AppLink>
-              </th>
-            
-              <th class="">
-                <AppLink to="#" @click.prevent="setSort('country_id')">country_id</AppLink>
-              </th>
-            
-              <th class="">
-                <AppLink to="#" @click.prevent="setSort('domicile')">domicile</AppLink>
+                <AppLink to="#" @click.prevent="setSort('name')">name</AppLink>
               </th>
                                         
             <th class="">Acción</th>
@@ -85,45 +61,21 @@ const {
              <td class="">
               <AppLink
                 class="text-indigo-600 hover:text-indigo-800 underline"
-                :to="{ name: 'clientEdit', params: { id: row.id }}"               
+                :to="{ name: 'countryEdit', params: { id: row.id }}"               
               >
                 {{ row.id }}
               </AppLink>
             </td>
           
             <td class="">
-              {{ row.email }}
-            </td>
-          
-            <td class="">
-              {{ row.type }}
-            </td>
-          
-            <td class="">
-              {{ row.identification_card }}
-            </td>
-          
-            <td class="">
-              {{ row.business_name }}
-            </td>
-          
-            <td class="">
-              {{ row.phone }}
-            </td>
-          
-            <td class="">
-              {{ row.country_id }}
-            </td>
-          
-            <td class="">
-              {{ row.domicile }}
+              {{ row.name }}
             </td>
                         
             <td class="">
               <div class="flex items-center space-x-1">                
                 <AppBtn
                   class="btn btn-primary btn-xs"                    
-                  @click="router.push({ path: '/clients/edit/'+row.id })"
+                  @click="router.push({ path: '/countries/edit/'+row.id })"
                 >
                   Editar
                 </AppBtn>
@@ -137,7 +89,7 @@ const {
             </td>
           </tr>
           <tr v-if="data.rows.length === 0">
-            <td class="" colspan="4">Clients not found.</td>
+            <td class="" colspan="4">Countries not found.</td>
           </tr>
         </tbody>
       </table>
