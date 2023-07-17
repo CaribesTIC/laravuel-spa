@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import AppPageHeader from "@/components/AppPageHeader.vue";
-import FormCreateOrEdit from "../components/FormCreateOrEdit.vue";
-import useCreateOrEdit from "../composables/useCreateOrEdit";
+import FormCreateOrEdit from "../../components/Country/FormCreateOrEdit.vue";
+import useCreateOrEdit from "../../composables/Country/useCreateOrEdit";
     
 const props = defineProps<{ id?: string }>()
 
 const {
-  client,
+  country,
   errors,
   roles,
   pending,
@@ -18,18 +18,18 @@ const {
     
 <template>
 <div>
-  <AppPageHeader>Clients / {{ !props.id ? "Crear" : "Editar" }}</AppPageHeader>
+  <AppPageHeader>Countries / {{ !props.id ? "Crear" : "Editar" }}</AppPageHeader>
   <transition name="fade" mode="out-in">
     <AppPageHeader
       message="pending..."
-      v-if="pending && !client"
+      v-if="pending && !country"
       key="pending"
     />
     <div v-else class="panel mt-6 p-4">           
       <div  class="flex space-x-2">
         <button
           class="btn btn-primary mb-4"
-          @click="router.push({ path: '/clients' })"
+          @click="router.push({ path: '/countries' })"
         >
           Ver todos
         </button>
@@ -39,7 +39,7 @@ const {
           class="p-5 border rounded shadow"
           @submit='submit'
           :id="props.id"
-          :client='client'
+          :country='country'
           :pending='pending'
           :errors='errors'
           :roles="roles"            
