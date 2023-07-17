@@ -51,7 +51,9 @@ export default () => {
       return CountryService.deleteCountry(rowId)
         .then((response) => {
           errors.value = {}
-          router.push( { path: '/countries' } )        
+          getCountries(
+            new URLSearchParams(route.query as Params).toString()
+          )
         })
         .catch((err) => {                
           console.log( err.response.data )
