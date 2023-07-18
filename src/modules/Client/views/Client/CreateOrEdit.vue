@@ -8,7 +8,7 @@ const props = defineProps<{ id?: string }>()
 const {
   client,
   errors,
-  roles,
+  countries,
   pending,
   router,
 
@@ -42,7 +42,7 @@ const {
           :client='client'
           :pending='pending'
           :errors='errors'
-          :roles="roles"            
+          :countries="countries"        
         />
       </div>
     </div>

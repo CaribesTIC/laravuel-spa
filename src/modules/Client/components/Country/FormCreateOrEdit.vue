@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import { reactive } from "vue"
-import type { Country } from "../types"
+import type { Country } from "../types/Country"
+
 // import type Errors from "../types/Errors"
 
 const props = defineProps<{
   id?: string
-  country: Country  
+  country: Country
+   
   pending: boolean
   errors: any
 }>()
