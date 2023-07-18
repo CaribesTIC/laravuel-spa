@@ -2,7 +2,9 @@ import { onMounted, reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import useHttp from "@/composables/useHttp";
 import CountryService from "../../services/Country"
-import type { Country } from "../types"
+
+import type { Country } from "../types/Country"
+
 
 export default (countryId?: string) => {
   const router = useRouter();
@@ -11,7 +13,8 @@ export default (countryId?: string) => {
     name: "", 
   })
 
-  // const roles = ref<Role[]>([])
+  const roles = ref<Role[]>([])
+  
   
   const {  
     errors,
@@ -34,17 +37,8 @@ export default (countryId?: string) => {
           pending.value = false;
         })
     }
-    // pending.value = true
-    /*CountryService.helperTablesGet()
-      .then((response) => {
-        //roles.value = response.data.roles
-      })
-      .catch((err) => {
-        errors.value = getError(err)
-      })
-      .finally(() => {
-        pending.value = false
-      })*/
+    pending.value = true
+    
   })
 
   const insertCountry = async (country: Country) => {  
@@ -86,7 +80,7 @@ export default (countryId?: string) => {
   return {
     country,
     errors,
-    //roles,
+    
     pending,
     router,
 

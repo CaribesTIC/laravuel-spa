@@ -21,15 +21,15 @@ export const deleteClient = (clientId: string) => {
   return Http.delete(`/api/clients/${clientId}`);
 }
 
-/*export const helperTablesGet = () => {
-  return Http.get(`/api/clients/helperTables`);
-}*/
+export const getHelpClients = () => {
+  return Http.get(`/api/clients-help`);
+}
 
 export default {
   getClients,
   getClient,
   insertClient,
   updateClient,
-  deleteClient
-  //, helperTablesGet
+  deleteClient,
+  getHelpClients
 }

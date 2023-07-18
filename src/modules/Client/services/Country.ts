@@ -21,15 +21,15 @@ export const deleteCountry = (countryId: string) => {
   return Http.delete(`/api/countries/${countryId}`);
 }
 
-/*export const helperTablesGet = () => {
-  return Http.get(`/api/countries/helperTables`);
-}*/
+export const getHelpCountries = () => {
+  return Http.get(`/api/countries-help`);
+}
 
 export default {
   getCountries,
   getCountry,
   insertCountry,
   updateCountry,
-  deleteCountry
-  //, helperTablesGet
+  deleteCountry,
+  getHelpCountries
 }

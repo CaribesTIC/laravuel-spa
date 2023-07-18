@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import { reactive } from "vue"
-import type { Client } from "../types"
+import type { Client } from "../../types/Client"
+import type { Country } from  "../../types/Country"
 // import type Errors from "../types/Errors"
 
 const props = defineProps<{
   id?: string
-  client: Client  
+  client: Client
+  countries?: Country[] 
   pending: boolean
   errors: any
 }>()
@@ -79,7 +81,8 @@ const submit = async () => {
     
     <div class="block">     
       <AppSelect
-        :options="[]"
+        v-if="countries"
+        :options="countries"
         v-model="form.country_id"
         label="country_id"
         :error="errors && errors.country_id ? errors.country_id[0] : ''"
