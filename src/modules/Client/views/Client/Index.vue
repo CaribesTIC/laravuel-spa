@@ -69,6 +69,14 @@ const {
                 <AppLink to="#" @click.prevent="setSort('phone')">phone</AppLink>
               </th>
             
+              <!--th class="">
+                <AppLink to="#" @click.prevent="setSort('country_id')">country_id</AppLink>
+              </th-->
+
+              <!--th class="">
+                <AppLink to="#" @click.prevent="setSort('country_id')">country_id</AppLink>
+              </th-->
+
               <th class="">
                 <AppLink to="#" @click.prevent="setSort('country_id')">country_id</AppLink>
               </th>
@@ -111,8 +119,16 @@ const {
               {{ row.phone }}
             </td>
           
-            <td class="">
+            <!--td class="">
               {{ row.country_id }}
+            </td>
+
+            <td class="">
+              {{ row.country.id }}
+            </td-->
+
+            <td class="">
+              {{ row.country.name }}
             </td>
           
             <td class="">
