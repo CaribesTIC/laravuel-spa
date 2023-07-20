@@ -48,43 +48,29 @@ const {
               <th class="">
                 <AppLink to="#" @click.prevent="setSort('id')">id</AppLink>
               </th>
-            
               <th class="">
                 <AppLink to="#" @click.prevent="setSort('email')">email</AppLink>
               </th>
-            
               <th class="">
                 <AppLink to="#" @click.prevent="setSort('type')">type</AppLink>
               </th>
-            
               <th class="">
                 <AppLink to="#" @click.prevent="setSort('identification_card')">identification_card</AppLink>
               </th>
-            
               <th class="">
                 <AppLink to="#" @click.prevent="setSort('business_name')">business_name</AppLink>
               </th>
-            
               <th class="">
                 <AppLink to="#" @click.prevent="setSort('phone')">phone</AppLink>
               </th>
-            
-              <!--th class="">
-                <AppLink to="#" @click.prevent="setSort('country_id')">country_id</AppLink>
-              </th-->
-
-              <!--th class="">
-                <AppLink to="#" @click.prevent="setSort('country_id')">country_id</AppLink>
-              </th-->
-
-              <th class="">
-                <AppLink to="#" @click.prevent="setSort('country_id')">country_id</AppLink>
-              </th>
-            
+              
               <th class="">
                 <AppLink to="#" @click.prevent="setSort('domicile')">domicile</AppLink>
               </th>
-                                        
+            
+              <th class="">
+                <AppLink to="#" @click.prevent="setSort('country_id')">country</AppLink>
+              </th>                         
             <th class="">Acción</th>
           </tr>
         </thead>
@@ -98,43 +84,27 @@ const {
                 {{ row.id }}
               </AppLink>
             </td>
-          
             <td class="">
               {{ row.email }}
             </td>
-          
             <td class="">
               {{ row.type }}
             </td>
-          
             <td class="">
               {{ row.identification_card }}
             </td>
-          
             <td class="">
               {{ row.business_name }}
             </td>
-          
             <td class="">
               {{ row.phone }}
             </td>
-          
-            <!--td class="">
-              {{ row.country_id }}
-            </td>
-
-            <td class="">
-              {{ row.country.id }}
-            </td-->
-
-            <td class="">
-              {{ row.country.name }}
-            </td>
-          
             <td class="">
               {{ row.domicile }}
             </td>
-                        
+            <td class="">
+              {{ row.country.name }}
+            </td> 
             <td class="">
               <div class="flex items-center space-x-1">                
                 <AppBtn
