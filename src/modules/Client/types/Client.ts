@@ -1,3 +1,5 @@
+import type { Country } from  "./Country"
+
 export type Client = {
   id?: string | number;
   email?: string; 
@@ -7,13 +9,17 @@ export type Client = {
   phone?: string; 
   country_id?: string | number;
   domicile?: string; 
+  country?: Country;
 }
 
-export interface ClientTG {
+export type ClientTG = {
   rows: Rows;
+  sort: null | string;
+  direction: null | string;
+  search: null | string;
 }
 
-export interface Rows {
+export type Rows = {
   current_page: number;
   data: ClientRow[];
   first_page_url: string;
@@ -21,15 +27,15 @@ export interface Rows {
   last_page: number;
   last_page_url: string;
   links: Link[];
-  next_page_url: string;
+  next_page_url: null | string;
   path: string;
   per_page: number;
-  prev_page_url: null;
+  prev_page_url: null | string;
   to: number;
   total: number;
 }
 
-export interface ClientRow {
+export type ClientRow = {
   email?: string; 
   type?: boolean; 
   identification_card?: string; 
@@ -39,7 +45,7 @@ export interface ClientRow {
   domicile?: string; 
 }
 
-export interface Link {
+export type Link = {
   url: null | string;
   label: string;
   active: boolean;
