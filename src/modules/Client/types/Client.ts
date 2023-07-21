@@ -1,11 +1,11 @@
 export type Client = {
-  id?: number;
+  id?: string | number;
   email?: string; 
-  type?: boolean; 
+  type?: boolean | ""; 
   identification_card?: string; 
   business_name?: string; 
   phone?: string; 
-  country_id?: number;
+  country_id?: string | number;
   domicile?: string; 
 }
 

@@ -48,11 +48,10 @@ const {
               <th class="">
                 <AppLink to="#" @click.prevent="setSort('id')">id</AppLink>
               </th>
-            
               <th class="">
                 <AppLink to="#" @click.prevent="setSort('name')">name</AppLink>
               </th>
-                                        
+                                     
             <th class="">Acción</th>
           </tr>
         </thead>
@@ -66,11 +65,9 @@ const {
                 {{ row.id }}
               </AppLink>
             </td>
-          
             <td class="">
               {{ row.name }}
-            </td>
-                        
+            </td> 
             <td class="">
               <div class="flex items-center space-x-1">                
                 <AppBtn

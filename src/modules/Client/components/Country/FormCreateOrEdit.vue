@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { reactive } from "vue"
-import type { Country } from "../types/Country"
+import type { Country } from "../../types/Country"
 
 // import type Errors from "../types/Errors"
 

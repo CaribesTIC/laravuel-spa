@@ -1,10 +1,15 @@
 <script setup lang="ts">
 import useUniqueId from '@/composables/useUniqueId'
 
+type Option = {
+  id: string
+  name: string
+}
+
 withDefaults(defineProps<{
   label?: string 
   modelValue?: string | number
-  options: string[]
+  options: Option[]
   error?: string
 }>(), {
   label: '',
