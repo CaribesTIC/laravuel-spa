@@ -1,13 +1,19 @@
+
+
 export type Country = {
   id?: string | number;
   name?: string; 
+  
 }
 
-export interface CountryTG {
+export type CountryTG = {
   rows: Rows;
+  sort: null | string;
+  direction: null | string;
+  search: null | string;
 }
 
-export interface Rows {
+export type Rows = {
   current_page: number;
   data: CountryRow[];
   first_page_url: string;
@@ -15,19 +21,19 @@ export interface Rows {
   last_page: number;
   last_page_url: string;
   links: Link[];
-  next_page_url: string;
+  next_page_url: null | string;
   path: string;
   per_page: number;
-  prev_page_url: null;
+  prev_page_url: null | string;
   to: number;
   total: number;
 }
 
-export interface CountryRow {
+export type CountryRow = {
   name?: string; 
 }
 
-export interface Link {
+export type Link = {
   url: null | string;
   label: string;
   active: boolean;
