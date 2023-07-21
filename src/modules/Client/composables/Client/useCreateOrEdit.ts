@@ -3,8 +3,8 @@ import { useRouter } from 'vue-router'
 import useHttp from "@/composables/useHttp";
 import ClientService from "../../services/Client"
 import CountryService from  "../../services/Country"
-import type { Client } from "../types/Client"
-import type { Country } from  "../../services/Country"
+import type { Client } from "../../types/Client"
+import type { Country } from  "../../types/Country"
 
 export default (clientId?: string) => {
   const router = useRouter();
@@ -19,7 +19,6 @@ export default (clientId?: string) => {
     domicile: "", 
   })
 
-  const roles = ref<Role[]>([])
   const countries = ref<Country[]>()
   
   const {  

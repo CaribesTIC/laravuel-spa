@@ -3,7 +3,7 @@ import { useRouter } from 'vue-router'
 import useHttp from "@/composables/useHttp";
 import CountryService from "../../services/Country"
 
-import type { Country } from "../types/Country"
+import type { Country } from "../../types/Country"
 
 
 export default (countryId?: string) => {
@@ -13,7 +13,6 @@ export default (countryId?: string) => {
     name: "", 
   })
 
-  const roles = ref<Role[]>([])
   
   
   const {  
