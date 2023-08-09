@@ -1,13 +1,13 @@
 <script setup lang="ts">
   import {ref} from 'vue'
-  //import FormAgreement from './FormAgreement.vue'
-  //import TableAgreement from './TableAgreement.vue'
-  //import useTabAgreement from '../../composables/Meeting/useTabAgreement'
+  import FormAgreement from './FormAgreement.vue'
+  import TableAgreement from './TableAgreement.vue'
+  import useTabAgreement from '../../composables/Meeting/useTabAgreement'
   const componentKey = ref(0);
   
   const props = defineProps<{ id?: string }>()
   
-  /*const {
+  const {
     panelOpened,
     closeButtonOpened,
     closeClassOpened,  
@@ -18,7 +18,7 @@
     getAgreements,
     removeAgreement,  
     submitAgreement
-  } = useTabPresentation(props.id)*/
+  } = useTabPresentation(props.id)
   </script>
   
   <template>
@@ -26,7 +26,7 @@
       <div class="form-group row">
         <div class="col-sm-12">
           <div align="center">     
-            <!--AppBtn
+            <AppBtn
               class="btn p-8"
               type="text"                 
               data-testid="click-btn"
@@ -47,7 +47,7 @@
               @editAgreement="editAgreement"
               @getAgreements="getAgreements"
               @removeAgreement="removeAgreement"            
-            /-->
+            />
           </div>
         </div>
       </div>

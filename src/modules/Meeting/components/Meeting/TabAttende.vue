@@ -1,13 +1,13 @@
 <script setup lang="ts">
   import {ref} from 'vue'
-  //import FormAttende from './FormAttende.vue'
-  //import TableAttende from './TableAttende.vue'
-  //import useTabAttende from '../../composables/Meeting/useTabAttende'
+  import FormAttende from './FormAttende.vue'
+  import TableAttende from './TableAttende.vue'
+  import useTabAttende from '../../composables/Meeting/useTabAttende'
   const componentKey = ref(0);
   
   const props = defineProps<{ id?: string }>()
   
-  /*const {
+  const {
     panelOpened,
     closeButtonOpened,
     closeClassOpened,  
@@ -18,7 +18,7 @@
     getAttendes,
     removeAttende,  
     submitAttende
-  } = useTabPresentation(props.id)*/
+  } = useTabPresentation(props.id)
   </script>
   
   <template>
@@ -26,7 +26,7 @@
       <div class="form-group row">
         <div class="col-sm-12">
           <div align="center">     
-            <!--AppBtn
+            <AppBtn
               class="btn p-8"
               type="text"                 
               data-testid="click-btn"
@@ -47,7 +47,7 @@
               @editAttende="editAttende"
               @getAttendes="getAttendes"
               @removeAttende="removeAttende"            
-            /-->
+            />
           </div>
         </div>
       </div>
