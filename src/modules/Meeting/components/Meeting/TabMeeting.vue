@@ -1,16 +1,16 @@
 <script setup lang="ts">
   import { computed } from "vue"
-  //import useTabMeeting from "../../composables/Meeting/useMeeting";
-  //import FormMeeting from './FormMeeting.vue';
+  import useTabMeeting from "../../composables/Meeting/useMeeting";
+  import FormMeeting from './FormMeeting.vue';
 
   const props = defineProps<{ id?: string }>()
 
-  /*const {  
+  const {  
     meeting,
     errors,
     pending,      
     submit    
-  } = useTabMeeting(props.id)*/
+  } = useTabMeeting(props.id)
 
   const isTrue = computed(
     () => meeting || !props.id
@@ -19,13 +19,13 @@
 
 <template>
     <div class="">
-      <!--FormMeeting
+      <FormMeeting
         v-if="isTrue"
         :meeting="meeting"
         :errors="errors"
         :pending="pending"
         @submit="submit"    
-      /-->
+      />
     </div>
   </template>
   
