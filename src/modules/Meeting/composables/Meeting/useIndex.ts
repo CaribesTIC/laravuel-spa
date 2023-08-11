@@ -2,7 +2,7 @@ import { reactive, onMounted } from "vue"
 import { onBeforeRouteUpdate } from "vue-router"
 import useTableGrid from "@/composables/useTableGrid"
 import useHttp from "@/composables/useHttp"
-import MeetingService from "../../services/Meeting"
+import MeetingService from "../../services/MeetingService"
 
 type Params =  string | string[][] | Record<string, string> | URLSearchParams | undefined
 

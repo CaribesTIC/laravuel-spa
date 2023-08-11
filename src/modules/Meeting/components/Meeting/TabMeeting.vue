@@ -1,6 +1,6 @@
 <script setup lang="ts">
   import { computed } from "vue"
-  import useTabMeeting from "../../composables/Meeting/useMeeting";
+  import useTabMeeting from "../../composables/Meeting/useTabMeeting";
   import FormMeeting from './FormMeeting.vue';
 
   const props = defineProps<{ id?: string }>()
