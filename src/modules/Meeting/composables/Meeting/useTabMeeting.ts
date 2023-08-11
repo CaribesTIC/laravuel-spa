@@ -1,25 +1,23 @@
-import { onMounted, reactive, inject } from 'vue'
+import { onMounted, reactive } from 'vue'
 import { useRouter } from 'vue-router'
 import useHttp from "@/composables/useHttp";
-import ProductService from "@/modules/Product/services/ProductService";
-import type { Product } from "../../types/Product";
+import MeetingService from "@/modules/Meeting/services/MeetingService";
+import type { Meeting } from "../../types/Meeting";
 
-export default (productId?: string) => {
-
-  const { measureUnit, updateMeasureUnit } = inject<{
-    measureUnit: string,
-    updateMeasureUnit: (val: any) => void;
-  }>('measureUnit')
-
+export default (meetingId?: string) => {
   const router = useRouter();    
 
-  const product:Product = reactive({  
-    category_id: "",
-    mark_id: "",
-    measure_unit_type_id: "",
-    measure_unit_id: "",
-    name:""
-  }) 
+  const meeting: Meeting = reactive({
+    city_id: "", 
+    app_date: "", 
+    start_time: "", 
+    place: "", 
+    entity_id: "", 
+    dependence_id: "", 
+    subject: "", 
+    reason: "", 
+    observation: "", 
+  })
 
   const {  
     errors,
@@ -29,16 +27,19 @@ export default (productId?: string) => {
   } = useHttp()
   
   onMounted(() => {
-    if (productId) {
+    if (meetingId) {
       pending.value = true
-      ProductService.getProduct(productId)
-        .then((response) => {
-          product.category_id = response.data.category_id;
-          product.mark_id = response.data.mark_id;
-          product.measure_unit_type_id = response.data.measure_unit_type_id;
-          product.measure_unit_id = response.data.measure_unit_id;
-          product.name = response.data.name          
-          updateMeasureUnit(response.data.measure_unit)
+      MeetingService.getMeeting(meetingId)
+        .then((response) => { 
+          meeting.city_id = response.data.data.city_id 
+          meeting.app_date = response.data.data.app_date 
+          meeting.start_time = response.data.data.start_time 
+          meeting.place = response.data.data.place 
+          meeting.entity_id = response.data.data.entity_id 
+          meeting.dependence_id = response.data.data.dependence_id 
+          meeting.subject = response.data.data.subject 
+          meeting.reason = response.data.data.reason 
+          meeting.observation = response.data.data.observation 
         })
         .catch((err) => {        
           errors.value = getError(err)
@@ -49,13 +50,12 @@ export default (productId?: string) => {
     }    
   })
 
-  const insertProduct = async (product: Product) => {
+  const insertMeeting = async (meeting: Meeting) => {
     pending.value = true
-    product.measure_unit = measureUnit
-    return ProductService.insertProduct(product)
+    return MeetingService.insertMeeting(meeting)
       .then((response) => {         
         alert( response.data.message )
-        router.push( { path: `/products/edit/${response.data.product_id}` } )
+        router.push( { path: `/meetings/edit/${response.data.meeting_id}` } )
       })
       .catch((err) => {                
         console.log( err.response.data )
@@ -66,14 +66,13 @@ export default (productId?: string) => {
       })
   }
 
-  const updateProduct = async (product: Product, productId: string) => {
+  const updateMeeting = async (meeting: Meeting, meetingId: string) => {
     pending.value= true
-    product._method = 'PUT'
-    product.measure_unit = 'measureUnit'    
-    return ProductService.updateProduct(productId, product)
+    meeting._method = 'PUT'
+    return MeetingService.updateMeeting(meetingId, meeting)
       .then((response) => {
         alert( response.data.message )
-        //router.push( { path: '/products' } )
+        //router.push( { path: '/meetings' } )
       })
       .catch((err) => {                
         console.log( err.response.data )
@@ -84,17 +83,15 @@ export default (productId?: string) => {
       })
   }
   
-  const submit = (product: Product) => {
-    !productId ? insertProduct (product)  : updateProduct(product, productId)
+  const submit = (meeting: Meeting) => {
+    !meetingId ? insertMeeting(meeting) : updateMeeting(meeting, meetingId)
   }
 
   return {    
-    product,
+    meeting,
     errors,
     pending,        
 
     submit    
   }
-
 }
-
