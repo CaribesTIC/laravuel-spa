@@ -1,30 +1,25 @@
 import Http from "@/utils/Http";
-import type { Presentation } from "../types/Presentation";
+import type { Approach } from "../types/Approach";
 
-export const getPresentations = (productId: string) => {  
-  return Http.get(`/api/presentations/${productId}`);
+export const getApproaches = (approachId: string) => {  
+  return Http.get(`/api/presentationsapproaches/${meetingId}`);
 }
 
-export const insertPresentation = (payload: Presentation) => {   
-  return Http.post(`/api/presentations`, payload);
+export const insertApproach = (payload: Approaches) => {   
+  return Http.post(`/api/approaches`, payload);
 }
 
-export const updatePresentation = (payload: Presentation, presentationId: string) => {   
-  return Http.put(`/api/presentations/${presentationId}`, payload);
+export const updateApproach = (payload: Approaches, approachesId: string) => {   
+  return Http.put(`/api/approaches/${approachId}`, payload);
 }
 
-export const deletePresentation = (presentationId: string) => { 
-  return Http.delete(`/api/presentations/${presentationId}`);
-}
-
-export const uploadFilePresentation = (payload: any, presentationId: string) => { 
-  return Http.post(`/api/presentation-fileupload/${presentationId}`, payload);
+export const deleteApproach = (approachId: string) => { 
+  return Http.delete(`/api/approaches/${approachId}`);
 }
 
 export default {
-  getPresentations,
-  insertPresentation,
-  updatePresentation,
-  deletePresentation,
-  uploadFilePresentation
+  getApproaches,
+  insertApproach,
+  updateApproach,
+  deleteApproach
 }

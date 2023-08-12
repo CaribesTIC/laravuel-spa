@@ -1,20 +1,20 @@
 import { computed, onMounted, reactive, ref } from 'vue'
 import useHttp from "@/composables/useHttp";
-import PresentationService from "@/modules/Product/services/PresentationService";
+import ApproachService from "@/modules/Meeting/services/ApproachService";
 import type { Ref } from "vue";
-import type { Presentation } from "../../types/Presentation";
+import type { Approach } from "../../types/Approach";
 
-export default (productId: string) => {
-  const saleTypeOptions = [
+export default (meetingId: string) => {
+  /*const saleTypeOptions = [
     { label: 'Mayor', value: 0 },
     { label: 'Detal', value: 1 }  
   ]
   const statusOptions = [
     { label: 'Inactivo', value: 0 },
     { label: 'Activo', value: 1 }  
-  ]
+  ]*/
   
-  const presentation: Presentation = reactive({
+  const approach: Approach = reactive({
     id: '',
     sale_type: 0,
     int_cod: "",
@@ -27,7 +27,7 @@ export default (productId: string) => {
     status: 0
   })
   
-  const presentations: Ref<Presentation[]>  = ref([])
+  const approaches: Ref<Approach[]>  = ref([])
   const panelOpened = ref(false)
   const closeButtonOpened = computed(()=> panelOpened.value ? "Cerrar" : "Abrir")
   const closeClassOpened = computed(()=> panelOpened.value ? "btn-default" : "btn-primary")
@@ -39,24 +39,25 @@ export default (productId: string) => {
     getError
   } = useHttp()
 
-  onMounted(() => getPresentations())
+  onMounted(() => getApproaches())
   
-  const getPresentations = async () => {
-    console.log("aqui")
+  const getApproaches = async () => {
+    if (!meetingId)
+      return null 
     pending.value = true
-    PresentationService.getPresentations(productId)
-      .then(res => presentations.value = res.data)
+    ApproachService.getApproaches(meetingId)
+      .then(res => approaches.value = res.data)
       .catch(err => errors.value = getError(err))
       .finally(() => pending.value = false) 
   }
 
-  const insertPresentation = async (payload: Presentation) => {
+  const insertApproach = async (payload: Approach) => {
     pending.value = true
     payload.product_id = productId
-    return PresentationService.insertPresentation(payload)
+    return ApproachService.insertApproach(payload)
       .then((response) => {
         panelOpened.value = false
-        getPresentations()    
+        getapproaches()    
         alert( response.data.message )
               
       })
@@ -69,14 +70,14 @@ export default (productId: string) => {
       })
   }
 
-  const updatePresentation = async (payload: Presentation, presentationId: string) => {
+  const updateApproach = async (payload: Approach, approachId: string) => {
     pending.value = true
     payload.product_id = productId
     payload._method = 'PUT'        
-    return PresentationService.updatePresentation(payload, presentationId)
+    return ApproachService.updateApproach(payload, approachId)
       .then((response) => {        
         panelOpened.value = false
-        getPresentations()    
+        getApproaches()    
         alert( response.data.message )     
       })
       .catch((err) => {                
@@ -88,12 +89,12 @@ export default (productId: string) => {
       })
   }
   
-  const submit = (payload: Presentation) => {    
-    !presentation.id ? insertPresentation (payload)  : updatePresentation(payload, presentation.id)
+  const submit = (payload: Approach) => {    
+    !approach.id ? insertApproach (payload)  : updateApproach(payload, approach.id)
   }
 
-  const edit = (presentationEdit: Presentation) => {
-    presentation.id = presentationEdit.id
+  const edit = (approachEdit: Approach) => {
+    /*presentation.id = presentationEdit.id
     presentation.sale_type = presentationEdit.sale_type ? 1 : 0
     presentation.int_cod = presentationEdit.int_cod
     presentation.bar_cod = presentationEdit.bar_cod
@@ -102,18 +103,18 @@ export default (productId: string) => {
     presentation.stock_min = presentationEdit.stock_min
     presentation.stock_max = presentationEdit.stock_max
     presentation.price = presentationEdit.price
-    presentation.status = presentationEdit.status ? 1 : 0
+    presentation.status = presentationEdit.status ? 1 : 0*/
     panelOpened.value = true
   }
   
-  const remove = async (presentationId: string) => {
-    if (presentationId === undefined)
+  const remove = async (approachId: string) => {
+    if (approachId === undefined)
       return
-    else if (confirm(`¿Estás seguro que desea eliminar el registro ${presentationId}?`)) {  
+    else if (confirm(`¿Estás seguro que desea eliminar el registro ${approachId}?`)) {  
       pending.value = true    
-      return PresentationService.deletePresentation(presentationId)
+      return ApproachService.deleteApproach(approachId)
         .then((response) => {        
-          getPresentations()
+          getApproaches()
         })
         .catch((err) => {                
           console.log( err.response.data )
@@ -129,13 +130,13 @@ export default (productId: string) => {
     panelOpened,
     closeButtonOpened,
     closeClassOpened,
-    presentations,
-    presentation,
-    saleTypeOptions,
-    statusOptions,
+    approaches,
+    approach,
+    /*saleTypeOptions,
+    statusOptions,*/
 
     edit,
-    getPresentations,
+    getApproaches,
     remove, 
     submit
   }

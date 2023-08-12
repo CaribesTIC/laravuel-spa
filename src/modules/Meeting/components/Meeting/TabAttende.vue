@@ -18,7 +18,7 @@
     getAttendes,
     removeAttende,  
     submitAttende
-  } = useTabPresentation(props.id)
+  } = useTabAttende(props.id)
   </script>
   
   <template>
