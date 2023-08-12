@@ -1,30 +1,25 @@
 import Http from "@/utils/Http";
-import type { Presentation } from "../types/Presentation";
+import type { Attende } from "../types/Attende";
 
-export const getPresentations = (productId: string) => {  
-  return Http.get(`/api/presentations/${productId}`);
+export const getAttendes = (attendeId: string) => {  
+  return Http.get(`/api/presentationsattendes/${meetingId}`);
 }
 
-export const insertPresentation = (payload: Presentation) => {   
-  return Http.post(`/api/presentations`, payload);
+export const insertAttende = (payload: Attendes) => {   
+  return Http.post(`/api/attendes`, payload);
 }
 
-export const updatePresentation = (payload: Presentation, presentationId: string) => {   
-  return Http.put(`/api/presentations/${presentationId}`, payload);
+export const updateAttende = (payload: Attendes, attendesId: string) => {   
+  return Http.put(`/api/attendes/${attendeId}`, payload);
 }
 
-export const deletePresentation = (presentationId: string) => { 
-  return Http.delete(`/api/presentations/${presentationId}`);
-}
-
-export const uploadFilePresentation = (payload: any, presentationId: string) => { 
-  return Http.post(`/api/presentation-fileupload/${presentationId}`, payload);
+export const deleteAttende = (attendeId: string) => { 
+  return Http.delete(`/api/attendes/${attendeId}`);
 }
 
 export default {
-  getPresentations,
-  insertPresentation,
-  updatePresentation,
-  deletePresentation,
-  uploadFilePresentation
+  getAttendes,
+  insertAttende,
+  updateAttende,
+  deleteAttende
 }

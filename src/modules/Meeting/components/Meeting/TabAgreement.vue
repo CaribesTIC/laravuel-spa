@@ -18,7 +18,7 @@
     getAgreements,
     removeAgreement,  
     submitAgreement
-  } = useTabPresentation(props.id)
+  } = useTabAgreement(props.id)
   </script>
   
   <template>

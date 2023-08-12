@@ -18,7 +18,7 @@
     getApproaches,
     removeApproach,  
     submitApproach
-  } = useTabPresentation(props.id)
+  } = useTabApproach(props.id)
   </script>
   
   <template>
