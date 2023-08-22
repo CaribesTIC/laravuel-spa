@@ -1,6 +1,6 @@
 import { computed, onMounted, reactive, ref } from 'vue'
 import useHttp from "@/composables/useHttp";
-import ApproachService from "@/modules/Meeting/services/ApproachService";
+import ApproachService from "@/modules/Meeting/services/Approach";
 import type { Ref } from "vue";
 import type { Approach } from "../../types/Approach";
 
