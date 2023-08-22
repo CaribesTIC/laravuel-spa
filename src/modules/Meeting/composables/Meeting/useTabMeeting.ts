@@ -1,7 +1,7 @@
 import { onMounted, reactive } from 'vue'
 import { useRouter } from 'vue-router'
 import useHttp from "@/composables/useHttp";
-import MeetingService from "@/modules/Meeting/services/MeetingService";
+import MeetingService from "@/modules/Meeting/services/Meeting";
 import type { Meeting } from "../../types/Meeting";
 
 export default (meetingId?: string) => {

@@ -47,7 +47,8 @@ export default (clientId?: string) => {
         .finally(() => {
           pending.value = false;
         })
-    }
+    }    
+    
     pending.value = true
     CountryService.getHelpCountries()
       .then((response) => {

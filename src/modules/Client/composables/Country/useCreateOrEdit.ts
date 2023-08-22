@@ -35,8 +35,7 @@ export default (countryId?: string) => {
         .finally(() => {
           pending.value = false;
         })
-    }
-    pending.value = true
+    }    
     
   })
 
