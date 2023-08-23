@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { toRaw, ref } from "vue"
-import PresentationService from "@/modules/Meeting/services/ApproachService"
-
+import ApproachService from "@/modules/Meeting/services/Approach"
 import type { Approach } from "../../types/Approach";
 
 const props = defineProps<{ approaches: Approach[] }>()
@@ -28,15 +27,13 @@ const approachId = ref("")
   <div class="mt-4 relative overflow-x-auto shadow-md sm:rounded-lg">
     <table id="id_tab_presentacion" class="w-full text-sm text-left text-gray-500 dark:text-gray-400" width="100%">
       <thead class="text-xs text-gray-700 uppercase dark:text-gray-400">
-        <tr>          
-          <th class="px-6 py-3 bg-gray-50 bg-base-200">IntCod</th>           
-          <th class="px-6 py-3">BarCod</th>        
-          <th class="px-6 py-3 bg-gray-50 bg-base-200">Empaque</th>
-          <th class="px-6 py-3">Precio</th>
-          <th class="px-6 py-3 bg-gray-50 bg-base-200">StockMin</th>
-          <th class="px-6 py-3">StockMax</th>
-          <th class="px-6 py-3 bg-gray-50 bg-base-200">Estatus</th>                         
-          <th class="px-6 py-3">Acción(es)</th>
+        <tr>
+          
+          <th class="px-6 py-3 bg-gray-50 bg-base-200">meeting_id</th>
+          <th class="px-6 py-3 ">approach</th>
+          <th class="px-6 py-3 bg-gray-50 bg-base-200">speaker</th>
+          <th class="px-6 py-3 ">observation</th>
+          <th class="px-6 py-3 bg-gray-50 bg-base-200">Acción(es)</th>
         </tr>
       </thead>
       <tbody>      

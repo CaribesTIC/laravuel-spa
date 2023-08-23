@@ -15,16 +15,16 @@ export default (meetingId: string) => {
   ]*/
   
   const attende: Attende = reactive({
-    id: '',
-    sale_type: 0,
-    int_cod: "",
-    bar_cod: "",
-    packing_deployed: "",
-    packing_json: "",
-    stock_min: 0,
-    stock_max: 0,
-    price: "0.0",
-    status: 0
+    id: "", 
+    meeting_id: "", 
+    idcard: "", 
+    fullname: "", 
+    entity_id: "", 
+    dependence_id: "", 
+    position_id: "", 
+    email: "", 
+    phone: "", 
+    observation: "", 
   })
   
   const attendes: Ref<Attende[]>  = ref([])
@@ -94,16 +94,17 @@ export default (meetingId: string) => {
   }
 
   const edit = (attendeEdit: Attende) => {
-    /*presentation.id = presentationEdit.id
-    presentation.sale_type = presentationEdit.sale_type ? 1 : 0
-    presentation.int_cod = presentationEdit.int_cod
-    presentation.bar_cod = presentationEdit.bar_cod
-    presentation.packing_deployed = presentationEdit.packing_deployed
-    presentation.packing_json = presentationEdit.packing
-    presentation.stock_min = presentationEdit.stock_min
-    presentation.stock_max = presentationEdit.stock_max
-    presentation.price = presentationEdit.price
-    presentation.status = presentationEdit.status ? 1 : 0*/
+    // presentation.status = presentationEdit.sale_type ? 1 : 0
+    attende.id = attendeEdit.id
+    attende.meeting_id = attendeEdit.meeting_id
+    attende.idcard = attendeEdit.idcard
+    attende.fullname = attendeEdit.fullname
+    attende.entity_id = attendeEdit.entity_id
+    attende.dependence_id = attendeEdit.dependence_id
+    attende.position_id = attendeEdit.position_id
+    attende.email = attendeEdit.email
+    attende.phone = attendeEdit.phone
+    attende.observation = attendeEdit.observation
     panelOpened.value = true
   }
   
