@@ -15,16 +15,11 @@ export default (meetingId: string) => {
   ]*/
   
   const approach: Approach = reactive({
-    id: '',
-    sale_type: 0,
-    int_cod: "",
-    bar_cod: "",
-    packing_deployed: "",
-    packing_json: "",
-    stock_min: 0,
-    stock_max: 0,
-    price: "0.0",
-    status: 0
+    id: "", 
+    meeting_id: "", 
+    approach: "", 
+    speaker: "", 
+    observation: "", 
   })
   
   const approaches: Ref<Approach[]>  = ref([])
@@ -94,16 +89,12 @@ export default (meetingId: string) => {
   }
 
   const edit = (approachEdit: Approach) => {
-    /*presentation.id = presentationEdit.id
-    presentation.sale_type = presentationEdit.sale_type ? 1 : 0
-    presentation.int_cod = presentationEdit.int_cod
-    presentation.bar_cod = presentationEdit.bar_cod
-    presentation.packing_deployed = presentationEdit.packing_deployed
-    presentation.packing_json = presentationEdit.packing
-    presentation.stock_min = presentationEdit.stock_min
-    presentation.stock_max = presentationEdit.stock_max
-    presentation.price = presentationEdit.price
-    presentation.status = presentationEdit.status ? 1 : 0*/
+    // presentation.status = presentationEdit.sale_type ? 1 : 0
+    approach.id = approachEdit.id
+    approach.meeting_id = approachEdit.meeting_id
+    approach.approach = approachEdit.approach
+    approach.speaker = approachEdit.speaker
+    approach.observation = approachEdit.observation
     panelOpened.value = true
   }
   

@@ -15,16 +15,11 @@ export default (meetingId: string) => {
   ]*/
   
   const agreement: Agreement = reactive({
-    id: '',
-    sale_type: 0,
-    int_cod: "",
-    bar_cod: "",
-    packing_deployed: "",
-    packing_json: "",
-    stock_min: 0,
-    stock_max: 0,
-    price: "0.0",
-    status: 0
+    id: "", 
+    meeting_id: "", 
+    agreement: "", 
+    responsible: "", 
+    observation: "", 
   })
   
   const agreements: Ref<Agreement[]>  = ref([])
@@ -94,16 +89,12 @@ export default (meetingId: string) => {
   }
 
   const edit = (agreementEdit: Agreement) => {
-    /*presentation.id = presentationEdit.id
-    presentation.sale_type = presentationEdit.sale_type ? 1 : 0
-    presentation.int_cod = presentationEdit.int_cod
-    presentation.bar_cod = presentationEdit.bar_cod
-    presentation.packing_deployed = presentationEdit.packing_deployed
-    presentation.packing_json = presentationEdit.packing
-    presentation.stock_min = presentationEdit.stock_min
-    presentation.stock_max = presentationEdit.stock_max
-    presentation.price = presentationEdit.price
-    presentation.status = presentationEdit.status ? 1 : 0*/
+    // presentation.status = presentationEdit.sale_type ? 1 : 0
+    agreement.id = agreementEdit.id
+    agreement.meeting_id = agreementEdit.meeting_id
+    agreement.agreement = agreementEdit.agreement
+    agreement.responsible = agreementEdit.responsible
+    agreement.observation = agreementEdit.observation
     panelOpened.value = true
   }
   
