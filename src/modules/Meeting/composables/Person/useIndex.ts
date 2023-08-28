@@ -2,7 +2,7 @@ import { reactive, onMounted } from "vue"
 import { onBeforeRouteUpdate } from "vue-router"
 import useTableGrid from "@/composables/useTableGrid"
 import useHttp from "@/composables/useHttp"
-import ClientService from "../../services/Client"
+import PersonService from "../../services/Person"
 
 type Params =  string | string[][] | Record<string, string> | URLSearchParams | undefined
 
@@ -27,10 +27,10 @@ export default () => {
 
     setSearch,
     setSort, 
-  } = useTableGrid(data, "/clients")
+  } = useTableGrid(data, "/people")
 
-  const getClients = (routeQuery: string) => {
-    return ClientService.getClients(routeQuery)
+  const getPeople = (routeQuery: string) => {
+    return PersonService.getPeople(routeQuery)
       .then((response) => {
         errors.value = {}
         data.rows = response.data.rows.data
@@ -48,10 +48,10 @@ export default () => {
     if (rowId === undefined)
       return
     else if (confirm(`¿Estás seguro que desea eliminar el registro ${rowId}?`)) {    
-      return ClientService.deleteClient(rowId)
+      return PersonService.deletePerson(rowId)
         .then((response) => {
           errors.value = {}
-          getClients(
+          getPeople(
             new URLSearchParams(route.query as Params).toString()
           )
         })
@@ -64,14 +64,14 @@ export default () => {
 
   onBeforeRouteUpdate(async (to, from) => {      
     if (to.query !== from.query) {        
-      await getClients(
+      await getPeople(
         new URLSearchParams(to.query as Params).toString()
       )
     }
   })
 
   onMounted(() => {
-    getClients(
+    getPeople(
       new URLSearchParams(route.query as Params).toString()
     )
   })

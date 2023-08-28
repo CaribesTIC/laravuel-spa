@@ -1,6 +1,6 @@
 <script setup lang="ts">
 // @ts-nocheck
-import useIndex from "../../composables/Client/useIndex";
+import useIndex from "../../composables/Person/useIndex";
 import AppPaginationB from "@/components/AppPaginationB.vue";
 import AppPageHeader from "@/components/AppPageHeader.vue"
 import AppBtn from "@/components/AppBtn.vue"
@@ -18,10 +18,10 @@ const {
 
 <template>
 <div>
-  <AppPageHeader> Clients </AppPageHeader>
+  <AppPageHeader> People </AppPageHeader>
 
   <div class="flex space-x-2">
-    <AppLink class="btn btn-primary" to="/clients/create">
+    <AppLink class="btn btn-primary" to="/people/create">
       <span>Crear</span>
     </AppLink>
   </div>
@@ -79,7 +79,7 @@ const {
              <td class="">
               <AppLink
                 class="text-indigo-600 hover:text-indigo-800 underline"
-                :to="{ name: 'clientEdit', params: { id: row.id }}"               
+                :to="{ name: 'personEdit', params: { id: row.id }}"               
               >
                 {{ row.id }}
               </AppLink>
@@ -109,7 +109,7 @@ const {
               <div class="flex items-center space-x-1">                
                 <AppBtn
                   class="btn btn-primary btn-xs"                    
-                  @click="router.push({ path: '/clients/edit/'+row.id })"
+                  @click="router.push({ path: '/people/edit/'+row.id })"
                 >
                   Editar
                 </AppBtn>
@@ -123,7 +123,7 @@ const {
             </td>
           </tr>
           <tr v-if="data.rows.length === 0">
-            <td class="" colspan="4">Clients not found.</td>
+            <td class="" colspan="4">People not found.</td>
           </tr>
         </tbody>
       </table>
