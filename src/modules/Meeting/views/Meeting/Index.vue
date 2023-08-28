@@ -50,16 +50,8 @@ const {
               </th>
               
               <th class="">
-                <AppLink to="#" @click.prevent="setSort('app_date')">app_date</AppLink>
-              </th>
-              <th class="">
-                <AppLink to="#" @click.prevent="setSort('start_time')">start_time</AppLink>
-              </th>
-              <th class="">
                 <AppLink to="#" @click.prevent="setSort('place')">place</AppLink>
               </th>
-              
-              
               <th class="">
                 <AppLink to="#" @click.prevent="setSort('subject')">subject</AppLink>
               </th>
@@ -69,7 +61,10 @@ const {
               <th class="">
                 <AppLink to="#" @click.prevent="setSort('observation')">observation</AppLink>
               </th>
-                                     
+            
+              <th class="">
+                <AppLink to="#" @click.prevent="setSort('country_id')">country</AppLink>
+              </th>                         
             <th class="">Acción</th>
           </tr>
         </thead>
@@ -84,12 +79,6 @@ const {
               </AppLink>
             </td>
             <td class="">
-              {{ row.app_date }}
-            </td>
-            <td class="">
-              {{ row.start_time }}
-            </td>
-            <td class="">
               {{ row.place }}
             </td>
             <td class="">
@@ -100,6 +89,9 @@ const {
             </td>
             <td class="">
               {{ row.observation }}
+            </td>
+            <td class="">
+              {{ row.country.name }}
             </td> 
             <td class="">
               <div class="flex items-center space-x-1">                

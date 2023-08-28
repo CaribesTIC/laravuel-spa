@@ -8,12 +8,8 @@ export default (meetingId?: string) => {
   const router = useRouter();    
 
   const meeting: Meeting = reactive({
-    city_id: "", 
-    app_date: "", 
-    start_time: "", 
+    country_id: "", 
     place: "", 
-    entity_id: "", 
-    dependence_id: "", 
     subject: "", 
     reason: "", 
     observation: "", 
@@ -31,12 +27,8 @@ export default (meetingId?: string) => {
       pending.value = true
       MeetingService.getMeeting(meetingId)
         .then((response) => { 
-          meeting.city_id = response.data.data.city_id 
-          meeting.app_date = response.data.data.app_date 
-          meeting.start_time = response.data.data.start_time 
+          meeting.country_id = response.data.data.country_id 
           meeting.place = response.data.data.place 
-          meeting.entity_id = response.data.data.entity_id 
-          meeting.dependence_id = response.data.data.dependence_id 
           meeting.subject = response.data.data.subject 
           meeting.reason = response.data.data.reason 
           meeting.observation = response.data.data.observation 
