@@ -13,14 +13,12 @@ const emits = defineEmits<{
 }>()
 
 const {
+  countries,
   form,
-  //categories,
-  //marks,
-  //measureUnitTypes,
-  //measureUnits,
-  pending,  
+  errors,
+  pending,
 
-  v$  
+  v$
 } = useFormMeeting(props.meeting)
 
 const submit = async () => {  
@@ -36,26 +34,31 @@ const submit = async () => {
   <AppFlashMessage :error="errors"/>
   <form @submit.prevent="submit">
     <div class="grid lg:grid-cols-2 gap-4">
-      
-      
-      
+        <div class="block">     
+          <AppSelect
+            v-if="countries"
+            :options="countries"
+            v-model="form.country_id"
+            label="country_id"
+            :error="v$.country_id.$error ? v$.country_id.$errors[0].$message : null"
+          />
+        </div>
+        
         <div class="block">     
           <AppInput           
             v-model="form.place"
             label="place"
             type="text"
-            :error="errors && errors.place ? errors.place[0] : ''"
+            :error="v$.place.$error ? v$.place.$errors[0].$message : null"
           />
         </div>
         
-      
-      
         <div class="block">     
           <AppInput           
             v-model="form.subject"
             label="subject"
             type="text"
-            :error="errors && errors.subject ? errors.subject[0] : ''"
+            :error="v$.subject.$error ? v$.subject.$errors[0].$message : null"
           />
         </div>
         
@@ -64,7 +67,7 @@ const submit = async () => {
             v-model="form.reason"
             label="reason"
             type="text"
-            :error="errors && errors.reason ? errors.reason[0] : ''"
+            :error="v$.reason.$error ? v$.reason.$errors[0].$message : null"
           />
         </div>
         
@@ -72,7 +75,7 @@ const submit = async () => {
           <AppTextarea
             label="observation"
             v-model="form.observation"
-            :error="errors && errors.observation ? errors.observation[0] : ''"
+            :error="v$.observation.$error ? v$.observation.$errors[0].$message : null"
           />
         </div>
         
