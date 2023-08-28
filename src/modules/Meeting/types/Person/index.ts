@@ -1,6 +1,6 @@
 import type { Country } from  "./Country"
 
-export type Client = {
+export type Person = {
   id?: string | number;
   email?: string; 
   type?: boolean | ""; 
@@ -12,7 +12,7 @@ export type Client = {
   country?: Country;
 }
 
-export type ClientTG = {
+export type PersonTG = {
   rows: Rows;
   sort: null | string;
   direction: null | string;
@@ -21,7 +21,7 @@ export type ClientTG = {
 
 export type Rows = {
   current_page: number;
-  data: ClientRow[];
+  data: PersonRow[];
   first_page_url: string;
   from: number;
   last_page: number;
@@ -35,7 +35,7 @@ export type Rows = {
   total: number;
 }
 
-export type ClientRow = {
+export type PersonRow = {
   email?: string; 
   type?: boolean; 
   identification_card?: string; 

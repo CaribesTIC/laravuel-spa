@@ -1,22 +1,22 @@
 <script setup lang="ts">
 import { reactive } from "vue"
-import type { Client } from "../../types/Client"
+import type { Person } from "../../types/Person"
 import type { Country } from  "../../types/Country"
 // import type Errors from "../types/Errors"
 
 const props = defineProps<{
   id?: string
-  client: Client
+  person: Person
   countries?: Country[] 
   pending: boolean
   errors: any
 }>()
 
 const emit = defineEmits<{
-  (e: 'submit', client: Client, clientId?: string): void
+  (e: 'submit', person: Person, personId?: string): void
 }>()
 
-const form: Client = reactive(props.client)
+const form: Person = reactive(props.person)
 
 const submit = async () => {
   emit('submit', {

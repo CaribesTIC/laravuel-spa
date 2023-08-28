@@ -6,7 +6,6 @@ import middlewarePipeline from "@/router/middlewarePipeline"
 import AuthRoutes from "@/modules/Auth/routes"
 import AuthorizationRoutes from "@/modules/Authorization/routes"
 import MessageRoutes from "@/modules/Message/routes"
-import Client from "@/modules/Client/routes"
 import Meeting from "@/modules/Meeting/routes"
 import UserRoutes from "@/modules/User/routes"
 
@@ -15,8 +14,7 @@ const storeAuth = computed(() => useAuthStore())
 const routes: Array<RouteRecordRaw> = [
   ...AuthRoutes.map(route => route),
   ...AuthorizationRoutes.map(route => route),
-  ...MessageRoutes.map(route => route),
-  ...Client.map(route => route),
+  ...MessageRoutes.map(route => route),  
   ...Meeting.map(route => route),
   ...UserRoutes.map(route => route)
 ]

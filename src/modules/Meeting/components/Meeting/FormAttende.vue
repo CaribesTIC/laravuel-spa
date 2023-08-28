@@ -30,8 +30,8 @@ const submit = async () => {
 
 <template>
   <div>
-    <form @submit.prevent="submit">
-      <div class="p-5 grid lg:grid-cols-2 gap-4">
+    <form @submit.prevent="submit"> 
+      <div class="p-5 grid lg:grid-cols-2 gap-4">fun.test1
 
           
               <div class="block">     
