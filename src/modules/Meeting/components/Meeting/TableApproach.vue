@@ -6,17 +6,17 @@ import type { Approach } from "../../types/Approach";
 const props = defineProps<{ approaches: Approach[] }>()
 
 const emits = defineEmits<{
-  (e: 'edit', approachId: object): void
-  (e: 'remove', approachId: string): void
+  (e: 'editApproach', approachId: object): void
+  (e: 'removeApproach', approachId: string): void
   (e: 'getApproaches' ): void
 }>()
 
-const edit =  (approach: object) => {
-  emits("edit", toRaw(approach))
+const editApproach =  (approach: object) => {
+  emits("editApproach", toRaw(approach))
 };
 
-const remove =  (approachId: string) => {
-  emits("remove", approachId)
+const removeApproach =  (approachId: string) => {
+  emits("removeApproach", approachId)
 };
 
 const approachId = ref("")
@@ -29,39 +29,69 @@ const approachId = ref("")
       <thead class="text-xs text-gray-700 uppercase dark:text-gray-400">
         <tr>
           
-          <th class="px-6 py-3 bg-gray-50 bg-base-200">meeting_id</th>
-          <th class="px-6 py-3 ">approach</th>
-          <th class="px-6 py-3 bg-gray-50 bg-base-200">speaker</th>
-          <th class="px-6 py-3 ">observation</th>
-          <th class="px-6 py-3 bg-gray-50 bg-base-200">Acción(es)</th>
+          <th class="px-6 py-3 bg-gray-50 bg-base-200">approach</th>
+          <th class="px-6 py-3 ">speaker</th>
+          <th class="px-6 py-3 bg-gray-50 bg-base-200">observation</th>
+          <th class="px-6 py-3 ">Acción(es)</th>
         </tr>
       </thead>
       <tbody>      
-        <!--tr v-for="presentation in props.presentations" :key="presentation.id">             
-          <td class="px-6 py-3 bg-gray-50 bg-base-200">{{presentation.bar_cod}}</td>
-          <td class="px-6 py-3">{{presentation.int_cod}}</td>
-          <td class="px-6 py-3 bg-gray-50 bg-base-200" :id='presentation.packing'>{{presentation.packing_deployed}}</td>
-          <td class="px-6 py-3 text-right">{{presentation.price}}</td>
-          <td class="px-6 py-3 bg-gray-50 bg-base-200 text-right">{{presentation.stock_min}}</td>
-          <td class="px-6 py-3 text-right">{{presentation.stock_max}}</td>
-          <td class="px-6 py-3 bg-gray-50 bg-base-200">{{presentation.status}}</td>  
+        <tr v-for="approach in props.approaches" :key="approach.id">
+
+
+
+          
+            <td class="px-6 py-3 bg-gray-50 bg-base-200">
+              {{ approach.approach }}
+
+
+              
+
+            </td>
+           
+            <td class="px-6 py-3 ">
+              {{ approach.speaker }}
+
+
+              
+
+            </td>
+           
+            <td class="px-6 py-3 bg-gray-50 bg-base-200">
+              {{ approach.observation }}
+
+
+              
+
+            </td>
+           
+
+
+
+          <!--td class="px-6 py-3 bg-gray-50 bg-base-200">{{approach.bar_cod}}</td>
+          <td class="px-6 py-3">{{approach.int_cod}}</td>
+          <td class="px-6 py-3 text-right">{{approach.price}}</td>
+          <td class="px-6 py-3 bg-gray-50 bg-base-200 text-right">{{approach.stock_min}}</td>
+          <td class="px-6 py-3 text-right">{{approach.stock_max}}</td>
+          <td class="px-6 py-3 bg-gray-50 bg-base-200">{{approach.status}}</td-->  
           <td class="px-6 py-3">
             <div class="flex items-center space-x-1">
              <AppBtn
                 class="btn btn-primary btn-xs"                    
-                @click="edit(presentation)"
+                @click="editApproach(approach)"
               >
                 Editar
               </AppBtn>
               <AppBtn
-                @click="remove(presentation.id)"                    
+                @click="removeApproach(approach.id)"                    
                 class="btn btn-danger btn-xs"                    
               >
                 Eliminar
               </AppBtn>
             </div>
           </td>
-        </tr-->
+
+        </tr>
       </tbody>
     </table>    
   </div>  

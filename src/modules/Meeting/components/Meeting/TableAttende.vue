@@ -6,17 +6,17 @@ import type { Attende } from "../../types/Attende";
 const props = defineProps<{ attendes: Attende[] }>()
 
 const emits = defineEmits<{
-  (e: 'edit', attendeId: object): void
-  (e: 'remove', attendeId: string): void
+  (e: 'editAttende', attendeId: object): void
+  (e: 'removeAttende', attendeId: string): void
   (e: 'getAttendes' ): void
 }>()
 
-const edit =  (attende: object) => {
-  emits("edit", toRaw(attende))
+const editAttende =  (attende: object) => {
+  emits("editAttende", toRaw(attende))
 };
 
-const remove =  (attendeId: string) => {
-  emits("remove", attendeId)
+const removeAttende =  (attendeId: string) => {
+  emits("removeAttende", attendeId)
 };
 
 const attendeId = ref("")
@@ -29,44 +29,114 @@ const attendeId = ref("")
       <thead class="text-xs text-gray-700 uppercase dark:text-gray-400">
         <tr>
           
-          <th class="px-6 py-3 bg-gray-50 bg-base-200">meeting_id</th>
-          <th class="px-6 py-3 ">idcard</th>
-          <th class="px-6 py-3 bg-gray-50 bg-base-200">fullname</th>
-          <th class="px-6 py-3 ">entity_id</th>
-          <th class="px-6 py-3 bg-gray-50 bg-base-200">dependence_id</th>
-          <th class="px-6 py-3 ">position_id</th>
-          <th class="px-6 py-3 bg-gray-50 bg-base-200">email</th>
-          <th class="px-6 py-3 ">phone</th>
-          <th class="px-6 py-3 bg-gray-50 bg-base-200">observation</th>
-          <th class="px-6 py-3 ">Acción(es)</th>
+          <th class="px-6 py-3 bg-gray-50 bg-base-200">idcard</th>
+          <th class="px-6 py-3 ">fullname</th>
+          <th class="px-6 py-3 bg-gray-50 bg-base-200">entity_id</th>
+          <th class="px-6 py-3 ">dependence_id</th>
+          <th class="px-6 py-3 bg-gray-50 bg-base-200">position_id</th>
+          <th class="px-6 py-3 ">email</th>
+          <th class="px-6 py-3 bg-gray-50 bg-base-200">phone</th>
+          <th class="px-6 py-3 ">observation</th>
+          <th class="px-6 py-3 bg-gray-50 bg-base-200">Acción(es)</th>
         </tr>
       </thead>
       <tbody>      
-        <!--tr v-for="presentation in props.presentations" :key="presentation.id">             
-          <td class="px-6 py-3 bg-gray-50 bg-base-200">{{presentation.bar_cod}}</td>
-          <td class="px-6 py-3">{{presentation.int_cod}}</td>
-          <td class="px-6 py-3 bg-gray-50 bg-base-200" :id='presentation.packing'>{{presentation.packing_deployed}}</td>
-          <td class="px-6 py-3 text-right">{{presentation.price}}</td>
-          <td class="px-6 py-3 bg-gray-50 bg-base-200 text-right">{{presentation.stock_min}}</td>
-          <td class="px-6 py-3 text-right">{{presentation.stock_max}}</td>
-          <td class="px-6 py-3 bg-gray-50 bg-base-200">{{presentation.status}}</td>  
+        <tr v-for="attende in props.attendes" :key="attende.id">
+
+
+
+          
+            <td class="px-6 py-3 bg-gray-50 bg-base-200">
+              {{ attende.idcard }}
+
+
+              
+
+            </td>
+           
+            <td class="px-6 py-3 ">
+              {{ attende.fullname }}
+
+
+              
+
+            </td>
+           
+            <td class="px-6 py-3 bg-gray-50 bg-base-200">
+              {{ attende.entity_id }}
+
+
+              
+
+            </td>
+           
+            <td class="px-6 py-3 ">
+              {{ attende.dependence_id }}
+
+
+              
+
+            </td>
+           
+            <td class="px-6 py-3 bg-gray-50 bg-base-200">
+              {{ attende.position_id }}
+
+
+              
+
+            </td>
+           
+            <td class="px-6 py-3 ">
+              {{ attende.email }}
+
+
+              
+
+            </td>
+           
+            <td class="px-6 py-3 bg-gray-50 bg-base-200">
+              {{ attende.phone }}
+
+
+              
+
+            </td>
+           
+            <td class="px-6 py-3 ">
+              {{ attende.observation }}
+
+
+              
+
+            </td>
+           
+
+
+
+          <!--td class="px-6 py-3 bg-gray-50 bg-base-200">{{attende.bar_cod}}</td>
+          <td class="px-6 py-3">{{attende.int_cod}}</td>
+          <td class="px-6 py-3 text-right">{{attende.price}}</td>
+          <td class="px-6 py-3 bg-gray-50 bg-base-200 text-right">{{attende.stock_min}}</td>
+          <td class="px-6 py-3 text-right">{{attende.stock_max}}</td>
+          <td class="px-6 py-3 bg-gray-50 bg-base-200">{{attende.status}}</td-->  
           <td class="px-6 py-3">
             <div class="flex items-center space-x-1">
              <AppBtn
                 class="btn btn-primary btn-xs"                    
-                @click="edit(presentation)"
+                @click="editAttende(attende)"
               >
                 Editar
               </AppBtn>
               <AppBtn
-                @click="remove(presentation.id)"                    
+                @click="removeAttende(attende.id)"                    
                 class="btn btn-danger btn-xs"                    
               >
                 Eliminar
               </AppBtn>
             </div>
           </td>
-        </tr-->
+
+        </tr>
       </tbody>
     </table>    
   </div>  

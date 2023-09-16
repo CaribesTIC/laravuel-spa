@@ -10,12 +10,12 @@ export default [{
     path: "/meetings/create",
     name: "meetingCreate",
     meta: { middleware: [auth, admin] },
-    component: () => import("@/modules/Meeting/views/Meeting/CreateOrEdit.vue").then(m => m.default),
+    component: () => import("@/modules/Meeting/views/Meeting/Tabs.vue").then(m => m.default),
     props: true
 }, {
     path: "/meetings/edit/:id(\\d+)",
     name: "meetingEdit",
     meta: { middleware: [auth, admin] },
-    component: () => import("@/modules/Meeting/views/Meeting/CreateOrEdit.vue").then(m => m.default),
+    component: () => import("@/modules/Meeting/views/Meeting/Tabs.vue").then(m => m.default),
     props: true
 }]

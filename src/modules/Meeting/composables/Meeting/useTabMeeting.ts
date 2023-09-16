@@ -82,8 +82,8 @@ export default (meetingId?: string) => {
   return {    
     meeting,
     errors,
-    pending,        
+    pending,
 
-    submit    
+    submit
   }
 }

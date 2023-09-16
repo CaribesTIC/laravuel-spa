@@ -14,10 +14,12 @@
     approaches,
     approach,
   
+    createApproach,
     editApproach,
     getApproaches,
     removeApproach,  
-    submitApproach
+    submitApproach,
+    panelToogleApproach
   } = useTabApproach(props.id)
   </script>
   
@@ -32,7 +34,7 @@
               data-testid="click-btn"
               :class="closeClassOpened"
               :text="`${closeButtonOpened} panel to add Approach`"
-              @click="panelOpened=!panelOpened"
+              @click="panelToogleApproach"
             />      
             <FormApproach
               v-if="panelOpened"

@@ -6,17 +6,17 @@ import type { Agreement } from "../../types/Agreement";
 const props = defineProps<{ agreements: Agreement[] }>()
 
 const emits = defineEmits<{
-  (e: 'edit', agreementId: object): void
-  (e: 'remove', agreementId: string): void
+  (e: 'editAgreement', agreementId: object): void
+  (e: 'removeAgreement', agreementId: string): void
   (e: 'getAgreements' ): void
 }>()
 
-const edit =  (agreement: object) => {
-  emits("edit", toRaw(agreement))
+const editAgreement =  (agreement: object) => {
+  emits("editAgreement", toRaw(agreement))
 };
 
-const remove =  (agreementId: string) => {
-  emits("remove", agreementId)
+const removeAgreement =  (agreementId: string) => {
+  emits("removeAgreement", agreementId)
 };
 
 const agreementId = ref("")
@@ -29,39 +29,69 @@ const agreementId = ref("")
       <thead class="text-xs text-gray-700 uppercase dark:text-gray-400">
         <tr>
           
-          <th class="px-6 py-3 bg-gray-50 bg-base-200">meeting_id</th>
-          <th class="px-6 py-3 ">agreement</th>
-          <th class="px-6 py-3 bg-gray-50 bg-base-200">responsible</th>
-          <th class="px-6 py-3 ">observation</th>
-          <th class="px-6 py-3 bg-gray-50 bg-base-200">Acción(es)</th>
+          <th class="px-6 py-3 bg-gray-50 bg-base-200">agreement</th>
+          <th class="px-6 py-3 ">responsible</th>
+          <th class="px-6 py-3 bg-gray-50 bg-base-200">observation</th>
+          <th class="px-6 py-3 ">Acción(es)</th>
         </tr>
       </thead>
       <tbody>      
-        <!--tr v-for="presentation in props.presentations" :key="presentation.id">             
-          <td class="px-6 py-3 bg-gray-50 bg-base-200">{{presentation.bar_cod}}</td>
-          <td class="px-6 py-3">{{presentation.int_cod}}</td>
-          <td class="px-6 py-3 bg-gray-50 bg-base-200" :id='presentation.packing'>{{presentation.packing_deployed}}</td>
-          <td class="px-6 py-3 text-right">{{presentation.price}}</td>
-          <td class="px-6 py-3 bg-gray-50 bg-base-200 text-right">{{presentation.stock_min}}</td>
-          <td class="px-6 py-3 text-right">{{presentation.stock_max}}</td>
-          <td class="px-6 py-3 bg-gray-50 bg-base-200">{{presentation.status}}</td>  
+        <tr v-for="agreement in props.agreements" :key="agreement.id">
+
+
+
+          
+            <td class="px-6 py-3 bg-gray-50 bg-base-200">
+              {{ agreement.agreement }}
+
+
+              
+
+            </td>
+           
+            <td class="px-6 py-3 ">
+              {{ agreement.responsible }}
+
+
+              
+
+            </td>
+           
+            <td class="px-6 py-3 bg-gray-50 bg-base-200">
+              {{ agreement.observation }}
+
+
+              
+
+            </td>
+           
+
+
+
+          <!--td class="px-6 py-3 bg-gray-50 bg-base-200">{{agreement.bar_cod}}</td>
+          <td class="px-6 py-3">{{agreement.int_cod}}</td>
+          <td class="px-6 py-3 text-right">{{agreement.price}}</td>
+          <td class="px-6 py-3 bg-gray-50 bg-base-200 text-right">{{agreement.stock_min}}</td>
+          <td class="px-6 py-3 text-right">{{agreement.stock_max}}</td>
+          <td class="px-6 py-3 bg-gray-50 bg-base-200">{{agreement.status}}</td-->  
           <td class="px-6 py-3">
             <div class="flex items-center space-x-1">
              <AppBtn
                 class="btn btn-primary btn-xs"                    
-                @click="edit(presentation)"
+                @click="editAgreement(agreement)"
               >
                 Editar
               </AppBtn>
               <AppBtn
-                @click="remove(presentation.id)"                    
+                @click="removeAgreement(agreement.id)"                    
                 class="btn btn-danger btn-xs"                    
               >
                 Eliminar
               </AppBtn>
             </div>
           </td>
-        </tr-->
+
+        </tr>
       </tbody>
     </table>    
   </div>  

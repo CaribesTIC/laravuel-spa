@@ -34,7 +34,19 @@ export default (meetingId: string) => {
     getError
   } = useHttp()
 
-  onMounted(() => getAgreements())
+  onMounted(    
+    () => {
+      agreement.meeting_id = meetingId
+      getAgreements()
+    }
+  )
+
+  const panelToogleAgreement = ()=> {
+    if (!panelOpened.value) {
+      createAgreement()
+    }
+    panelOpened.value =! panelOpened.value    
+  }
   
   const getAgreements = async () => {
     if (!meetingId)
@@ -48,11 +60,11 @@ export default (meetingId: string) => {
 
   const insertAgreement = async (payload: Agreement) => {
     pending.value = true
-    payload.product_id = productId
+    payload.meeting_id = meetingId
     return AgreementService.insertAgreement(payload)
       .then((response) => {
         panelOpened.value = false
-        getagreements()    
+        getAgreements()    
         alert( response.data.message )
               
       })
@@ -67,7 +79,7 @@ export default (meetingId: string) => {
 
   const updateAgreement = async (payload: Agreement, agreementId: string) => {
     pending.value = true
-    payload.product_id = productId
+    payload.meeting_id = meetingId
     payload._method = 'PUT'        
     return AgreementService.updateAgreement(payload, agreementId)
       .then((response) => {        
@@ -84,21 +96,29 @@ export default (meetingId: string) => {
       })
   }
   
-  const submit = (payload: Agreement) => {    
+  const submitAgreement = (payload: Agreement) => {    
     !agreement.id ? insertAgreement (payload)  : updateAgreement(payload, agreement.id)
   }
 
-  const edit = (agreementEdit: Agreement) => {
+  const createAgreement = () => {
+      agreement.meeting_id = meetingId
+      agreement.id = ""
+      agreement.agreement = ""
+      agreement.responsible = ""
+      agreement.observation = ""
+  }
+
+  const editAgreement = (agreementEdit: Agreement) => {
     // presentation.status = presentationEdit.sale_type ? 1 : 0
+    agreement.meeting_id = meetingId
     agreement.id = agreementEdit.id
-    agreement.meeting_id = agreementEdit.meeting_id
     agreement.agreement = agreementEdit.agreement
     agreement.responsible = agreementEdit.responsible
     agreement.observation = agreementEdit.observation
     panelOpened.value = true
   }
   
-  const remove = async (agreementId: string) => {
+  const removeAgreement = async (agreementId: string) => {
     if (agreementId === undefined)
       return
     else if (confirm(`¿Estás seguro que desea eliminar el registro ${agreementId}?`)) {  
@@ -126,9 +146,11 @@ export default (meetingId: string) => {
     /*saleTypeOptions,
     statusOptions,*/
 
-    edit,
+    createAgreement,
+    editAgreement,
     getAgreements,
-    remove, 
-    submit
+    removeAgreement, 
+    submitAgreement,
+    panelToogleAgreement
   }
 }

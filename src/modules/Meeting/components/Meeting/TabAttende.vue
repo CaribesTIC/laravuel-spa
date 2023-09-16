@@ -14,10 +14,12 @@
     attendes,
     attende,
   
+    createAttende,
     editAttende,
     getAttendes,
     removeAttende,  
-    submitAttende
+    submitAttende,
+    panelToogleAttende
   } = useTabAttende(props.id)
   </script>
   
@@ -32,7 +34,7 @@
               data-testid="click-btn"
               :class="closeClassOpened"
               :text="`${closeButtonOpened} panel to add Attende`"
-              @click="panelOpened=!panelOpened"
+              @click="panelToogleAttende"
             />      
             <FormAttende
               v-if="panelOpened"

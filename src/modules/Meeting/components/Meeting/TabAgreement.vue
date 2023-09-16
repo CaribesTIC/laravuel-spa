@@ -14,10 +14,12 @@
     agreements,
     agreement,
   
+    createAgreement,
     editAgreement,
     getAgreements,
     removeAgreement,  
-    submitAgreement
+    submitAgreement,
+    panelToogleAgreement
   } = useTabAgreement(props.id)
   </script>
   
@@ -32,7 +34,7 @@
               data-testid="click-btn"
               :class="closeClassOpened"
               :text="`${closeButtonOpened} panel to add Agreement`"
-              @click="panelOpened=!panelOpened"
+              @click="panelToogleAgreement"
             />      
             <FormAgreement
               v-if="panelOpened"

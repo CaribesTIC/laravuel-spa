@@ -63,7 +63,7 @@ const {
               </th>
             
               <th class="">
-                <AppLink to="#" @click.prevent="setSort('country_id')">country</AppLink>
+                <AppLink to="#" @click.prevent="setSort('_id')"></AppLink>
               </th>                         
             <th class="">Acción</th>
           </tr>
@@ -73,7 +73,7 @@ const {
              <td class="">
               <AppLink
                 class="text-indigo-600 hover:text-indigo-800 underline"
-                :to="{ name: 'meetingEdit', params: { id: row.id }}"               
+                :to="{ name: 'meetingEdit', params: { id: row.id }}"
               >
                 {{ row.id }}
               </AppLink>

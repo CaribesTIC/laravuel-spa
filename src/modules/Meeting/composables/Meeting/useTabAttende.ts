@@ -39,7 +39,19 @@ export default (meetingId: string) => {
     getError
   } = useHttp()
 
-  onMounted(() => getAttendes())
+  onMounted(    
+    () => {
+      attende.meeting_id = meetingId
+      getAttendes()
+    }
+  )
+
+  const panelToogleAttende = ()=> {
+    if (!panelOpened.value) {
+      createAttende()
+    }
+    panelOpened.value =! panelOpened.value    
+  }
   
   const getAttendes = async () => {
     if (!meetingId)
@@ -53,11 +65,11 @@ export default (meetingId: string) => {
 
   const insertAttende = async (payload: Attende) => {
     pending.value = true
-    payload.product_id = productId
+    payload.meeting_id = meetingId
     return AttendeService.insertAttende(payload)
       .then((response) => {
         panelOpened.value = false
-        getattendes()    
+        getAttendes()    
         alert( response.data.message )
               
       })
@@ -72,7 +84,7 @@ export default (meetingId: string) => {
 
   const updateAttende = async (payload: Attende, attendeId: string) => {
     pending.value = true
-    payload.product_id = productId
+    payload.meeting_id = meetingId
     payload._method = 'PUT'        
     return AttendeService.updateAttende(payload, attendeId)
       .then((response) => {        
@@ -89,14 +101,27 @@ export default (meetingId: string) => {
       })
   }
   
-  const submit = (payload: Attende) => {    
+  const submitAttende = (payload: Attende) => {    
     !attende.id ? insertAttende (payload)  : updateAttende(payload, attende.id)
   }
 
-  const edit = (attendeEdit: Attende) => {
+  const createAttende = () => {
+      attende.meeting_id = meetingId
+      attende.id = ""
+      attende.idcard = ""
+      attende.fullname = ""
+      attende.entity_id = ""
+      attende.dependence_id = ""
+      attende.position_id = ""
+      attende.email = ""
+      attende.phone = ""
+      attende.observation = ""
+  }
+
+  const editAttende = (attendeEdit: Attende) => {
     // presentation.status = presentationEdit.sale_type ? 1 : 0
+    attende.meeting_id = meetingId
     attende.id = attendeEdit.id
-    attende.meeting_id = attendeEdit.meeting_id
     attende.idcard = attendeEdit.idcard
     attende.fullname = attendeEdit.fullname
     attende.entity_id = attendeEdit.entity_id
@@ -108,7 +133,7 @@ export default (meetingId: string) => {
     panelOpened.value = true
   }
   
-  const remove = async (attendeId: string) => {
+  const removeAttende = async (attendeId: string) => {
     if (attendeId === undefined)
       return
     else if (confirm(`¿Estás seguro que desea eliminar el registro ${attendeId}?`)) {  
@@ -136,9 +161,11 @@ export default (meetingId: string) => {
     /*saleTypeOptions,
     statusOptions,*/
 
-    edit,
+    createAttende,
+    editAttende,
     getAttendes,
-    remove, 
-    submit
+    removeAttende, 
+    submitAttende,
+    panelToogleAttende
   }
 }
