@@ -1,15 +1,15 @@
 import Http from "@/utils/Http";
 import type { Approach } from "../types/Approach";
 
-export const getApproaches = (approachId: string) => {  
-  return Http.get(`/api/presentationsapproaches/${meetingId}`);
+export const getApproaches = (meetingId: string) => {  
+  return Http.get(`/api/approaches/${meetingId}`);
 }
 
 export const insertApproach = (payload: Approaches) => {   
   return Http.post(`/api/approaches`, payload);
 }
 
-export const updateApproach = (payload: Approaches, approachesId: string) => {   
+export const updateApproach = (payload: Approaches, approachId: string) => {   
   return Http.put(`/api/approaches/${approachId}`, payload);
 }
 

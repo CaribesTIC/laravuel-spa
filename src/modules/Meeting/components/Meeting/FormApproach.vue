@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { toRaw } from "vue"
 import useFormApproach from "../../composables/Meeting/useFormApproach";
-import type { RadioOption } from "@/types/RadioOption";
+// import type { RadioOption } from "@/types/RadioOption";
 import type { Approach } from "../../types/Approach";
 
 const props = defineProps<{
   approach: Approach
-  //saleTypeOptions: RadioOption[]
-  //statusOptions: RadioOption[]
+  // saleTypeOptions: RadioOption[]
+  // statusOptions: RadioOption[]
 }>()
 
 const {
@@ -17,21 +17,21 @@ const {
 } = useFormApproach(props.approach)
 
 const emits = defineEmits<{
-  (e: 'submit', form: Approach): void
+  (e: 'submitApproach', form: Approach): void
 }>()
 
-const submit = async () => {
+const submitApproach = async () => {
   const result = await v$.value.$validate();
   if (result) {
-    emits("submit", toRaw(form));
+    emits("submitApproach", toRaw(form));
   }
 }
 </script>
 
 <template>
   <div>
-    <form @submit.prevent="submit"> 
-      <div class="p-5 grid lg:grid-cols-2 gap-4">fun.test1
+    <form @submit.prevent="submitApproach"> 
+      <div class="p-5 grid lg:grid-cols-2 gap-4">
 
           
               <div class="block">     
@@ -39,7 +39,8 @@ const submit = async () => {
                   v-model="form.approach"
                   label="approach"
                   type="text"
-                  :error="errors && errors.approach ? errors.approach[0] : ''"
+                  :error="v$.approach.$error ? v$.approach.$errors[0].$message : null"
+
                 />
               </div>
               
@@ -48,7 +49,8 @@ const submit = async () => {
                   v-model="form.speaker"
                   label="speaker"
                   type="text"
-                  :error="errors && errors.speaker ? errors.speaker[0] : ''"
+                  :error="v$.speaker.$error ? v$.speaker.$errors[0].$message : null"
+
                 />
               </div>
               
@@ -56,7 +58,7 @@ const submit = async () => {
                 <AppTextarea
                   label="observation"
                   v-model="form.observation"
-                  :error="errors && errors.observation ? errors.observation[0] : ''"
+                  :error="v$.observation.$error ? v$.observation.$errors[0].$message : null"
                 />
               </div>
               

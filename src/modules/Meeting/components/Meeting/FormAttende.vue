@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { toRaw } from "vue"
 import useFormAttende from "../../composables/Meeting/useFormAttende";
-import type { RadioOption } from "@/types/RadioOption";
+// import type { RadioOption } from "@/types/RadioOption";
 import type { Attende } from "../../types/Attende";
 
 const props = defineProps<{
   attende: Attende
-  //saleTypeOptions: RadioOption[]
-  //statusOptions: RadioOption[]
+  // saleTypeOptions: RadioOption[]
+  // statusOptions: RadioOption[]
 }>()
 
 const {
@@ -17,21 +17,21 @@ const {
 } = useFormAttende(props.attende)
 
 const emits = defineEmits<{
-  (e: 'submit', form: Attende): void
+  (e: 'submitAttende', form: Attende): void
 }>()
 
-const submit = async () => {
+const submitAttende = async () => {
   const result = await v$.value.$validate();
   if (result) {
-    emits("submit", toRaw(form));
+    emits("submitAttende", toRaw(form));
   }
 }
 </script>
 
 <template>
   <div>
-    <form @submit.prevent="submit"> 
-      <div class="p-5 grid lg:grid-cols-2 gap-4">fun.test1
+    <form @submit.prevent="submitAttende"> 
+      <div class="p-5 grid lg:grid-cols-2 gap-4">
 
           
               <div class="block">     
@@ -39,7 +39,8 @@ const submit = async () => {
                   v-model="form.idcard"
                   label="idcard"
                   type="text"
-                  :error="errors && errors.idcard ? errors.idcard[0] : ''"
+                  :error="v$.idcard.$error ? v$.idcard.$errors[0].$message : null"
+
                 />
               </div>
               
@@ -48,7 +49,8 @@ const submit = async () => {
                   v-model="form.fullname"
                   label="fullname"
                   type="text"
-                  :error="errors && errors.fullname ? errors.fullname[0] : ''"
+                  :error="v$.fullname.$error ? v$.fullname.$errors[0].$message : null"
+
                 />
               </div>
               
@@ -60,7 +62,8 @@ const submit = async () => {
                   v-model="form.email"
                   label="email"
                   type="text"
-                  :error="errors && errors.email ? errors.email[0] : ''"
+                  :error="v$.email.$error ? v$.email.$errors[0].$message : null"
+
                 />
               </div>
               
@@ -69,7 +72,8 @@ const submit = async () => {
                   v-model="form.phone"
                   label="phone"
                   type="text"
-                  :error="errors && errors.phone ? errors.phone[0] : ''"
+                  :error="v$.phone.$error ? v$.phone.$errors[0].$message : null"
+
                 />
               </div>
               
@@ -77,7 +81,7 @@ const submit = async () => {
                 <AppTextarea
                   label="observation"
                   v-model="form.observation"
-                  :error="errors && errors.observation ? errors.observation[0] : ''"
+                  :error="v$.observation.$error ? v$.observation.$errors[0].$message : null"
                 />
               </div>
               

@@ -34,7 +34,19 @@ export default (meetingId: string) => {
     getError
   } = useHttp()
 
-  onMounted(() => getApproaches())
+  onMounted(    
+    () => {
+      approach.meeting_id = meetingId
+      getApproaches()
+    }
+  )
+
+  const panelToogleApproach = ()=> {
+    if (!panelOpened.value) {
+      createApproach()
+    }
+    panelOpened.value =! panelOpened.value    
+  }
   
   const getApproaches = async () => {
     if (!meetingId)
@@ -48,11 +60,11 @@ export default (meetingId: string) => {
 
   const insertApproach = async (payload: Approach) => {
     pending.value = true
-    payload.product_id = productId
+    payload.meeting_id = meetingId
     return ApproachService.insertApproach(payload)
       .then((response) => {
         panelOpened.value = false
-        getapproaches()    
+        getApproaches()    
         alert( response.data.message )
               
       })
@@ -67,7 +79,7 @@ export default (meetingId: string) => {
 
   const updateApproach = async (payload: Approach, approachId: string) => {
     pending.value = true
-    payload.product_id = productId
+    payload.meeting_id = meetingId
     payload._method = 'PUT'        
     return ApproachService.updateApproach(payload, approachId)
       .then((response) => {        
@@ -84,21 +96,29 @@ export default (meetingId: string) => {
       })
   }
   
-  const submit = (payload: Approach) => {    
+  const submitApproach = (payload: Approach) => {    
     !approach.id ? insertApproach (payload)  : updateApproach(payload, approach.id)
   }
 
-  const edit = (approachEdit: Approach) => {
+  const createApproach = () => {
+      approach.meeting_id = meetingId
+      approach.id = ""
+      approach.approach = ""
+      approach.speaker = ""
+      approach.observation = ""
+  }
+
+  const editApproach = (approachEdit: Approach) => {
     // presentation.status = presentationEdit.sale_type ? 1 : 0
+    approach.meeting_id = meetingId
     approach.id = approachEdit.id
-    approach.meeting_id = approachEdit.meeting_id
     approach.approach = approachEdit.approach
     approach.speaker = approachEdit.speaker
     approach.observation = approachEdit.observation
     panelOpened.value = true
   }
   
-  const remove = async (approachId: string) => {
+  const removeApproach = async (approachId: string) => {
     if (approachId === undefined)
       return
     else if (confirm(`¿Estás seguro que desea eliminar el registro ${approachId}?`)) {  
@@ -126,9 +146,11 @@ export default (meetingId: string) => {
     /*saleTypeOptions,
     statusOptions,*/
 
-    edit,
+    createApproach,
+    editApproach,
     getApproaches,
-    remove, 
-    submit
+    removeApproach, 
+    submitApproach,
+    panelToogleApproach
   }
 }
