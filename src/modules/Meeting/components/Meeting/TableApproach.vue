@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { toRaw, ref } from "vue"
-import ApproachService from "@/modules/Meeting/services/Approach"
-import type { Approach } from "../../types/Approach";
+//import ApproachService from "@/modules/Meeting/services/Approach"
+import type { Approach } from "../../types/Meeting/Approach";
 
 const props = defineProps<{ approaches: Approach[] }>()
 

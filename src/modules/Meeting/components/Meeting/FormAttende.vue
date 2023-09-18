@@ -2,7 +2,7 @@
 import { toRaw } from "vue"
 import useFormAttende from "../../composables/Meeting/useFormAttende";
 // import type { RadioOption } from "@/types/RadioOption";
-import type { Attende } from "../../types/Attende";
+import type { Attende } from "../../types/Meeting/Attende";
 
 const props = defineProps<{
   attende: Attende

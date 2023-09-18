@@ -1,7 +1,7 @@
 import { computed, reactive, ref, watch } from 'vue'
 import { useVuelidate } from "@vuelidate/core";
 import { required, helpers, minValue } from "@vuelidate/validators";
-import type { Attende } from "../../types/Attende";
+import type { Attende } from "../../types/Meeting/Attende";
 
 export default (attende: Attende) => {  
   const form = reactive<Attende>({
@@ -33,7 +33,7 @@ export default (attende: Attende) => {
     };
   });
 
-  const v$ = useVuelidate(rules, form);
+  const v$ = useVuelidate(rules, form as any);
     
   watch(attende, (newAttende) => {
     form.meeting_id = newAttende.meeting_id

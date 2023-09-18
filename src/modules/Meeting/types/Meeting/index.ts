@@ -1,19 +1,17 @@
 import type { Country } from  "../Country"
 
-export type Person = {
-  id?: string | number;
-  email?: string; 
-  type?: boolean | ""; 
-  identification_card?: string; 
-  business_name?: string; 
-  phone?: string; 
+export type Meeting = {
+  id?: any; 
   country_id?: string | number;
-  domicile?: string; 
+  place?: string; 
+  subject?: string; 
+  reason?: string; 
+  observation?: string; 
   country?: Country;
   _method?: 'PUT';
 }
 
-export type PersonTG = {
+export type MeetingTG = {
   rows: Rows;
   sort: null | string;
   direction: null | string;
@@ -22,7 +20,7 @@ export type PersonTG = {
 
 export type Rows = {
   current_page: number;
-  data: PersonRow[];
+  data: MeetingRow[];
   first_page_url: string;
   from: number;
   last_page: number;
@@ -36,14 +34,12 @@ export type Rows = {
   total: number;
 }
 
-export type PersonRow = {
-  email?: string; 
-  type?: boolean; 
-  identification_card?: string; 
-  business_name?: string; 
-  phone?: string; 
+export type MeetingRow = {
   country_id?: number;
-  domicile?: string; 
+  place?: string; 
+  subject?: string; 
+  reason?: string; 
+  observation?: string; 
 }
 
 export type Link = {

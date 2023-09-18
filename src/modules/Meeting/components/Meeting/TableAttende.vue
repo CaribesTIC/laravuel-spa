@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { toRaw, ref } from "vue"
-import AttendeService from "@/modules/Meeting/services/Attende"
-import type { Attende } from "../../types/Attende";
+//import AttendeService from "@/modules/Meeting/services/Attende"
+import type { Attende } from "../../types/Meeting/Attende";
 
 const props = defineProps<{ attendes: Attende[] }>()
 

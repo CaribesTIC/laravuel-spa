@@ -1,6 +1,6 @@
 import { onMounted, reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import useHttp from "@/composables/useHttp";
+import useHttp from "@/composables/useHttp"; //foreign_table_name
 import PersonService from "../../services/Person"
 import CountryService from  "../../services/Country"
 import type { Person } from "../../types/Person"

@@ -1,7 +1,7 @@
 import { computed, reactive, ref, watch } from 'vue'
 import { useVuelidate } from "@vuelidate/core";
 import { required, helpers, minValue } from "@vuelidate/validators";
-import type { Approach } from "../../types/Approach";
+import type { Approach } from "../../types/Meeting/Approach";
 
 export default (approach: Approach) => {  
   const form = reactive<Approach>({
@@ -23,7 +23,7 @@ export default (approach: Approach) => {
     };
   });
 
-  const v$ = useVuelidate(rules, form);
+  const v$ = useVuelidate(rules, form as any);
     
   watch(approach, (newApproach) => {
     form.meeting_id = newApproach.meeting_id
