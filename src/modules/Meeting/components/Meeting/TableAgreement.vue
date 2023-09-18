@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { toRaw, ref } from "vue"
-import AgreementService from "@/modules/Meeting/services/Agreement"
-import type { Agreement } from "../../types/Agreement";
+//import AgreementService from "@/modules/Meeting/services/Agreement"
+import type { Agreement } from "../../types/Meeting/Agreement";
 
 const props = defineProps<{ agreements: Agreement[] }>()
 

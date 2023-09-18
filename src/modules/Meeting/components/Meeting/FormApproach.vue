@@ -2,7 +2,7 @@
 import { toRaw } from "vue"
 import useFormApproach from "../../composables/Meeting/useFormApproach";
 // import type { RadioOption } from "@/types/RadioOption";
-import type { Approach } from "../../types/Approach";
+import type { Approach } from "../../types/Meeting/Approach";
 
 const props = defineProps<{
   approach: Approach

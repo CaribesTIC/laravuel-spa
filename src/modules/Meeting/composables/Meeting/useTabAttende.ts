@@ -2,7 +2,7 @@ import { computed, onMounted, reactive, ref } from 'vue'
 import useHttp from "@/composables/useHttp";
 import AttendeService from "@/modules/Meeting/services/Attende";
 import type { Ref } from "vue";
-import type { Attende } from "../../types/Attende";
+import type { Attende } from "../../types/Meeting/Attende";
 
 export default (meetingId: string) => {
   /*const saleTypeOptions = [

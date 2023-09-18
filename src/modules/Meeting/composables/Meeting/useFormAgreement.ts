@@ -1,7 +1,7 @@
 import { computed, reactive, ref, watch } from 'vue'
 import { useVuelidate } from "@vuelidate/core";
 import { required, helpers, minValue } from "@vuelidate/validators";
-import type { Agreement } from "../../types/Agreement";
+import type { Agreement } from "../../types/Meeting/Agreement";
 
 export default (agreement: Agreement) => {  
   const form = reactive<Agreement>({
@@ -23,7 +23,7 @@ export default (agreement: Agreement) => {
     };
   });
 
-  const v$ = useVuelidate(rules, form);
+  const v$ = useVuelidate(rules, form as any);
     
   watch(agreement, (newAgreement) => {
     form.meeting_id = newAgreement.meeting_id

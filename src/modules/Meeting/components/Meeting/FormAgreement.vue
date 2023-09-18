@@ -2,7 +2,7 @@
 import { toRaw } from "vue"
 import useFormAgreement from "../../composables/Meeting/useFormAgreement";
 // import type { RadioOption } from "@/types/RadioOption";
-import type { Agreement } from "../../types/Agreement";
+import type { Agreement } from "../../types/Meeting/Agreement";
 
 const props = defineProps<{
   agreement: Agreement

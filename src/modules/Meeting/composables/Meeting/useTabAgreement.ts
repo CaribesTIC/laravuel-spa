@@ -2,7 +2,7 @@ import { computed, onMounted, reactive, ref } from 'vue'
 import useHttp from "@/composables/useHttp";
 import AgreementService from "@/modules/Meeting/services/Agreement";
 import type { Ref } from "vue";
-import type { Agreement } from "../../types/Agreement";
+import type { Agreement } from "../../types/Meeting/Agreement";
 
 export default (meetingId: string) => {
   /*const saleTypeOptions = [
