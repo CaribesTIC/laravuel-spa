@@ -31,12 +31,12 @@ const attendeId = ref("")
           
           <th class="px-6 py-3 bg-gray-50 bg-base-200">idcard</th>
           <th class="px-6 py-3 ">fullname</th>
-          <th class="px-6 py-3 bg-gray-50 bg-base-200">entity_id</th>
-          <th class="px-6 py-3 ">dependence_id</th>
-          <th class="px-6 py-3 bg-gray-50 bg-base-200">position_id</th>
-          <th class="px-6 py-3 ">email</th>
-          <th class="px-6 py-3 bg-gray-50 bg-base-200">phone</th>
-          <th class="px-6 py-3 ">observation</th>
+          <th class="px-6 py-3 bg-gray-50 bg-base-200">email</th>
+          <th class="px-6 py-3 ">phone</th>
+          <th class="px-6 py-3 bg-gray-50 bg-base-200">observation</th>
+          <th class="px-6 py-3 ">entity_id</th>
+          <th class="px-6 py-3 bg-gray-50 bg-base-200">dependence_id</th>
+          <th class="px-6 py-3 ">position_id</th>
           <th class="px-6 py-3 bg-gray-50 bg-base-200">Acción(es)</th>
         </tr>
       </thead>
@@ -63,30 +63,6 @@ const attendeId = ref("")
             </td>
            
             <td class="px-6 py-3 bg-gray-50 bg-base-200">
-              {{ attende.entity_id }}
-
-
-              
-
-            </td>
-           
-            <td class="px-6 py-3 ">
-              {{ attende.dependence_id }}
-
-
-              
-
-            </td>
-           
-            <td class="px-6 py-3 bg-gray-50 bg-base-200">
-              {{ attende.position_id }}
-
-
-              
-
-            </td>
-           
-            <td class="px-6 py-3 ">
               {{ attende.email }}
 
 
@@ -94,7 +70,7 @@ const attendeId = ref("")
 
             </td>
            
-            <td class="px-6 py-3 bg-gray-50 bg-base-200">
+            <td class="px-6 py-3 ">
               {{ attende.phone }}
 
 
@@ -102,8 +78,32 @@ const attendeId = ref("")
 
             </td>
            
-            <td class="px-6 py-3 ">
+            <td class="px-6 py-3 bg-gray-50 bg-base-200">
               {{ attende.observation }}
+
+
+              
+
+            </td>
+           
+            <td class="px-6 py-3 ">
+              {{ attende.entity_id }}
+
+
+              
+
+            </td>
+           
+            <td class="px-6 py-3 bg-gray-50 bg-base-200">
+              {{ attende.dependence_id }}
+
+
+              
+
+            </td>
+           
+            <td class="px-6 py-3 ">
+              {{ attende.position_id }}
 
 
               

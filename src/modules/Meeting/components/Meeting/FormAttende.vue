@@ -11,6 +11,9 @@ const props = defineProps<{
 }>()
 
 const {
+  entities,
+  dependencies,
+  positions,
   form,
 
   v$
@@ -54,9 +57,6 @@ const submitAttende = async () => {
                 />
               </div>
               
-            
-            
-            
               <div class="block">     
                 <AppInput           
                   v-model="form.email"
@@ -84,6 +84,43 @@ const submitAttende = async () => {
                   :error="v$.observation.$error ? v$.observation.$errors[0].$message : null"
                 />
               </div>
+
+              
+              <div class="block">     
+                <AppSelect
+                  v-if="entities"
+                  :options="entities"
+                  v-model="form.entity_id"
+                  label="entity_id"
+                  :error="v$.entity_id.$error ? v$.entity_id.$errors[0].$message : null"
+                />
+              </div>
+
+              
+              
+              <div class="block">     
+                <AppSelect
+                  v-if="dependencies"
+                  :options="dependencies"
+                  v-model="form.dependence_id"
+                  label="dependence_id"
+                  :error="v$.dependence_id.$error ? v$.dependence_id.$errors[0].$message : null"
+                />
+              </div>
+
+              
+              
+              <div class="block">     
+                <AppSelect
+                  v-if="positions"
+                  :options="positions"
+                  v-model="form.position_id"
+                  label="position_id"
+                  :error="v$.position_id.$error ? v$.position_id.$errors[0].$message : null"
+                />
+              </div>
+
+              
               
             
 
@@ -102,21 +139,8 @@ const submitAttende = async () => {
             name="status"
             :options="props.statusOptions"
             :error="v$.status.$error ? v$.status.$errors[0].$message : null"           
-          /-->
+          /-->    
       
-        <!--div class="block">
-          <AppTextarea
-            label="Empaque"
-            v-model="form.packing_deployed"                
-            @focus="isOpenModal = !isOpenModal"                
-            readonly
-            :error="v$.packing_deployed.$error ? v$.packing_deployed.$errors[0].$message : null"
-          />
-          <AppInput
-            v-model="form.packing_json"          
-            type="hidden"          
-          />                        
-        </div-->       
       </div>
       <div class="block flex justify-center">
         <AppBtn

@@ -4,17 +4,17 @@ import AppPageHeader from "@/components/AppPageHeader.vue"
 import { useRouter } from 'vue-router'
 
 const TabMeeting = defineAsyncComponent(() => import('../../components/Meeting/TabMeeting.vue'))
+const TabAgreement = defineAsyncComponent(() => import('../../components/Meeting/TabAgreement.vue'))
 const TabApproach = defineAsyncComponent(() => import('../../components/Meeting/TabApproach.vue'))
 const TabAttende = defineAsyncComponent(() => import('../../components/Meeting/TabAttende.vue'))
-const TabAgreement = defineAsyncComponent(() => import('../../components/Meeting/TabAgreement.vue'))
 
 const props = defineProps<{ id?: string }>()
 
 const tabs = [
   { component: TabMeeting , title: "Meeting" },
+  { component: TabAgreement , title: "Agreements" },
   { component: TabApproach , title: "Approaches" },
-  { component: TabAttende , title: "Attendes" },
-  { component: TabAgreement , title: "Agreements" }
+  { component: TabAttende , title: "Attendes" }
 ]
 
 const currentTab = shallowRef(tabs[0])

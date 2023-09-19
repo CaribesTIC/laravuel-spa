@@ -61,6 +61,7 @@ const submitAgreement = async () => {
                   :error="v$.observation.$error ? v$.observation.$errors[0].$message : null"
                 />
               </div>
+
               
             
 
@@ -79,21 +80,8 @@ const submitAgreement = async () => {
             name="status"
             :options="props.statusOptions"
             :error="v$.status.$error ? v$.status.$errors[0].$message : null"           
-          /-->
+          /-->    
       
-        <!--div class="block">
-          <AppTextarea
-            label="Empaque"
-            v-model="form.packing_deployed"                
-            @focus="isOpenModal = !isOpenModal"                
-            readonly
-            :error="v$.packing_deployed.$error ? v$.packing_deployed.$errors[0].$message : null"
-          />
-          <AppInput
-            v-model="form.packing_json"          
-            type="hidden"          
-          />                        
-        </div-->       
       </div>
       <div class="block flex justify-center">
         <AppBtn

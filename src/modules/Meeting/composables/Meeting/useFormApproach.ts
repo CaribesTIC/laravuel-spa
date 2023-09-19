@@ -1,6 +1,7 @@
-import { computed, reactive, ref, watch } from 'vue'
+import { onMounted, computed, reactive, ref, watch } from 'vue'
 import { useVuelidate } from "@vuelidate/core";
 import { required, helpers, minValue } from "@vuelidate/validators";
+import useHttp from "@/composables/useHttp";
 import type { Approach } from "../../types/Meeting/Approach";
 
 export default (approach: Approach) => {  
@@ -12,8 +13,15 @@ export default (approach: Approach) => {
     observation: approach.observation, 
   })
 
-  const isOpenModal = ref(false)
+  const {
+    errors,
+    pending,
 
+    getError
+  } = useHttp()
+
+  const isOpenModal = ref(false)
+  
   const rules = computed(() => {
     return {
       meeting_id: { required: helpers.withMessage("Campo requerido", required) },
@@ -31,6 +39,10 @@ export default (approach: Approach) => {
     form.speaker = newApproach.speaker
     form.observation = newApproach.observation
   })
+
+  onMounted(() => {
+    
+    })
 
   return {
     form,

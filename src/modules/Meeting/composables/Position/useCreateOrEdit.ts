@@ -1,15 +1,15 @@
 import { onMounted, reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import useHttp from "@/composables/useHttp"; //foreign_table_name
-import CountryService from "../../services/Country"
+import PositionService from "../../services/Position"
 
-import type { Country } from "../../types/Country"
+import type { Position } from "../../types/Position"
 
 
-export default (countryId?: string) => {
+export default (positionId?: string) => {
   const router = useRouter();
   
-  const country: Country = reactive({
+  const position: Position = reactive({
     name: "", 
   })
 
@@ -23,11 +23,11 @@ export default (countryId?: string) => {
   } = useHttp()
   
   onMounted(async () => {
-    if (countryId) {
+    if (positionId) {
       pending.value = true
-      CountryService.getCountry(countryId)
+      PositionService.getPosition(positionId)
         .then((response) => { 
-          country.name = response.data.data.name 
+          position.name = response.data.data.name 
         })
         .catch((err) => {        
           errors.value = getError(err)
@@ -39,12 +39,12 @@ export default (countryId?: string) => {
     
   })
 
-  const insertCountry = async (country: Country) => {  
+  const insertPosition = async (position: Position) => {  
     pending.value = true
-    return CountryService.insertCountry(country)
+    return PositionService.insertPosition(position)
       .then((response) => {         
         alert( response.data.message )
-        router.push( { path: '/countries' } )
+        router.push( { path: '/positions' } )
       })
       .catch((err) => {                
         console.log( err.response.data )
@@ -55,12 +55,12 @@ export default (countryId?: string) => {
       })
   }
 
-  const updateCountry = async (country: Country, countryId: string) => {
+  const updatePosition = async (position: Position, positionId: string) => {
     pending.value= true
-    return CountryService.updateCountry(countryId, country)
+    return PositionService.updatePosition(positionId, position)
       .then((response) => {
         alert( response.data.message )
-        router.push( { path: '/countries' } )
+        router.push( { path: '/positions' } )
       })
       .catch((err) => {                
         console.log( err.response.data )
@@ -71,12 +71,12 @@ export default (countryId?: string) => {
       })
   }
   
-  const submit = (country: Country, countryId?: string) => {  
-    !countryId ? insertCountry(country)  : updateCountry(country, countryId)
+  const submit = (position: Position, positionId?: string) => {  
+    !positionId ? insertPosition(position)  : updatePosition(position, positionId)
   }
 
   return {
-    country,
+    position,
     errors,
     
     pending,
