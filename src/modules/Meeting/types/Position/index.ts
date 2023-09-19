@@ -1,13 +1,13 @@
 
 
-export type Country = {
+export type Position = {
   id?: string | number;
   name?: string; 
   
   _method?: 'PUT';
 }
 
-export type CountryTG = {
+export type PositionTG = {
   rows: Rows;
   sort: null | string;
   direction: null | string;
@@ -16,7 +16,7 @@ export type CountryTG = {
 
 export type Rows = {
   current_page: number;
-  data: CountryRow[];
+  data: PositionRow[];
   first_page_url: string;
   from: number;
   last_page: number;
@@ -30,7 +30,7 @@ export type Rows = {
   total: number;
 }
 
-export type CountryRow = {
+export type PositionRow = {
   name?: string; 
 }
 

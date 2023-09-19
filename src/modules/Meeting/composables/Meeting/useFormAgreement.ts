@@ -1,6 +1,7 @@
-import { computed, reactive, ref, watch } from 'vue'
+import { onMounted, computed, reactive, ref, watch } from 'vue'
 import { useVuelidate } from "@vuelidate/core";
 import { required, helpers, minValue } from "@vuelidate/validators";
+import useHttp from "@/composables/useHttp";
 import type { Agreement } from "../../types/Meeting/Agreement";
 
 export default (agreement: Agreement) => {  
@@ -12,8 +13,15 @@ export default (agreement: Agreement) => {
     observation: agreement.observation, 
   })
 
-  const isOpenModal = ref(false)
+  const {
+    errors,
+    pending,
 
+    getError
+  } = useHttp()
+
+  const isOpenModal = ref(false)
+  
   const rules = computed(() => {
     return {
       meeting_id: { required: helpers.withMessage("Campo requerido", required) },
@@ -31,6 +39,10 @@ export default (agreement: Agreement) => {
     form.responsible = newAgreement.responsible
     form.observation = newAgreement.observation
   })
+
+  onMounted(() => {
+    
+    })
 
   return {
     form,

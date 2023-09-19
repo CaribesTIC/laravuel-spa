@@ -1,6 +1,6 @@
 <script setup lang="ts">
 // @ts-nocheck
-import useIndex from "../../composables/Country/useIndex";
+import useIndex from "../../composables/Dependency/useIndex";
 import AppPaginationB from "@/components/AppPaginationB.vue";
 import AppPageHeader from "@/components/AppPageHeader.vue"
 import AppBtn from "@/components/AppBtn.vue"
@@ -18,10 +18,10 @@ const {
 
 <template>
 <div>
-  <AppPageHeader> Countries </AppPageHeader>
+  <AppPageHeader> Dependencies </AppPageHeader>
 
   <div class="flex space-x-2">
-    <AppLink class="btn btn-primary" to="/countries/create">
+    <AppLink class="btn btn-primary" to="/dependencies/create">
       <span>Crear</span>
     </AppLink>
   </div>
@@ -60,7 +60,7 @@ const {
              <td class="">
               <AppLink
                 class="text-indigo-600 hover:text-indigo-800 underline"
-                :to="{ name: 'countryEdit', params: { id: row.id }}"
+                :to="{ name: 'dependencyEdit', params: { id: row.id }}"
               >
                 {{ row.id }}
               </AppLink>
@@ -72,7 +72,7 @@ const {
               <div class="flex items-center space-x-1">                
                 <AppBtn
                   class="btn btn-primary btn-xs"                    
-                  @click="router.push({ path: '/countries/edit/'+row.id })"
+                  @click="router.push({ path: '/dependencies/edit/'+row.id })"
                 >
                   Editar
                 </AppBtn>
@@ -86,7 +86,7 @@ const {
             </td>
           </tr>
           <tr v-if="data.rows.length === 0">
-            <td class="" colspan="4">Countries not found.</td>
+            <td class="" colspan="4">Dependencies not found.</td>
           </tr>
         </tbody>
       </table>

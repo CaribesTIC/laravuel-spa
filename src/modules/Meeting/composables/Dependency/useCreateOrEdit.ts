@@ -1,15 +1,15 @@
 import { onMounted, reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import useHttp from "@/composables/useHttp"; //foreign_table_name
-import CountryService from "../../services/Country"
+import DependencyService from "../../services/Dependency"
 
-import type { Country } from "../../types/Country"
+import type { Dependency } from "../../types/Dependency"
 
 
-export default (countryId?: string) => {
+export default (dependencyId?: string) => {
   const router = useRouter();
   
-  const country: Country = reactive({
+  const dependency: Dependency = reactive({
     name: "", 
   })
 
@@ -23,11 +23,11 @@ export default (countryId?: string) => {
   } = useHttp()
   
   onMounted(async () => {
-    if (countryId) {
+    if (dependencyId) {
       pending.value = true
-      CountryService.getCountry(countryId)
+      DependencyService.getDependency(dependencyId)
         .then((response) => { 
-          country.name = response.data.data.name 
+          dependency.name = response.data.data.name 
         })
         .catch((err) => {        
           errors.value = getError(err)
@@ -39,12 +39,12 @@ export default (countryId?: string) => {
     
   })
 
-  const insertCountry = async (country: Country) => {  
+  const insertDependency = async (dependency: Dependency) => {  
     pending.value = true
-    return CountryService.insertCountry(country)
+    return DependencyService.insertDependency(dependency)
       .then((response) => {         
         alert( response.data.message )
-        router.push( { path: '/countries' } )
+        router.push( { path: '/dependencies' } )
       })
       .catch((err) => {                
         console.log( err.response.data )
@@ -55,12 +55,12 @@ export default (countryId?: string) => {
       })
   }
 
-  const updateCountry = async (country: Country, countryId: string) => {
+  const updateDependency = async (dependency: Dependency, dependencyId: string) => {
     pending.value= true
-    return CountryService.updateCountry(countryId, country)
+    return DependencyService.updateDependency(dependencyId, dependency)
       .then((response) => {
         alert( response.data.message )
-        router.push( { path: '/countries' } )
+        router.push( { path: '/dependencies' } )
       })
       .catch((err) => {                
         console.log( err.response.data )
@@ -71,12 +71,12 @@ export default (countryId?: string) => {
       })
   }
   
-  const submit = (country: Country, countryId?: string) => {  
-    !countryId ? insertCountry(country)  : updateCountry(country, countryId)
+  const submit = (dependency: Dependency, dependencyId?: string) => {  
+    !dependencyId ? insertDependency(dependency)  : updateDependency(dependency, dependencyId)
   }
 
   return {
-    country,
+    dependency,
     errors,
     
     pending,

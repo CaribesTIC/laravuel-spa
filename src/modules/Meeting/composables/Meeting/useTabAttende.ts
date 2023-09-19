@@ -19,12 +19,12 @@ export default (meetingId: string) => {
     meeting_id: "", 
     idcard: "", 
     fullname: "", 
-    entity_id: "", 
-    dependence_id: "", 
-    position_id: "", 
     email: "", 
     phone: "", 
     observation: "", 
+    entity_id: "", 
+    dependence_id: "", 
+    position_id: "", 
   })
   
   const attendes: Ref<Attende[]>  = ref([])
@@ -110,12 +110,12 @@ export default (meetingId: string) => {
       attende.id = ""
       attende.idcard = ""
       attende.fullname = ""
-      attende.entity_id = ""
-      attende.dependence_id = ""
-      attende.position_id = ""
       attende.email = ""
       attende.phone = ""
       attende.observation = ""
+      attende.entity_id = ""
+      attende.dependence_id = ""
+      attende.position_id = ""
   }
 
   const editAttende = (attendeEdit: Attende) => {
@@ -124,12 +124,12 @@ export default (meetingId: string) => {
     attende.id = attendeEdit.id
     attende.idcard = attendeEdit.idcard
     attende.fullname = attendeEdit.fullname
-    attende.entity_id = attendeEdit.entity_id
-    attende.dependence_id = attendeEdit.dependence_id
-    attende.position_id = attendeEdit.position_id
     attende.email = attendeEdit.email
     attende.phone = attendeEdit.phone
     attende.observation = attendeEdit.observation
+    attende.entity_id = attendeEdit.entity_id
+    attende.dependence_id = attendeEdit.dependence_id
+    attende.position_id = attendeEdit.position_id
     panelOpened.value = true
   }
   
