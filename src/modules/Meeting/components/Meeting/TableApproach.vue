@@ -42,29 +42,48 @@ const approachId = ref("")
 
           
             <td class="px-6 py-3 bg-gray-50 bg-base-200">
+
+              
+
               {{ approach.approach }}
 
 
               
 
+
+
+
             </td>
            
             <td class="px-6 py-3 ">
+
+              
+
               {{ approach.speaker }}
 
 
               
 
+
+
+
             </td>
            
             <td class="px-6 py-3 bg-gray-50 bg-base-200">
+
+              
+
               {{ approach.observation }}
 
 
               
 
+
+
+
             </td>
            
+
 
 
 

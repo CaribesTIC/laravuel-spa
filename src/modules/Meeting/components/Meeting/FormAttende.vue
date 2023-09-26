@@ -102,9 +102,9 @@ const submitAttende = async () => {
                 <AppSelect
                   v-if="dependencies"
                   :options="dependencies"
-                  v-model="form.dependence_id"
-                  label="dependence_id"
-                  :error="v$.dependence_id.$error ? v$.dependence_id.$errors[0].$message : null"
+                  v-model="form.dependency_id"
+                  label="dependency_id"
+                  :error="v$.dependency_id.$error ? v$.dependency_id.$errors[0].$message : null"
                 />
               </div>
 

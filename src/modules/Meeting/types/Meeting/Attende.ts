@@ -7,7 +7,7 @@ export type Attende = {
   phone?: string;
   observation?: string;
   entity_id?: string;
-  dependence_id?: string;
+  dependency_id?: string;
   position_id?: string;
   _method?: 'PUT';
 }

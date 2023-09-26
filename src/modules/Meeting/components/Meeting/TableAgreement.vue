@@ -42,29 +42,48 @@ const agreementId = ref("")
 
           
             <td class="px-6 py-3 bg-gray-50 bg-base-200">
+
+              
+
               {{ agreement.agreement }}
 
 
               
 
+
+
+
             </td>
            
             <td class="px-6 py-3 ">
+
+              
+
               {{ agreement.responsible }}
 
 
               
 
+
+
+
             </td>
            
             <td class="px-6 py-3 bg-gray-50 bg-base-200">
+
+              
+
               {{ agreement.observation }}
 
 
               
 
+
+
+
             </td>
            
+
 
 
 
