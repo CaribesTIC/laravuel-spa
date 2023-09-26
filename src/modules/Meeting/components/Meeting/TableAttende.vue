@@ -35,7 +35,7 @@ const attendeId = ref("")
           <th class="px-6 py-3 ">phone</th>
           <th class="px-6 py-3 bg-gray-50 bg-base-200">observation</th>
           <th class="px-6 py-3 ">entity_id</th>
-          <th class="px-6 py-3 bg-gray-50 bg-base-200">dependence_id</th>
+          <th class="px-6 py-3 bg-gray-50 bg-base-200">dependency_id</th>
           <th class="px-6 py-3 ">position_id</th>
           <th class="px-6 py-3 bg-gray-50 bg-base-200">Acción(es)</th>
         </tr>
@@ -47,69 +47,118 @@ const attendeId = ref("")
 
           
             <td class="px-6 py-3 bg-gray-50 bg-base-200">
+
+              
+
               {{ attende.idcard }}
 
 
               
 
+
+
+
             </td>
            
             <td class="px-6 py-3 ">
+
+              
+
               {{ attende.fullname }}
 
 
               
 
+
+
+
             </td>
            
             <td class="px-6 py-3 bg-gray-50 bg-base-200">
+
+              
+
               {{ attende.email }}
 
 
               
 
+
+
+
             </td>
            
             <td class="px-6 py-3 ">
+
+              
+
               {{ attende.phone }}
 
 
               
 
+
+
+
             </td>
            
             <td class="px-6 py-3 bg-gray-50 bg-base-200">
+
+              
+
               {{ attende.observation }}
 
 
               
 
+
+
+
             </td>
            
             <td class="px-6 py-3 ">
-              {{ attende.entity_id }}
-
 
               
+
+                {{ attende.entity.name }}
+                
+
+              
+
+
+
 
             </td>
            
             <td class="px-6 py-3 bg-gray-50 bg-base-200">
-              {{ attende.dependence_id }}
-
 
               
+
+                {{ attende.dependency.name }}
+                
+
+              
+
+
+
 
             </td>
            
             <td class="px-6 py-3 ">
-              {{ attende.position_id }}
-
 
               
 
+                {{ attende.position.name }}
+                
+
+              
+
+
+
+
             </td>
            
+
 
 
 

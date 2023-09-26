@@ -23,7 +23,7 @@ export default (meetingId: string) => {
     phone: "", 
     observation: "", 
     entity_id: "", 
-    dependence_id: "", 
+    dependency_id: "", 
     position_id: "", 
   })
   
@@ -114,7 +114,7 @@ export default (meetingId: string) => {
       attende.phone = ""
       attende.observation = ""
       attende.entity_id = ""
-      attende.dependence_id = ""
+      attende.dependency_id = ""
       attende.position_id = ""
   }
 
@@ -128,7 +128,7 @@ export default (meetingId: string) => {
     attende.phone = attendeEdit.phone
     attende.observation = attendeEdit.observation
     attende.entity_id = attendeEdit.entity_id
-    attende.dependence_id = attendeEdit.dependence_id
+    attende.dependency_id = attendeEdit.dependency_id
     attende.position_id = attendeEdit.position_id
     panelOpened.value = true
   }

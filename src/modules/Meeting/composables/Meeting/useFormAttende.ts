@@ -17,7 +17,7 @@ export default (attende: Attende) => {
     phone: attende.phone, 
     observation: attende.observation, 
     entity_id: attende.entity_id, 
-    dependence_id: attende.dependence_id, 
+    dependency_id: attende.dependency_id, 
     position_id: attende.position_id, 
   })
 
@@ -42,7 +42,7 @@ export default (attende: Attende) => {
       phone: { required: helpers.withMessage("Campo requerido", required) },
       observation: { required: helpers.withMessage("Campo requerido", required) },
       entity_id: { required: helpers.withMessage("Campo requerido", required) },
-      dependence_id: { required: helpers.withMessage("Campo requerido", required) },
+      dependency_id: { required: helpers.withMessage("Campo requerido", required) },
       position_id: { required: helpers.withMessage("Campo requerido", required) },
     };
   });
@@ -57,7 +57,7 @@ export default (attende: Attende) => {
     form.phone = newAttende.phone
     form.observation = newAttende.observation
     form.entity_id = newAttende.entity_id
-    form.dependence_id = newAttende.dependence_id
+    form.dependency_id = newAttende.dependency_id
     form.position_id = newAttende.position_id
   })
 
