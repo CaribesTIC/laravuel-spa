@@ -38,7 +38,7 @@ const submit = async () => {
     <div class="block">     
       <AppInput           
         v-model="form.email"
-        label="email"
+        label="Email"
         type="text"
         :error="errors && errors.email ? errors.email[0] : ''"
       />
@@ -47,7 +47,7 @@ const submit = async () => {
     <div class="block">     
       <AppCheckbox
         v-model="form.type"
-        label="type"
+        label="Type"
         :error="errors && errors.type ? errors.type[0] : ''"
       />
     </div>
@@ -55,7 +55,7 @@ const submit = async () => {
     <div class="block">     
       <AppInput           
         v-model="form.identification_card"
-        label="identification_card"
+        label="IdentificationCard"
         type="text"
         :error="errors && errors.identification_card ? errors.identification_card[0] : ''"
       />
@@ -64,7 +64,7 @@ const submit = async () => {
     <div class="block">     
       <AppInput           
         v-model="form.business_name"
-        label="business_name"
+        label="BusinessName"
         type="text"
         :error="errors && errors.business_name ? errors.business_name[0] : ''"
       />
@@ -73,7 +73,7 @@ const submit = async () => {
     <div class="block">     
       <AppInput           
         v-model="form.phone"
-        label="phone"
+        label="Phone"
         type="text"
         :error="errors && errors.phone ? errors.phone[0] : ''"
       />
@@ -84,14 +84,14 @@ const submit = async () => {
         v-if="countries"
         :options="countries"
         v-model="form.country_id"
-        label="country_id"
+        label="Country"
         :error="errors && errors.country_id ? errors.country_id[0] : ''"
       />
     </div>
     
     <div class="block">     
       <AppTextarea
-        label="domicile"
+        label="Domicile"
         v-model="form.domicile"
         :error="errors && errors.domicile ? errors.domicile[0] : ''"
       />

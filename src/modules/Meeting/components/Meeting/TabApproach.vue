@@ -33,7 +33,7 @@
               type="text"                 
               data-testid="click-btn"
               :class="closeClassOpened"
-              :text="`${closeButtonOpened} panel to add Approach`"
+              :text="`${closeButtonOpened} formulario Approach`"
               @click="panelToogleApproach"
             />      
             <FormApproach

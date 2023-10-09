@@ -32,7 +32,7 @@ const submit = async () => {
     <div class="block">     
       <AppInput           
         v-model="form.name"
-        label="name"
+        label="Name"
         type="text"
         :error="errors && errors.name ? errors.name[0] : ''"
       />

@@ -37,7 +37,7 @@ const submitApproach = async () => {
               <div class="block">     
                 <AppInput           
                   v-model="form.approach"
-                  label="approach"
+                  label="Approach"
                   type="text"
                   :error="v$.approach.$error ? v$.approach.$errors[0].$message : null"
 
@@ -47,7 +47,7 @@ const submitApproach = async () => {
               <div class="block">     
                 <AppInput           
                   v-model="form.speaker"
-                  label="speaker"
+                  label="Speaker"
                   type="text"
                   :error="v$.speaker.$error ? v$.speaker.$errors[0].$message : null"
 
@@ -56,7 +56,7 @@ const submitApproach = async () => {
               
               <div class="block">     
                 <AppTextarea
-                  label="observation"
+                  label="Observation"
                   v-model="form.observation"
                   :error="v$.observation.$error ? v$.observation.$errors[0].$message : null"
                 />
@@ -64,15 +64,6 @@ const submitApproach = async () => {
 
               
             
-
-
-
-
-
-
-
-
-
 
           <!--label>Tipo de Venta</label><br/>
           <AppRadioGroup
@@ -88,7 +79,7 @@ const submitApproach = async () => {
           type="submit"                 
           data-testid="submit-btn"
           class="btn btn-primary"
-          text="Agregar"
+          text="Guardar"
         />        
       </div> 
     </form>    
