@@ -33,7 +33,7 @@
               type="text"                 
               data-testid="click-btn"
               :class="closeClassOpened"
-              :text="`${closeButtonOpened} panel to add Agreement`"
+              :text="`${closeButtonOpened} formulario Agreement`"
               @click="panelToogleAgreement"
             />      
             <FormAgreement

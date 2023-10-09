@@ -47,7 +47,7 @@ export default (meetingId?: string) => {
     return MeetingService.insertMeeting(meeting)
       .then((response) => {         
         alert( response.data.message )
-        router.push( { path: `/meetings/edit/${response.data.meeting_id}` } )
+        router.push( { path: `/meetings/edit/${response.data.id}` } )
       })
       .catch((err) => {                
         console.log( err.response.data )

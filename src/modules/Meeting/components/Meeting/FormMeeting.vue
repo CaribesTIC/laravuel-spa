@@ -39,7 +39,7 @@ const submit = async () => {
             v-if="countries"
             :options="countries"
             v-model="form.country_id"
-            label="country_id"
+            label="Country"
             :error="v$.country_id.$error ? v$.country_id.$errors[0].$message : null"
           />
         </div>
@@ -47,7 +47,7 @@ const submit = async () => {
         <div class="block">     
           <AppInput           
             v-model="form.place"
-            label="place"
+            label="Place"
             type="text"
             :error="v$.place.$error ? v$.place.$errors[0].$message : null"
           />
@@ -56,7 +56,7 @@ const submit = async () => {
         <div class="block">     
           <AppInput           
             v-model="form.subject"
-            label="subject"
+            label="Subject"
             type="text"
             :error="v$.subject.$error ? v$.subject.$errors[0].$message : null"
           />
@@ -65,7 +65,7 @@ const submit = async () => {
         <div class="block">     
           <AppInput           
             v-model="form.reason"
-            label="reason"
+            label="Reason"
             type="text"
             :error="v$.reason.$error ? v$.reason.$errors[0].$message : null"
           />
@@ -73,7 +73,7 @@ const submit = async () => {
         
         <div class="block">     
           <AppTextarea
-            label="observation"
+            label="Observation"
             v-model="form.observation"
             :error="v$.observation.$error ? v$.observation.$errors[0].$message : null"
           />
@@ -91,3 +91,7 @@ const submit = async () => {
   </form>
 </div>
 </template>
+
+
+countries
+country_id

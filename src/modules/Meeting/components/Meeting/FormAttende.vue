@@ -40,7 +40,7 @@ const submitAttende = async () => {
               <div class="block">     
                 <AppInput           
                   v-model="form.idcard"
-                  label="idcard"
+                  label="Idcard"
                   type="text"
                   :error="v$.idcard.$error ? v$.idcard.$errors[0].$message : null"
 
@@ -50,7 +50,7 @@ const submitAttende = async () => {
               <div class="block">     
                 <AppInput           
                   v-model="form.fullname"
-                  label="fullname"
+                  label="Fullname"
                   type="text"
                   :error="v$.fullname.$error ? v$.fullname.$errors[0].$message : null"
 
@@ -60,7 +60,7 @@ const submitAttende = async () => {
               <div class="block">     
                 <AppInput           
                   v-model="form.email"
-                  label="email"
+                  label="Email"
                   type="text"
                   :error="v$.email.$error ? v$.email.$errors[0].$message : null"
 
@@ -70,7 +70,7 @@ const submitAttende = async () => {
               <div class="block">     
                 <AppInput           
                   v-model="form.phone"
-                  label="phone"
+                  label="Phone"
                   type="text"
                   :error="v$.phone.$error ? v$.phone.$errors[0].$message : null"
 
@@ -79,7 +79,7 @@ const submitAttende = async () => {
               
               <div class="block">     
                 <AppTextarea
-                  label="observation"
+                  label="Observation"
                   v-model="form.observation"
                   :error="v$.observation.$error ? v$.observation.$errors[0].$message : null"
                 />
@@ -91,7 +91,7 @@ const submitAttende = async () => {
                   v-if="entities"
                   :options="entities"
                   v-model="form.entity_id"
-                  label="entity_id"
+                  label="Entity"
                   :error="v$.entity_id.$error ? v$.entity_id.$errors[0].$message : null"
                 />
               </div>
@@ -103,7 +103,7 @@ const submitAttende = async () => {
                   v-if="dependencies"
                   :options="dependencies"
                   v-model="form.dependency_id"
-                  label="dependency_id"
+                  label="Dependency"
                   :error="v$.dependency_id.$error ? v$.dependency_id.$errors[0].$message : null"
                 />
               </div>
@@ -115,7 +115,7 @@ const submitAttende = async () => {
                   v-if="positions"
                   :options="positions"
                   v-model="form.position_id"
-                  label="position_id"
+                  label="Position"
                   :error="v$.position_id.$error ? v$.position_id.$errors[0].$message : null"
                 />
               </div>
@@ -123,15 +123,6 @@ const submitAttende = async () => {
               
               
             
-
-
-
-
-
-
-
-
-
 
           <!--label>Tipo de Venta</label><br/>
           <AppRadioGroup
@@ -147,7 +138,7 @@ const submitAttende = async () => {
           type="submit"                 
           data-testid="submit-btn"
           class="btn btn-primary"
-          text="Agregar"
+          text="Guardar"
         />        
       </div> 
     </form>    

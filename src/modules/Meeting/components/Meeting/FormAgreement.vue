@@ -37,7 +37,7 @@ const submitAgreement = async () => {
               <div class="block">     
                 <AppInput           
                   v-model="form.agreement"
-                  label="agreement"
+                  label="Agreement"
                   type="text"
                   :error="v$.agreement.$error ? v$.agreement.$errors[0].$message : null"
 
@@ -47,7 +47,7 @@ const submitAgreement = async () => {
               <div class="block">     
                 <AppInput           
                   v-model="form.responsible"
-                  label="responsible"
+                  label="Responsible"
                   type="text"
                   :error="v$.responsible.$error ? v$.responsible.$errors[0].$message : null"
 
@@ -56,7 +56,7 @@ const submitAgreement = async () => {
               
               <div class="block">     
                 <AppTextarea
-                  label="observation"
+                  label="Observation"
                   v-model="form.observation"
                   :error="v$.observation.$error ? v$.observation.$errors[0].$message : null"
                 />
@@ -64,15 +64,6 @@ const submitAgreement = async () => {
 
               
             
-
-
-
-
-
-
-
-
-
 
           <!--label>Tipo de Venta</label><br/>
           <AppRadioGroup
@@ -88,7 +79,7 @@ const submitAgreement = async () => {
           type="submit"                 
           data-testid="submit-btn"
           class="btn btn-primary"
-          text="Agregar"
+          text="Guardar"
         />        
       </div> 
     </form>    
